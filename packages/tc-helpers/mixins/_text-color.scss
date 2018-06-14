@@ -1,0 +1,39 @@
+/// Generate text colored rulesets from a map of colors where the color values
+/// is a map of a color configuration.
+///
+/// @requires {Function} tc-is-important
+
+@import "../functions/is-important";
+
+@mixin tc-text-color($map, $modifier: "", $important: true) {
+  @if $map and type-of($map) != map {
+    @error("Type $map is not a map.");
+  }
+
+  @each $key, $color-map in $map {
+    @if $color-map {
+      @if not variable-exists(color-map) {
+        @error("Color map #{$color-map} does not exist.");
+      }
+
+      @if not type-of($color-map) == map {
+        @error("Expected #{$color-map} to be a map of colors.");
+      }
+
+      @each $weight, $color in $color-map {
+        $weight: if($weight == 0, "000", $weight);
+        $selector: ".tc-text-#{$key}-#{$weight}#{$modifier}";
+
+        #{unquote($selector)} {
+          color: $color tc-is-important($important);
+        }
+
+        a#{unquote($selector)}:hover,
+        a#{unquote($selector)}:focus,
+        a#{unquote($selector)}:active {
+          color: mix(#000, $color, 25%) tc-is-important($important);
+        }
+      }
+    }
+  }
+}

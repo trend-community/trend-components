@@ -1,0 +1,9 @@
+/// Returns the !important rule to add to a style declaration.
+///
+/// @group function
+/// @param {Boolean} important
+/// @returns {String | null} !important
+
+@function tc-is-important($important) {
+  @return if($important, unquote("!important"), null);
+}

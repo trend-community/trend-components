@@ -1,0 +1,17 @@
+/// Add rules to a ruleset to contain floats.
+/// @group mixins
+
+@import "../functions/is-important";
+
+@mixin tc-clearfix($important: true) {
+  &::before,
+  &::after {
+    display: table tc-is-important($important);
+
+    content: "" tc-is-important($important);
+  }
+
+  &::after {
+    clear: both tc-is-important($important);
+  }
+}

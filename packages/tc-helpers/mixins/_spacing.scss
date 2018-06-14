@@ -1,0 +1,99 @@
+////
+/// Generating spacing rulesets.
+///
+/// Legend:
+/// <type><direction><size>
+///
+/// Type:
+/// Is the type passed in.  e.g. $type: (margin: m), type will be 'm'.
+///
+/// Direction:
+/// a = all
+/// b = bottom
+/// h = horizontal
+/// l = left
+/// r = right
+/// t = top
+/// v = vertical
+///
+/// Size:
+/// l = large
+/// m = medium
+/// n = none
+/// s = small
+/// a = auto
+///
+/// @group helpers mixin
+/// @param {Map} $type - Key/value pair of property and selector name.
+/// @param {Map} $spacings - Spacing map to generate spacing values and sizes.
+/// @param {String} $modifier - Append modifier string to class selector.
+/// @param {Boolean} $important - Add !important declaration.
+/// @requires {Function} tc-is-important
+////
+
+// stylelint-disable at-rule-no-unknown, at-rule-blacklist
+
+@import "../functions/is-important";
+
+@mixin tc-spacing($type, $spacings, $modifier: "", $important: true) {
+  $id: unique-id();
+
+  @each $prop, $abbr in $type {
+    @each $size, $length in $spacings {
+      %#{$abbr}#{$size}-top-#{$id} {
+        #{$prop}-top: $length !important;
+      }
+
+      %#{$abbr}#{$size}-right-#{$id} {
+        #{$prop}-right: $length !important;
+      }
+
+      %#{$abbr}#{$size}-bottom-#{$id} {
+        #{$prop}-bottom: $length !important;
+      }
+
+      %#{$abbr}#{$size}-left-#{$id} {
+        #{$prop}-left: $length !important;
+      }
+
+      .tc-#{$abbr}a#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-bottom-#{$id};
+        @extend %#{$abbr}#{$size}-left-#{$id};
+        @extend %#{$abbr}#{$size}-right-#{$id};
+        @extend %#{$abbr}#{$size}-top-#{$id};
+      }
+
+      .tc-#{$abbr}t#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-top-#{$id};
+      }
+
+      .tc-#{$abbr}r#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-right-#{$id};
+      }
+
+      .tc-#{$abbr}b#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-bottom-#{$id};
+      }
+
+      .tc-#{$abbr}l#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-left-#{$id};
+      }
+
+      // Horizontal spacing.
+
+      .tc-#{$abbr}h#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-left-#{$id};
+        @extend %#{$abbr}#{$size}-right-#{$id};
+      }
+
+      // Vertical spacing.
+
+      .tc-#{$abbr}v#{$size}#{$modifier} {
+        @extend %#{$abbr}#{$size}-bottom-#{$id};
+        @extend %#{$abbr}#{$size}-top-#{$id};
+      }
+    }
+  }
+}
+
+// stylelint enable

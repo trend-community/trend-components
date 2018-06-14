@@ -1,0 +1,17 @@
+/// Returns integer that is the greatest common divisor.
+///
+/// @example
+///   $gcd: gcd(54, 24);
+///   // $gcd: 6;
+/// @group functions
+/// @param {number} $a - First integer.
+/// @param {number} $b - Second integer.
+/// @return {number} The greatest common divisor.
+
+@function tc-gcd($a, $b) {
+  @if $b == 0 {
+    @return $a;
+  } @else {
+    @return tc-gcd($b, $a % $b);
+  }
+}

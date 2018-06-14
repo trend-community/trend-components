@@ -1,0 +1,87 @@
+////
+/// Color functions
+/// @group Helpers functions
+////
+
+/// Adjust the weight of the passed in color.  It is done by adjusting
+/// the lightness of the color.
+///
+/// @access public
+/// @param {string} $color - The color to set weight on.
+/// @param {Number} $weight - The weight to set from weights map.
+/// @return {color}
+
+@function tc-color-set-weight($color, $weight) {
+  @return scale-color($color, $lightness: $weight);
+}
+
+/// Set a accent color from the passed in color.
+///
+/// @access public
+/// @param {string} $color - The color to create accent from.
+/// @param {string} $accent - The accent color weight.
+/// @return {color}
+
+@function tc-color-set-accent($color, $accent) {
+  $s: nth($accent, 1);
+  $l: nth($accent, 2);
+
+  @return adjust-hue(
+    scale-color($color, $saturation: $s, $lightness: $l),
+    -5deg);
+}
+
+/// Returns a color map from passed color.
+///
+/// @access private
+/// @param {String} $color - A valid color value
+/// @requires {Variable} $_tc-color-weights
+/// @requires {Variable} $_tc-color-accents
+/// @requires {Function} tc-color-set-weight
+/// @requires {Function} tc-color-set-accents
+/// @returns {Map} A color map of weights and accent weights
+
+@function tc-color-map($color) {
+  $color-weights: (000, 100, 200, 300, 400, 500, 600, 700, 800, 900);
+  $accent_weights: (a100, a200, a400, a700);
+  $color-map: ();
+
+  @each $weight in $color-weights {
+    $weighted-color: tc-color-set-weight(
+      $color,
+      map-get($_tc-color-weights, $weight)
+    );
+    $new-map: ($weight: $weighted-color);
+
+    $color-map: map-merge($color-map, $new-map);
+  }
+
+  @each $weight in $accent-weights {
+    $accent: map-get($_tc-color-accents, $weight);
+    $new-map: (#{$weight}: tc-color-set-accent($color, $accent));
+
+    $color-map: map-merge($color-map, $new-map);
+  }
+
+  @return $color-map;
+}
+
+/// Set a color state.
+///
+/// @example
+///   .Button:hover {
+///     color: set-color-state(#333);
+///   }
+/// @param {color} $color - A hexadecimal color value.
+/// @param {number} $brightness [30] - The amount to adjust brightness by.
+/// @return {color} hsl color value.
+/// @require {function} strip-unit
+
+@function tc-color-set-state($color, $brightness: 30) {
+  $hue: tc-strip-unit(hue($color));
+  $saturation: saturation($color);
+  $lightness: lightness($color);
+  $luminosity: if($lightness > 50, $lightness - $brightness, $lightness + $brightness);
+
+  @return unquote("hsl(#{$hue}, #{$saturation}, #{$luminosity})");
+}

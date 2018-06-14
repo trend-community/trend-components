@@ -1,0 +1,283 @@
+// Main helper styles
+// NOTE: Need to import variables before this file when manually importing
+// this stylesheet.
+
+@import "mixins/backgrounds";
+@import "mixins/borders";
+@import "mixins/breakpoint";
+@import "mixins/rulesets";
+@import "mixins/shadow-levels";
+@import "mixins/spacing";
+@import "mixins/size";
+@import "mixins/text-color";
+
+:root {
+  @each $key, $value in $tc-helper-variables {
+    --tc-helper-#{$key}: #{$value};
+  }
+}
+
+// Background helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-background {
+  @include tc-backgrounds($tc-backgrounds);
+}
+
+@if $tc-has-background and $tc-has-background-media {
+  @each $break in $tc-background-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-backgrounds($tc-displays, "--#{$break}");
+    }
+  }
+}
+
+// Border helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-border {
+  @include tc-ruleset-key-selector(
+    map-merge($tc-borders, $tc-border-radii),
+    "border"
+  );
+  @include tc-border-colors($tc-border-colors);
+}
+
+@if $tc-has-border and $tc-has-border-media {
+  @each $break in $tc-border-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector(
+        map-merge($tc-borders, $tc-border-radii),
+        "border",
+        "--#{$break}"
+      );
+      @include tc-border-colors($tc-border-colors, "--#{$break}");
+    }
+  }
+}
+
+// Display helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-display {
+  @include tc-ruleset-key-selector($tc-displays, "display");
+}
+
+@if $tc-has-display and $tc-has-display-media {
+  @each $break in $tc-display-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector($tc-displays, "display", "--#{$break}");
+    }
+  }
+}
+
+// Flex helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-flex {
+  @include tc-ruleset-prop-grouping($tc-flex, "flex");
+}
+
+@if $tc-has-flex and $tc-has-flex-media {
+  @each $break in $tc-flex-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-prop-grouping($tc-flex, "flex", "--#{$break}");
+    }
+  }
+}
+
+// Image helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-image {
+  @include tc-ruleset-key-selector($tc-image, "image");
+}
+
+@if $tc-has-image and $tc-has-image-media {
+  @each $break in $tc-image-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector($tc-image, "image", "--#{$break}");
+    }
+  }
+}
+
+// Layout helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-layout {
+  @include tc-ruleset-key-selector($tc-layouts, "layout");
+}
+
+@if $tc-has-layout and $tc-has-layout-media {
+  @each $break in $tc-layout-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector(
+        $tc-layouts,
+        "layout",
+        $modifier:
+        "--#{$break}"
+      );
+    }
+  }
+}
+
+// Link helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-link {
+  @include tc-ruleset-prop-grouping($tc-link, "link");
+}
+
+@if $tc-has-link and $tc-has-link-media {
+  @each $break in $tc-link-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-prop-grouping(
+        $tc-link,
+        "link",
+        $modifier: "--#{$break}"
+      );
+    }
+  }
+}
+
+// List helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-list {
+  @include tc-ruleset-key-selector($tc-list, "list");
+}
+
+@if $tc-has-list and $tc-has-list-media {
+  @each $break in $tc-list-breakpoints {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector(
+        $tc-list,
+        "list",
+        $modifier: "--#{$break}"
+      );
+    }
+  }
+}
+
+// Spacing helpers
+
+// Margin helpers
+
+@if $tc-has-margin {
+  @include tc-spacing($tc-margin, $tc-margin-spacings);
+}
+
+@if $tc-has-margin and $tc-has-margin-media {
+  @each $break in $tc-margin-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-spacing($tc-margin, $tc-margin-spacings, "--#{$break}");
+    }
+  }
+}
+
+// Padding helpers
+
+@if $tc-has-padding {
+  @include tc-spacing($tc-padding, $tc-padding-spacings);
+}
+
+@if $tc-has-padding and $tc-has-padding-media {
+  @each $break in $tc-padding-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-spacing($tc-padding, $tc-padding-spacings, "--#{$break}");
+    }
+  }
+}
+
+// Shadow level helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-shadow {
+  @include tc-shadow-level-rulesets($tc-shadow, $color: $tc-shadow-color);
+}
+
+@if $tc-has-shadow and $tc-has-shadow-media {
+  @each $break in $tc-shadow-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-shadow-level-rulesets(
+        $tc-shadow,
+        "--#{$break}",
+        $tc-shadow-color
+      );
+    }
+  }
+}
+
+// Size helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-size {
+  @include tc-ruleset-key-selector($tc-size, "size");
+  @include tc-size("tc-size-", $tc-sizes);
+}
+
+@if $tc-has-size and $tc-has-size-media {
+  @each $break in $tc-size-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-key-selector($tc-size, "size", "--#{$break}");
+      @include tc-size("tc-size-", $tc-sizes, $modifier: "--#{$break}");
+    }
+  }
+}
+
+// Text helpers
+// ----------------------------------------------------------------------------
+
+@if $tc-has-text {
+  @include tc-ruleset-prop-grouping($tc-text, "text");
+  @include tc-text-color($tc-text-colors);
+}
+
+@if $tc-has-text and $tc-has-text-media {
+  @each $break in $tc-text-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-ruleset-prop-grouping($tc-text, "text", "--#{$break}");
+    }
+  }
+}
+
+// Whitespace (Append and Prepend)
+// ----------------------------------------------------------------------------
+
+// Append whitespace to an HTML element.
+
+@if $tc-has-append {
+  @include tc-size("tc-append-", $tc-append-sizes, "margin-right");
+}
+
+@if $tc-has-append and $tc-has-append-media {
+  @each $break in $tc-append-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-size(
+        "tc-append-",
+        $tc-append-sizes,
+        "margin-right",
+        "--#{$break}"
+      );
+    }
+  }
+}
+
+// Prepend whitespace to  an HTML element.
+
+@if $tc-has-prepend {
+  @include tc-size("tc-prepend-", $tc-prepend-sizes, "margin-left");
+}
+
+@if $tc-has-prepend and $tc-has-prepend-media {
+  @each $break in $tc-prepend-breakpoint-keys {
+    @include tc-breakpoint-media-min($break, $tc-breakpoints) {
+      @include tc-size(
+        "tc-prepend-",
+        $tc-prepend-sizes,
+        "margin-left",
+        "--#{$break}"
+      );
+    }
+  }
+}

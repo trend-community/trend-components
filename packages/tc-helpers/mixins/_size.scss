@@ -1,0 +1,69 @@
+/// Percentage based mixin.
+///
+/// To use: pass a list of numbers and an optional string to create a modifier.
+///
+/// @example
+///   @include size('size', 2 4);
+///   // Output
+///   // .size1of2, .size2of4 { width: 50% !important; }
+///   // .size1of4 { width: 25% !important; }
+///   // .size3of4 { width: 75% !important; }
+/// @group helpers mixins
+/// @param {String} $prefix - create selector name.
+/// @param {List} $size-units - Space separated list of integers.
+/// @param {String} $property [width] - Property to add dimensions to.
+/// @param {String} $modifier [''] - Add a modifier, etc.
+/// @param {Boolean} $important - Add '!important' to your sizing declarations.
+/// @content Add any additional declarations to sizing declaration block.
+/// @requires {Function} gcd
+/// @requires {Function} contains
+
+@import "../functions/contains";
+@import "../functions/gcd";
+@import "../functions/is-important";
+
+@mixin tc-size(
+  $prefix,
+  $size-units,
+  $property: width,
+  $modifier: "",
+  $important: true) {
+  @each $n in $size-units {
+    @for $i from 1 through $n - 1 {
+      $i-r: 0;
+      $n-r: 0;
+
+      // Get greatest common denominator.
+      $gcd: tc-gcd($i, $n);
+      $x: $i / $gcd;
+
+      @if $gcd > 1 {
+        // Reduced value of $i
+        $i-r: $i/$gcd;
+        // Reduced value of $n
+        $n-r: $n/$gcd;
+      }
+
+      $canreduce: tc-contains($size-units, $n-r);
+
+      // Create our selector with a % width.
+      .#{$prefix}#{$i}of#{$n}#{$modifier} {
+        @if $canreduce {
+          // stylelint-disable at-rule-no-unknown, at-rule-blacklist
+          @extend .#{$prefix}#{$x}of#{$n / $gcd}#{$modifier};
+          // stylelint-enable
+          // stylelint-disable max-nesting-depth
+        } @else {
+          #{$property}: percentage($i / $n) tc-is-important($important);
+
+          @if $property == width {
+            flex-basis: auto tc-is-important($important);
+          }
+
+          @content;
+        }
+        // stylelint-enable max-nesting-depth
+      }
+    }
+  }
+}

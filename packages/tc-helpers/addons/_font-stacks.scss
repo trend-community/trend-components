@@ -1,0 +1,44 @@
+/// Font stacks
+/// @group Typography addons
+/// Additonal font stacks
+/// @resource http://cssfontstack.com/
+
+// Sans-serif
+// stylelint-disable scss/dollar-variable-pattern
+
+$arial: Arial, "Helvetica Neue", Helvetica, sans-serif !default;
+$centuryGothic: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !default;
+$futura: Futura, "Trebuchet MS", Arial, sans-serif !default;
+$geneva: Geneva, Tahoma, Verdana, sans-serif !default;
+$gill-sans: "Gill Sans", "Gill Sans MT", Calibri, sans-serif !default;
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$impact: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif !default;
+$lucida-grande: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif !default;
+$tahoma: Tahoma, Verdana, Segoe, sans-serif !default;
+$trebuchet: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif !default;
+$verdana: Verdana, Geneva, sans-serif !default;
+
+// Serif
+
+$baskerville: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif !default;
+$cambria: Cambria, Georgia, Times, "Times New Roman", serif !default;
+$garamond: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif !default;
+$georigia: Georgia, Times, "Times New Roman", serif !default;
+$palatino: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif !default;
+$times: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif !default;
+
+// Monospace
+
+$consolas: Consolas, monaco, monospace !default;
+$courier-new: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace !default;
+$monaco: Monaco, Consolas, "Lucida Console", monospace !default;
+
+// Fantasy
+
+$copperplate: Copperplate, "Copperplate Gothic Light", fantasy !default;
+
+// System:
+
+$system: -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+  "Helvetica Neue", sans-serif !default;

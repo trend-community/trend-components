@@ -1,0 +1,19 @@
+////
+/// Text truncation
+/// It will add an ellipsis to a block of truncated text.
+///
+/// @group helpers mixins
+/// @param {Bool} $important - Add !important declaration
+/// @requires {Function} tc-is-important
+////
+
+@mixin tc-text-truncate($important: true) {
+  display: block tc-is-important($important);
+  overflow: hidden tc-is-important($important);
+
+  max-width: 100% tc-is-important($important);
+
+  text-overflow: ellipsis tc-is-important($important);
+  white-space: nowrap tc-is-important($important);
+  word-wrap: normal tc-is-important($important);
+}

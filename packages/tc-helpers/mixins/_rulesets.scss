@@ -1,0 +1,111 @@
+////
+/// Generate rulesets from map variables.
+///
+/// @group helpers mixin
+/// @requires {Function} tc-is-important
+////
+
+/// Generate a include expression from passed in mixin name.
+///
+/// @param {String} $mixin - Name of mixin to include.
+/// @requires {Mixin} tc-clearfix
+/// @requires {Mixin} tc-text-truncation
+/// @requires {Mixin} tc-visually-hide
+
+@import "clearfix";
+@import "text-truncate";
+@import "visually-hide";
+
+@mixin tc-ruleset-include($mixin, $important: true) {
+  $mixins: (clearfix, text-truncate, visually-hide) !default;
+
+  @if index($mixins, $mixin) {
+    @if $mixin == clearfix {
+      @include tc-clearfix($important);
+    }
+
+    @if $mixin == text-truncate {
+      @include tc-text-truncate($important);
+    }
+
+    @if $mixin == visually-hide {
+      @include tc-visually-hide($important);
+    }
+  } @else {
+    @error("Mixin #{$mixin} is not an accepted mixin.");
+  }
+}
+
+/// Creates a ruleset from a map of rules.
+///
+/// @param {Map} $ruleset - Map of rules where key is property of rule.
+/// @param {Boolean} $important - Add an important declaration.
+
+@mixin tc-ruleset($ruleset, $important) {
+  @each $prop, $value in $ruleset {
+    @if $prop == include {
+      @include tc-ruleset-include($value, $important);
+    } @else {
+      #{$prop}: $value tc-is-important($important);
+    }
+  }
+}
+
+/// Generate rulesets from a map where each key is the selector name and
+/// value is a map of key/value pairs of rules.
+///
+/// @param {Map} $map - Map to generate rulesets
+/// @param {String} $type - Type to prepend to selector name
+/// @param {String} $modifier - Append modifier to selector
+/// @param {Boolean} $important - Add !important declaration
+
+@mixin tc-ruleset-key-selector($map, $type, $modifier: "", $important: true) {
+  $baseSelector: ".tc-#{$type}";
+
+  @each $key, $ruleset in $map {
+    @if $ruleset {
+      $selector: if(str-length($key) > 0, -#{$key}, "");
+
+      #{unquote($baseSelector)}#{$selector}#{$modifier} {
+        @include tc-ruleset($ruleset, $important);
+      }
+    }
+  }
+}
+
+/// Generate rulesets from a Map where initial keys are a CSS property and
+/// value is either a List or Map of selector names and/or values or property.
+/// NOTE: will only generate single rule rulesets.
+///
+/// @param {Map} $map - Map to generate rulesets
+/// @param {String} $type - Type to prepend to selector name
+/// @param {String} $modifier - Append modifier to selector
+/// @param {Boolean} $important - Add !important declaration
+
+@mixin tc-ruleset-prop-grouping($map, $type, $modifier: "", $important: true) {
+  $baseSelector: ".tc-#{$type}";
+
+  @each $prop, $value in $map {
+    @if $prop == include {
+      @each $selector, $mixin in $value {
+        #{unquote($baseSelector)}-#{$selector}#{$modifier} {
+          @include tc-ruleset-include($mixin, $important);
+        }
+      }
+    } @else if type-of($value) == list {
+      @each $rule in $value {
+        #{unquote($baseSelector)}-#{$rule}#{$modifier} {
+          #{$prop}: $rule tc-is-important($important);
+        }
+      }
+    } @else if type-of($value) == map {
+      @each $selector, $rule in $value {
+        $suffix: if(str-length($selector) > 0, -#{$selector}, "");
+
+        #{unquote($baseSelector)}#{$suffix}#{$modifier} {
+          #{$prop}: $rule tc-is-important($important);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+/// Render a min-width media query block.
+///
+/// @example
+/// .foo
+///   @include breakpoint-media-min('md', $breakpoints map)
+///    width: 50%
+/// @group helpers mixin
+/// @param {String} $size - Key in map passed in.
+/// @param {Map} $_breakpoint=$breakpoints - SASS map.
+/// @requires underscores em function
+
+@import "../functions/relative-unit";
+
+// min-width media query block
+
+@mixin tc-breakpoint-media-min($size, $breakpoints) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: #{inspect(tc-em(map-get($breakpoints, $size)))}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$size}` could not be found.";
+  }
+}
+
+/// Render a max-width media query block.
+///
+/// @example
+/// .foo
+///   @include breakpoint-media-min('md', $breakpoints map)
+///    width: 50%
+/// @group mixin
+/// @param {String} $size - Key in map passed in.
+/// @param {Map} $_breakpoint=$breakpoints - SASS map.
+/// @requires underscores em function
+
+@mixin tc-breakpoint-media-max($size, $breakpoints) {
+  @if map-has-key($breakpoints, $size) {
+    @media (max-width: #{inspect(tc-em(map-get($breakpoints, $size) - 1))}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$size}` could not be found.";
+  }
+}

@@ -1,0 +1,55 @@
+/// Convert pixels to a relative unit.
+/// @group functions
+/// @param {number} $target - Target px value to convert.
+/// @param {string} $unit - Set the approprite unit.
+/// @param {number} $base=16px - Pixel to convert $target from.
+/// @return {number} Returns computed em value.
+/// @require {function} tc-strip-unit
+///
+/// @example
+///  $value: relative-unit(12px, 'rem', 16px);
+///  // $value: 0.75rem;
+
+@import "strip-unit";
+
+@function tc-relative-unit($target, $unit: "rem", $base: 16px) {
+  @if not unitless($target) {
+    $target: tc-strip-unit($target);
+  }
+
+  @if not unitless($base) {
+    $base: tc-strip-unit($base);
+  }
+
+  @return ($target / $base) + unquote($unit);
+}
+
+/// Convert pixels to rem.
+/// @group functions
+/// @param {number} $target - Target px value to convert into a rem unit.
+/// @param {number} $base=16px - Pixel to convert $target from.
+/// @return {number} Returns computed rem value.
+/// @require {function} reletive-unit
+///
+/// @example
+///  $size: rem(12px);
+///  // $size: 0.75rem;
+
+@function tc-rem($target, $base: 16px) {
+  @return tc-relative-unit($target, "rem", $base);
+}
+
+/// Convert pixels to em.
+/// @group functions
+/// @param {number} $target - Target px value to convert into a em unit.
+/// @param {number} $base=16px - Pixel to convert $target from.
+/// @return {number} Returns computed em value.
+/// @require {function} relative-unit
+///
+/// @example
+///  $font-size: em( 12px );
+///  // $font-size: 0.75em;
+
+@function tc-em($target, $base: 16px) {
+  @return tc-relative-unit($target, "em", $base);
+}

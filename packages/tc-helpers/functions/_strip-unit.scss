@@ -1,0 +1,12 @@
+/// Returns a the number unitless.
+///
+/// @example
+///   strip-unit(12px);
+///   // 12
+/// @group functions
+/// @param {number} $number - Number to strip unit from.
+/// @return {number} Returns number w/o a unit.
+
+@function tc-strip-unit($number) {
+  @return $number / ($number * 0 + 1);
+}

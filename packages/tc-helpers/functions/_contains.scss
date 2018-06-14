@@ -1,0 +1,18 @@
+/// Returns a boolean of whetner or not a value appears in a list.
+///
+/// @example
+///   $list: ('foo', 'bar', 'baz');
+///   $value: 'bar';
+///   $result: contains($list, $value);
+///   // $result: true;
+/// @param {list} $list
+/// @param {number | string} $value - Value to find in list.
+/// @return {boolean}
+
+@function tc-contains($list, $value) {
+  @if type-of($list) == list {
+    @return not not index($list, $value);
+  } @else {
+    @return $list == $value;
+  }
+}

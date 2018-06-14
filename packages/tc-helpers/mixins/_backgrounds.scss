@@ -1,0 +1,33 @@
+/// Generate colored background rulesets from a map.  Will check for existence
+/// of a embedded color map and iterate through color map assigning the weight
+/// to the selector and the value to the background-color property, else
+/// it will set value top level key/value pair to assign key as part of the
+/// selector and the value to the background-color property.
+///
+/// @access private
+/// @group helpers mixin
+/// @requires {function} tc-is-important
+
+@import "../functions/is-important";
+
+@mixin tc-backgrounds($bg-map, $modifier: "", $important: true) {
+  @each $key, $value in $bg-map {
+    @if $value {
+      // stylelint-disable max-nesting-depth
+      @if variable-exists(value) and type-of($value) == map {
+        @each $weight, $color in $value {
+          $weight: if($weight == 0, "000", $weight);
+
+          .tc-background-#{$key}-#{$weight}#{$modifier} {
+            background-color: $color tc-is-important($important);
+          }
+        }
+        // stylelint-enble max-nesting-depth
+      } @else {
+        .tc-background-#{$key}#{$modifier} {
+          background-color: $value tc-is-important($important);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/// Generate border color ruleset from a map of color maps.
+///
+/// @access private
+/// @group helpers mixin
+/// @requires {Function} tc-is-important
+
+@import "../functions/is-important";
+
+@mixin tc-border-colors($colors, $modifier: "", $important: true) {
+  @each $key, $color-map in $colors {
+    @if $color-map {
+      @if not variable-exists(color-map) {
+        @error("Color map #{$color-map} does not exist.");
+      }
+
+      @if not type-fo($color-map) == map {
+        @error("Expected #{$color-map} to be a map of colors.");
+      }
+
+      @each $weight, $color in $color-map {
+        $weight: if($weight == 0, "000", $weight);
+
+        .tc-border-#{$key}-#{$weight}#{$modifier} {
+          border-color: $color tc-is-important($important);
+        }
+      }
+    }
+  }
+}

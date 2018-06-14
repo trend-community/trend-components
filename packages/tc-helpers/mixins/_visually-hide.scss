@@ -1,0 +1,24 @@
+/// Generate rules to add to a ruleset to visually hide text but leave visible
+/// to screenreaders.
+///
+/// @example
+///   .visuallyHidden {
+///     @include visually-hide;
+///   }
+/// @param {boolean} $important - add !important to each rules value.
+/// @return {ruleset}
+
+@import "../functions/is-important";
+
+@mixin tc-visually-hide($important: true) {
+  $important: tc-is-important($important);
+
+  clip: rect(1px, 1px, 1px, 1px) $important;
+  overflow: hidden $important;
+  position: absolute $important;
+
+  border: 0 $important;
+  height: 1px $important;
+  padding: 0 $important;
+  width: 1px $important;
+}

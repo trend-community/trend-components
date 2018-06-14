@@ -1,0 +1,69 @@
+////
+/// Standard color options for TREND Components.
+/// Create in helpers package for easier reuse amongst other packages, most
+/// notable the themes package.
+///
+/// @group variables
+/// @require {Function} tc-color-map
+////
+
+@import "functions/colors";
+
+/// Master weight key for manipulating color weights.
+///
+/// @type map
+/// <name of weight>: <lightness percentage>
+
+$_tc-color-weights: (
+  000: 90%,
+  100: 60%,
+  200: 45%,
+  300: 30%,
+  400: 15%,
+  500: 0%,
+  600: -5%,
+  700: -15%,
+  800: -25%,
+  900: -35%
+) !default;
+
+/// Master accent key for manipulating color accents.
+/// @type map
+/// <name of accent>: <saturation percentage> | <lightness percentage>
+
+$_tc-color-accents: (
+  "a100": 50% map-get($_tc-color-weights, 100),
+  "a200": 80% map-get($_tc-color-weights, 200),
+  "a400": 80% map-get($_tc-color-weights, 400),
+  "a700": 40% map-get($_tc-color-weights, 700)
+) !default;
+
+/// @type {map} $tc-color-orange
+$tc-color-orange: tc-color-map(#ef9139) !default;
+
+/// @type {map} $tc-color-red
+$tc-color-red: tc-color-map(#e65842) !default;
+
+/// @type {map} $tc-color-brick
+$tc-color-brick: tc-color-map(#be513e) !default;
+
+/// @type {map} $tc-color-blue
+$tc-color-blue: tc-color-map(#47759f) !default;
+
+/// @type {map} $tc-color-green
+$tc-color-green: tc-color-map(#44a681) !default;
+
+/// @type {map} $tc-color-yellow
+$tc-color-yellow: tc-color-map(#ffd130) !default;
+
+/// @type {map} $tc-color-purple
+$tc-color-purple: tc-color-map(#9b7fb6) !default;
+
+/// @type {map} $tc-color-turquoise
+$tc-color-turquoise: tc-color-map(#4abbb5) !default;
+
+/// @type {map} $tc-color-grey
+$tc-color-grey: tc-color-map(#333) !default;
+
+/// @type {map} $tc-color-concrete
+$tc-color-concrete: tc-color-map(#95a5a6) !default;

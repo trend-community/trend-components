@@ -1,0 +1,414 @@
+////
+/// Helpers variables provide basic scaffolding for TREND helpers as well
+/// base configuration (variables) options for consistent behavior amongst
+/// all TREND components.
+/// @group Helper variables
+////
+
+@import "addons/easing-variables";
+@import "color-variables";
+
+// Define application variables.
+// ----------------------------------------------------------------------------
+
+// Set a default shadow color.
+
+// Spacing map which will adjust to root font size.
+$tc-spacings: (
+  n: 0,
+  s: 0.375rem,
+  m: 0.75rem,
+  l: 1.5rem
+) !default;
+
+// Establish mapping for media query breakpoints to be shared.
+$tc-breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1400px
+) !default;
+
+// Establish size units.
+$tc-proportional-sizes: 2 3 4 5 6 8 10 12 !default;
+
+// Define map of CSS variables
+// ----------------------------------------------------------------------------
+
+$tc-helper-variables: (
+  transition-duration: 0.3s,
+  transition-timing-function: $tc-easeInOutQuart
+) !default;
+
+// Individual helpers sets.
+// ----------------------------------------------------------------------------
+
+// Background variables.
+
+$tc-has-background: true !default;
+$tc-has-background-media: false !default;
+$tc-background-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-backgrounds: (
+  orange: $tc-color-orange,
+  red: $tc-color-red,
+  brick: $tc-color-brick,
+  green: $tc-color-green,
+  yellow: $tc-color-yellow,
+  purple: $tc-color-purple,
+  turquoise: $tc-color-turquoise,
+  grey: $tc-color-grey,
+  concrete: $tc-color-concrete,
+  black: #000,
+  white: #fff,
+  transparent: transparent
+) !default;
+
+// Border variables
+
+$tc-has-border: true !default;
+$tc-has-border-media: false !default;
+$tc-border-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-border-width: 1px !default;
+$tc-border-color: map-get($tc-color-grey, 300) !default;
+$_tc-border-style: $tc-border-width solid $tc-border-color !default;
+$tc-border-radius: 2px !default;
+$tc-borders: (
+  "": (border: $_tc-border-style),
+  top: (border-top: $_tc-border-style),
+  right: (border-right: $_tc-border-style),
+  bottom: (border-bottom: $_tc-border-style),
+  left: (border-left: $_tc-border-style),
+  none: (border: none),
+  top-0: (border-top: 0),
+  right-0: (border-right: 0),
+  bottom-0: (border-bottom: 0),
+  left-0: (border-left: 0)
+) !default;
+$tc-border-radii: (
+  round: (border-radius: $tc-border-radius),
+  round-top: (
+    border-top-left-radius: $tc-border-radius,
+    border-top-right-radius: $tc-border-radius
+  ),
+  round-right: (
+    border-top-right-radius: $tc-border-radius,
+    border-bottom-right-radius: $tc-border-radius
+  ),
+  round-bottom: (
+    border-bottom-left-radius: $tc-border-radius,
+    border-bottom-right-radius: $tc-border-radius
+  ),
+  round-left: (
+    border-top-left-radius: $tc-border-radius,
+    border-bottom-left-radius: $tc-border-radius
+  ),
+  round-top-left: (border-top-left-radius: $tc-border-radius),
+  round-top-right: (border-top-right-radius: $tc-border-radius),
+  round-bottom-right: (border-bottom-right-radius: $tc-border-radius),
+  round-bottom-left: (border-bottom-left-radius: $tc-border-radius),
+  round-none: (border-radius: 0),
+  rounded: (border-radius: 50%)
+) !default;
+$tc-border-colors: (
+  orange: $tc-color-orange,
+  red: $tc-color-red,
+  brick: $tc-color-brick,
+  green: $tc-color-green,
+  yellow: $tc-color-yellow,
+  purple: $tc-color-purple,
+  turquoise: $tc-color-turquoise,
+  grey: $tc-color-grey,
+  concrete: $tc-color-concrete
+) !default;
+
+// Display variables.
+
+$tc-has-display: true !default;
+$tc-has-display-media: false !default;
+$tc-display-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-displays: (
+  block: (display: block),
+  inline: (display: inline),
+  inline-block: (
+    display: inline-block,
+    max-width: 100%
+  ),
+  flex: (display: flex),
+  none: (display: none),
+  table: (display: table),
+  table-cell: (display: table-cell),
+  table-row: (display: table-row),
+  visually-hide: (include: visually-hide)
+) !default;
+
+// Flex variables.
+
+$tc-has-flex: true !default;
+$tc-has-flex-media: false !default;
+$tc-flex-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-flex: (
+  display: (
+    "": flex,
+    inline: inline-flex
+  ),
+  flex-wrap: (wrap nowrap wrap-reverse),
+  flex-direction: (row row-reverse column column-reverse),
+  justify-content: (
+    between: space-between,
+    center: center,
+    justify: space-around,
+    left: flex-start,
+    right: flex-end
+  ),
+  align-items: (
+    baseline: baseline,
+    bottom: flex-end,
+    middle: center,
+    stretch: stretch,
+    top: flex-start
+  ),
+  align-content: (
+    baseline-content: baseline,
+    bottom-content: flex-end,
+    middle-content: center,
+    stretch-content: stretch,
+    top-content: flex-start
+  ),
+  align-self: (
+    item-auto: auto,
+    item-center: center,
+    item-left: flex-start,
+    item-right: flex-end,
+    item-stretch: stretch
+  ),
+  flex: (
+    grow1: 1 1 0%,
+    grow2: 2 1 0%,
+    grow3: 3 1 0%,
+    grow4: 4 1 0%,
+    grow5: 5 1 0%
+  ),
+  flex-shrink: (
+    shrink: 0,
+    shrink1: 1,
+    shrink2: 2,
+    shrink3: 3,
+    shrink4: 4,
+    shrink5: 5,
+  ),
+  flex-basis: (
+    basis-auto: auto,
+    basis0: 0
+  )
+) !default;
+
+// Image variables
+
+$tc-has-image: true !default;
+$tc-has-image-media: false !default;
+$tc-image-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-image: (
+  fluid: (
+    height: auto,
+    max-width: 100%
+  ),
+  circle: (border-radius: 50%)
+) !default;
+
+// Link variables
+
+$tc-has-link: true !default;
+$tc-has-link-media: false !default;
+$tc-link-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-link: (
+  text-decoration: (
+    plain: none,
+    "plain:hover": none,
+    "plain:focus": none,
+    "plain:active": none,
+    "decorate:hover": underline,
+    "decorate:focus": underline,
+    "decorate:active": underline
+  ),
+) !default;
+
+// List variables
+
+$tc-has-list: true !default;
+$tc-has-list-media: false !default;
+$tc-list-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-list: (
+  styleless: (
+    margin: 0,
+    padding: 0,
+    list-style: none
+  ),
+  inline: (
+    display: flex,
+    flex-direction: row,
+    margin: 0,
+    padding: 0,
+    list-style: none
+  )
+) !default;
+
+// Layout variables.
+
+$_tc-layout-center: (
+  right: 50%,
+  left: 50%,
+  transform: translate(-50%, -50%)
+) !default;
+
+$_tc-layout-fixed: (
+  backface-visibility: hidden,
+  position: fixed
+) !default;
+
+$_tc-layout-viewport: (
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  margin: auto
+) !default;
+
+$_tc-layout-scroll: (
+  touch-action: manipulation,
+  -webkit-overflow_scrolling: touch
+) !default;
+
+$tc-has-layout: true !default;
+$tc-has-layout-media: false !default;
+$tc-layout-breakpoints: map-keys($tc-breakpoints) !default;
+$tc-layouts: (
+  absolute: (position: absolute),
+  clip: (overflow: hidden),
+  relative: (position: relative),
+  static: (position: static),
+  scroll-x: map-merge(
+    (
+      overflow-x: auto,
+      overflow-y: hidden
+    ),
+    $_tc-layout-scroll
+  ),
+  scroll-y: map-merge(
+    (
+      overflow-x: hidden,
+      overflow-y: auto
+    ),
+    $_tc-layout-scroll
+  ),
+  pull: (float: left),
+  push: (float: right),
+  absolute-center: map-merge(
+    (position: absolute),
+    $_tc-layout-center
+  ),
+  fixed-center: map-merge($_tc-layout-center, $_tc-layout-fixed),
+  absolute-viewport: map-merge(
+    (position: absolute),
+    $_tc-layout-viewport
+  ),
+  fixed-viewport: map-merge($_tc-layout-fixed, $_tc-layout-viewport),
+  clearfix: (include: clearfix)
+) !default;
+
+// Spacing helpers
+
+// Margin variables
+
+$tc-has-margin: true !default;
+$tc-has-margin-media: false !default;
+$tc-margin-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-margin-spacings: map-merge($tc-spacings, (a: auto)) !default;
+$tc-margin: (margin: "m") !default;
+
+// Padding variables
+
+$tc-has-padding: true !default;
+$tc-has-padding-media: false !default;
+$tc-padding-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-padding-spacings: $tc-spacings !default;
+$tc-padding: (padding: "p") !default;
+
+// Shadow helpers
+
+$tc-has-shadow: true !default;
+$tc-has-shadow-media: false !default;
+$tc-shadow-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-shadow: 24 !default;
+$tc-shadow-color: #000 !default;
+
+// Size helpers
+
+$tc-has-size: true !default;
+$tc-has-size-media: false !default;
+$tc-size-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-size: (
+  compact: (flex-basis: auto),
+  occupy: (
+    flex: 1 1 0%,
+    flex-basis: 0%
+  ),
+  full: (width: 100%)
+) !default;
+$tc-sizes: $tc-proportional-sizes !default;
+
+// Text variables
+
+$tc-has-text: true !default;
+$tc-has-text-media: false !default;
+$tc-text-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-text: (
+  text-align: (left, center, right, justify),
+  vertical-align: (top, middle, bottom, baseline),
+  include: (truncate: text-truncate),
+  word-wrap: (
+    break: break-word
+  ),
+  color: (
+    inherit-color: inherit
+  ),
+  text-transform: (
+    justify: justify,
+    uppercase: uppercae,
+    lowercase: lowercase,
+    capitalize: capitalize,
+    "sentence-case:first-letter": capitalize
+  ),
+  whitespace: (
+    normal: normal,
+    nowrap: nowrap,
+    preline: pre-line
+  )
+) !default;
+$tc-text-colors: (
+  orange: $tc-color-orange,
+  red: $tc-color-red,
+  brick: $tc-color-brick,
+  green: $tc-color-green,
+  yellow: $tc-color-yellow,
+  purple: $tc-color-purple,
+  turquoise: $tc-color-turquoise,
+  grey: $tc-color-grey,
+  concrete: $tc-color-concrete
+) !default;
+
+// Whitespace variables.
+
+// Append variables.
+
+$tc-has-append: false !default;
+$tc-has-append-media: false !default;
+$tc-append-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-append-sizes: $tc-proportional-sizes !default;
+
+// Prepend variables.
+
+$tc-has-prepend: false !default;
+$tc-has-prepend-media: false !default;
+$tc-prepend-breakpoint-keys: map-keys($tc-breakpoints) !default;
+$tc-prepend-sizes: $tc-proportional-sizes !default;
