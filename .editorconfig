@@ -1,0 +1,20 @@
+# Maintain consistent coding styles between different editors and IDEs
+# editorconfig.org
+root = true
+
+[*]
+
+# Adjust accordingly
+indent_style = space
+indent_size = 2
+# Partial support for max_line_length: EMACS and VIM.
+max_line_length = 80
+
+# Recommended not change these preferences.
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
