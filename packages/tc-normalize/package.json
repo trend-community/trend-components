@@ -1,0 +1,12 @@
+{
+  "name": "@trend/normalize",
+  "version": "0.1.0",
+  "description": "Standardize HTML elements.",
+  "keywords": [
+    "trend",
+    "components",
+    "normalize",
+    "reset"
+  ],
+  "license": "MIT"
+}
