@@ -1,0 +1,11 @@
+// Typographic helpers.
+
+@import "variables";
+@import "mixins/styles-map";
+
+@each $selector, $ruleset in $tc-type-styles {
+  .tc-type-#{$selector} {
+    @include tc-styles-map($tc-type-base);
+    @include tc-styles-map($ruleset);
+  }
+}

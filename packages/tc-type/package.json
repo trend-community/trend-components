@@ -1,0 +1,14 @@
+{
+  "name": "@trend/type",
+  "version": "0.1.0",
+  "description": "Typographic normalize, classes, mixins, and configuration for TREND components.",
+  "keywords": [
+    "typography",
+    "font",
+    "spacing"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0"
+  }
+}

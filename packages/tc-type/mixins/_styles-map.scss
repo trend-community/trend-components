@@ -1,0 +1,9 @@
+/// Create rules from a map of rules.
+/// @group Type mixins
+/// @param {map} $map - Map of CSS rules where key is property.
+
+@mixin tc-styles-map($map) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+}

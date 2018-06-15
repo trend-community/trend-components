@@ -1,0 +1,141 @@
+@import "@trend/helpers/addons/font-stacks";
+@import "@trend/helpers/functions/relative-unit";
+@import "functions/modular-scale";
+
+$tc-type-font-size-root: 16px !default;
+$tc-type-font-family: $helvetica !default;
+$tc-type-base: (
+  font-family: $tc-type-font-family,
+  -moz-osx-font-smoothing: grayscale,
+  -webkit-font-smoothing: antialiased
+);
+
+$tc-type-font-weights: (
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  black: 900
+) !default;
+
+$_tc-header-font-sizes: (
+  h1: round(tc-ms($tc-type-font-size-root, 6)),
+  h2: round(tc-ms($tc-type-font-size-root, 5)),
+  h3: round(tc-ms($tc-type-font-size-root, 4)),
+  h4: round(tc-ms($tc-type-font-size-root, 3)),
+  h5: round(tc-ms($tc-type-font-size-root, 2)),
+  h6: round(tc-ms($tc-type-font-size-root, 1)),
+  subtitle1: tc-ms($tc-type-font-size-root, 0),
+  subtitle2: round(tc-ms($tc-type-font-size-root, -1)),
+  body1: round(tc-ms($tc-type-font-size-root, 0)),
+  body2: ceil(tc-ms($tc-type-font-size-root, -1)),
+  caption: ceil(tc-ms($tc-type-font-size-root, -2)),
+  button: round(tc-ms($tc-type-font-size-root, 0)),
+  overline: ceil(tc-ms($tc-type-font-size-root, -2))
+) !default;
+
+$tc-type-styles: (
+  h1: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h1)),
+    font-weight: map-get($tc-type-font-weights, light),
+    letter-spacing: tc-rem(-1.5, map-get($_tc-header-font-sizes, h1)),
+    line-height: 1.1,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  h2: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h2)),
+    font-weight: map-get($tc-type-font-weights, light),
+    letter-spacing: tc-rem(-0.5, map-get($_tc-header-font-sizes, h2)),
+    line-height: 1.1,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  h3: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h3)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    line-height: 1.125,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  h4: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h4)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    letter-spacing: tc-rem(0.25, map-get($_tc-header-font-sizes, h4)),
+    line-height: 1.5,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  h5: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h5)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    line-height: 2,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  h6: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, h6)),
+    font-weight: map-get($tc-type-font-weights, medium),
+    letter-spacing: tc-rem(0.25, map-get($_tc-header-font-sizes, h6)),
+    line-height: 2,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  subtitle1: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, subtitle1)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    letter-spacing: tc-rem(0.15, map-get($_tc-header-font-sizes, subtitle1)),
+    line-height: 1.75,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  subtitle2: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, subtitle2)),
+    font-weight: map-get($tc-type-font-weights, medium),
+    letter-spacing: tc-rem(0.1, map-get($_tc-header-font-sizes, subtitle2)),
+    line-height: 1.375,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  body1: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, body1)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    letter-spacing: tc-rem(0.5, map-get($_tc-header-font-sizes, body1)),
+    line-height: 1.5,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  body2: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, body2)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    letter-spacing: tc-rem(0.25, map-get($_tc-header-font-sizes, body2)),
+    line-height: 1.25,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  caption: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, caption)),
+    font-weight: map-get($tc-type-font-weights, regular),
+    letter-spacing: tc-rem(0.4, map-get($_tc-header-font-sizes, caption)),
+    line-height: 1.25,
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  button: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, button)),
+    font-weight: map-get($tc-type-font-weights, medium),
+    letter-spacing: tc-rem(0.4, map-get($_tc-header-font-sizes, button)),
+    line-height: 2.25,
+    text-decoration: none,
+    text-transform: capitalize
+  ),
+  overline: (
+    font-size: tc-rem(map-get($_tc-header-font-sizes, overline)),
+    font-weight: map-get($tc-type-font-weights, medium),
+    letter-spacing: tc-rem(2, map-get($_tc-header-font-sizes, overline)),
+    line-height: 2,
+    text-decoration: none,
+    text-transform: uppercase
+  )
+) !default;

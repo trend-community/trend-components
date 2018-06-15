@@ -1,0 +1,9 @@
+@import "../packages/tc-type/index";
+
+.tc-frame {
+  border: 1px solid mix(#000, #efefef, 20%);
+  margin: map-get($tc-spacings, l);
+  padding: map-get($tc-spacings, l);
+
+  background-color: #efefef;
+}

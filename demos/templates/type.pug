@@ -1,0 +1,50 @@
+extends _layout-template
+
+mixin pre
+  pre.language-markup: code
+    block
+
+block body
+  header(style="display: flex")
+    a(href="/") back
+    h1 Type
+
+  p(style="margin-left: 1.5rem; margin-right: 1.5rem;")
+    | Apply consistent typographic styling to project.
+
+  div.tc-frame
+   h1 Base styles
+   - var headers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    each header in headers
+      #{header} Header #{headers.indexOf(header) + 1}
+      pre
+
+    p <strong>Paragraph</strong>. Lorem ipsum dolor sit amet consectetur adipiscing, elit felis auctor cras tempus ligula, est gravida mi bibendum fermentum. Suspendisse erat turpis volutpat molestie et dignissim interdum, eu hac sagittis ultrices vitae vestibulum ligula placerat, blandit tempor arcu orci mi pellentesque. Aliquam nisi hac aliquet posuere ullamcorper proin quam nunc quisque, lobortis facilisi dapibus nibh iaculis semper nam vestibulum, scelerisque montes facilisis pretium cubilia cursus turpis risus.
+
+  div.tc-frame
+    h1 Helpers
+
+    p Adjust typographic appearance of any HTML element with <code>tc-type</code> helper class.
+
+    p Here is a list of available classes:
+    +pre
+      :markdown
+        <span class="tc-type-h1">...</span>
+        <span class="tc-type-h2">...</span>
+        <span class="tc-type-h3">...</span>
+        <span class="tc-type-h4">...</span>
+        <span class="tc-type-h5">...</span>
+        <span class="tc-type-h6">...</span>
+        <span class="tc-type-subtitle1">...</span>
+        <span class="tc-type-subtitle2">...</span>
+        <span class="tc-type-body1">...</span>
+        <span class="tc-type-body2">...</span>
+        <span class="tc-type-caption">...</span>
+
+    p.tc-type-subtitle1 Example subtitle1 text.
+    p.tc-type-subtitle2 Example subtitle2 text.
+    p.tc-type-caption Example caption text.
+
+    p.tc-type-body1 <strong>Example body1 text</strong>.  Lorem ipsum dolor sit amet consectetur adipiscing, elit felis auctor cras tempus ligula, est gravida mi bibendum fermentum. Suspendisse erat turpis volutpat molestie et dignissim interdum, eu hac sagittis ultrices vitae vestibulum ligula placerat, blandit tempor arcu orci mi pellentesque. Aliquam nisi hac aliquet posuere ullamcorper proin quam nunc quisque, lobortis facilisi dapibus nibh iaculis semper nam vestibulum, scelerisque montes facilisis pretium cubilia cursus turpis risus.
+
+    p.tc-type-body2 <strong>Example body2 text</strong>.  Lorem ipsum dolor sit amet consectetur adipiscing, elit felis auctor cras tempus ligula, est gravida mi bibendum fermentum. Suspendisse erat turpis volutpat molestie et dignissim interdum, eu hac sagittis ultrices vitae vestibulum ligula placerat, blandit tempor arcu orci mi pellentesque. Aliquam nisi hac aliquet posuere ullamcorper proin quam nunc quisque, lobortis facilisi dapibus nibh iaculis semper nam vestibulum, scelerisque montes facilisis pretium cubilia cursus turpis risus.

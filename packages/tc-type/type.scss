@@ -1,0 +1,45 @@
+// Set base typographic styles for HTML elements.
+// stylelint-disable selector-max-type
+
+@import "./variables";
+@import "@trend/helpers/variables";
+@import "./mixins/styles-map";
+
+// Private configuration.
+
+$_tc-headers: (h1 h2 h3 h4 h5 h6) !default;
+
+body {
+  @include tc-styles-map($tc-type-base);
+  @include tc-styles-map(map-get($tc-type-styles, body1));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: #{map-get($tc-spacings, l)} 0;
+
+  color: inherit;
+  font-family: inherit;
+  text-decoration: inherit;
+  text-transform: inherit;
+}
+
+@each $header in $_tc-headers {
+  $map: map-remove(
+    map-get($tc-type-styles, $header),
+    text-decoration,
+    text-transform
+  );
+
+  #{$header} {
+    @include tc-styles-map($map);
+  }
+}
+
+p {
+  margin: #{map-get($tc-spacings, m)} 0;
+}
