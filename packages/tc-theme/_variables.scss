@@ -1,0 +1,111 @@
+////
+/// TREND components theme variables.
+///
+/// @require {function} tc-theme-color-for-fill
+/// @require {function} tc-theme-contrast-tone
+/// @require @trend/helpers/color-variables
+////
+
+// Import the color configuration sheet.
+@import "@trend/helpers/color-variables";
+
+// Import theming functions
+@import "functions/theme";
+
+// Theme options
+// ----------------------------------------------------------------------------
+
+// Private variables to control contrast colors.
+$_tc-color-contrast-dark: #333 !default;
+$_tc-color-contrast-light: #fff !default;
+
+$tc-theme-primary: map-get($tc-color-grey, 500) !default;
+// $tc-theme-over-primary
+$tc-theme-primary-over: if(
+  tc-theme-contrast-tone($tc-theme-primary) == "dark",
+  $_tc-color-contrast-dark,
+  $_tc-color-contrast-light
+) !default;
+
+$tc-theme-accent: map-get($tc-color-purple, a400) !default;
+// $tc-theme-over-accent
+$tc-theme-accent-over: if(
+  tc-theme-contrast-tone($tc-theme-accent) == "dark",
+  $_tc-color-contrast-dark,
+  $_tc-color-contrast-light
+) !default;
+$tc-theme-background: $_tc-color-contrast-light !default;
+
+$tc-theme-surface: $_tc-color-contrast-light !default;
+// $tc-theme-over-surface
+$tc-theme-surface-over: if(
+  tc-theme-contrast-tone($tc-theme-surface) == "dark",
+  $_tc-color-contrast-dark,
+  $_tc-color-contrast-light
+) !default;
+
+// Text colors according to light vs dark and text type.
+// ----------------------------------------------------------------------------
+
+$tc-theme-text-colors: (
+  dark: (
+    primary: rgba($_tc-color-contrast-dark, 0.87),
+    accent: rgba($_tc-color-contrast-dark, 0.5),
+    hint: rgba($_tc-color-contrast-dark, .38),
+    disabled: rgba($_tc-color-contrast-dark, 0.25),
+    icon: rgba($_tc-color-contrast-dark, 0.38)
+  ),
+  light: (
+    primary: $_tc-color-contrast-light,
+    accent: rgba($_tc-color-contrast-light, 0.7),
+    hint: rgba($_tc-color-contrast-light, 0.5),
+    disabled: rgba($_tc-color-contrast-light, 0.5),
+    icon: rgba($_tc-color-contrast-light, 0.5)
+  )
+) !default;
+
+// Primary text colors for each of the theme colors.
+// ----------------------------------------------------------------------------
+
+$tc-theme-options: (
+  primary: $tc-theme-primary,
+  accent: $tc-theme-accent,
+  background: $tc-theme-background,
+  surface: $tc-theme-surface,
+  over-primary: $tc-theme-primary-over,
+  over-accent: $tc-theme-accent-over,
+  over-surface: $tc-theme-surface-over,
+  // Text primary over "background"
+  text-primary-over-background: tc-theme-color-for-fill(
+    primary,
+    $tc-theme-background
+  ),
+  text-accent-over-background: tc-theme-color-for-fill(
+    accent,
+    $tc-theme-background
+  ),
+  text-hint-over-background: tc-theme-color-for-fill(
+    hint,
+    $tc-theme-background
+  ),
+  text-disabled-over-background: tc-theme-color-for-fill(
+    disabled,
+    $tc-theme-background
+  ),
+  text-icon-over-background: tc-theme-color-for-fill(
+    icon,
+    $tc-theme-background
+  ),
+  // Text primary over "light" background
+  text-primary-over-light: tc-theme-color-for-fill(primary, light),
+  text-accent-over-light: tc-theme-color-for-fill(accent, light),
+  text-hint-over-light: tc-theme-color-for-fill(hint, light),
+  text-disabled-over-light: tc-theme-color-for-fill(disabled, light),
+  text-icon-over-light: tc-theme-color-for-fill(icon, light),
+  // Text primary over "dark" background
+  text-primary-over-dark: tc-theme-color-for-fill(primary, dark),
+  text-accent-over-dark: tc-theme-color-for-fill(accent, dark),
+  text-hint-over-dark: tc-theme-color-for-fill(hint, dark),
+  text-disabled-over-dark: tc-theme-color-for-fill(disabled, dark),
+  text-icon-over-dark: tc-theme-color-for-fill(icon, dark)
+);

@@ -1,0 +1,143 @@
+////
+/// Theme functions
+////
+
+/// Returns a TREND theme option.
+///
+/// @argument {string} $option
+/// @example scss
+///   fetch-theme-option(primary) => #333333
+/// @access private
+/// @return {boolean | color | list | number | string | error}
+
+@function tc-theme-fetch-option($option) {
+  @if variable-exists(tc-theme-options) {
+    @if map-has-key($tc-theme-options, $option) {
+      @return map-get($tc-theme-options, $option);
+    } @else {
+      @error "Invalid option: `#{$options}`.  Must be one of: #{map-keys($tc-theme-options)}";
+    }
+  } @else {
+    @error "No configuration `tc-theme-options` exists.";
+  }
+}
+
+/// Returns the luminance of `$color` as a float (between 0 and 1)
+/// 1 is pure white, 0 is pure black
+///
+/// @group theme functions
+/// @requires {function} pow - tc-pow
+/// @param {color} $color - Color
+/// @return {number}
+/// @link http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef Reference
+
+@import "pow";
+
+@function tc-theme-luminance($color) {
+  $rgb: ("r": red($color), "g": green($color), "b": blue($color));
+
+  @each $name, $value in $rgb {
+    $adjusted: 0;
+    $value: $value / 255;
+
+    @if $value < 0.03928 {
+      $value: $value / 12.92;
+    } @else {
+      $value: ($value + 0.055) / 1.055;
+      $value: tc-pow($value, 2.4);
+    }
+
+    $rgb: map-merge($rgb, ($name: $value));
+  }
+
+  @return (map-get($rgb, "r") * 0.2126) + (map-get($rgb, "g") * 0.7152) + (map-get($rgb, "b") * 0.0722);
+}
+
+/// Returns the contrast ratio between two colors.
+///
+/// @group theme functions
+/// @param {color} $back Valid color code
+/// @param {color} $front Valid color code
+/// @return {number}
+/// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+@function tc-theme-contrast($back, $front) {
+  $backLum: tc-theme-luminance($back) + 0.05;
+  $foreLum: tc-theme-luminance($front) + 0.05;
+
+  @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+
+/// Returns "light" or "dark" of passed in color.
+///
+/// @group theme functions
+/// @param {color} $color Valid color code
+/// @return {string} light or dark
+
+@function tc-theme-tone($color) {
+  @if $color == "dark" or $color == "light" {
+    @return $color;
+  }
+
+  $minimumContrast: 3.1;
+
+  $lightContrast: tc-theme-contrast($color, #fff);
+  $darkContrast: tc-theme-contrast($color, rgba(#000, 0.87));
+
+  @if ($lightContrast < $minimumContrast) and ($darkContrast > $lightContrast) {
+    @return "light";
+  } @else {
+    @return "dark";
+  }
+}
+
+/// Returns "dark" or "light" to meet contrast accessibility standards for
+/// text on top of given background color.
+///
+/// @group theme functions
+/// @param {color} $color Valid color code
+/// @access public
+/// @return {string} dark if color is light and light if color is dark
+
+@function tc-theme-contrast-tone($color) {
+  @return if(tc-theme-tone($color) == "dark", "light", "dark");
+}
+
+/// Returns a color
+///
+/// @group theme functions
+/// @param {string} $style Style of color to select
+/// $fill {string} $fill Which contrast to choose from (dark or light)
+/// @access private
+/// @returns {color | error} Returns error if no $tc-theme-text-colors exists
+
+@function tc-theme-color-for-fill($style, $fill) {
+  $over-tone: tc-theme-contrast-tone($fill);
+
+  @if variable-exists(tc-theme-text-colors) {
+    @return map-get(map-get($tc-theme-text-colors, $over-tone), $style);
+  } @else {
+    @error "No configuration `$tc-theme-text-colors` exists.";
+  }
+}
+
+/// Returns a color value.
+///
+/// @group theme functions
+/// @requires {function} tc-theme-fetch-option
+/// @returns {color} A color value from $tc-theme-text-colors variable.
+
+@function tc-theme-accessible-color($fill-color, $text-style: primary) {
+  @if variable-exists(tc-theme-text-colors) {
+    $fill-color-value: tc-theme-fetch-option($fill-color);
+    $color-map-for-tone: map-get($tc-theme-text-colors, tc-theme-contrast-tone($fill-color-value));
+
+    @if not map-has-key($color-map-for-tone, $text-style) {
+      @error "Invalid $text-style: '#{$text-style}'. Must be one of: #{map-keys($color-map-for-tone)}";
+    }
+
+    @return map-get($color-map-for-tone, $text-style);
+  } @else {
+    @error "No configuration `$tc-theme-text-colors` exists.";
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@trend/theme",
+  "version": "0.1.0",
+  "description": "TREND Components theming system.",
+  "keywords": [
+    "TREND Components",
+    "theme"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0"
+  }
+}

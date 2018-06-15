@@ -1,0 +1,38 @@
+/// Applies the correct theme color style to the specified property.
+/// @param {string} $property - Any CSS property that accepts color values.
+/// @param {string} $style - Key in $tc-theme-options or a literal color value.
+/// @param {bool} $edgeOut - Avoid emitting CSS variables in Edge.
+/// @requires {function} tc-is-important
+
+@import "@trend/helpers/functions/is-important";
+@import "../functions/theme";
+
+@mixin tc-theme-prop($property, $style, $important: false, $edgeOut: false) {
+  $isImportant: tc-is-important($important);
+
+  @if type-of($style) == "color" or $style == "currentColor" {
+    #{$property}: $style $isImportant;
+  } @else {
+    $value: tc-theme-fetch-option($style);
+
+    #{$property}: $value $isImportant;
+
+    @if $edgeOut {
+      // stylelint-disable max-nesting-depth
+      @at-root {
+        @supports not (-ms-ime-align: auto) {
+          // stylelint-disable scss/selector-no-redundant-nesting-selector
+          & {
+            /* @alternate */
+            #{$property}: var(--tc-theme-#{$style}, $value) $isImportant;
+          }
+          // stylelint-enable scss/selector-no-redundant-nesting-selector
+        }
+      }
+      // stylelint-enable max-nesting-depth
+    } @else {
+      /* @alternate */
+      #{$property}: var(--tc-theme-#{$style}, $value) $isImportant;
+    }
+  }
+}

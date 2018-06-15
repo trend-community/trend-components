@@ -1,0 +1,24 @@
+// Special theme helpers.
+// Theme helpers are all class selectors that begin with `tc-theme-<name>`.
+// Each `$tc-theme-option` maps to a helper, i.e. the <name> piece of the
+// the class selector.
+
+@import "variables";
+
+@each $style in map-keys($tc-theme-options) {
+  @if $style != "background" and $style != "surface" {
+    .tc-theme-#{$style} {
+      @include tc-theme-prop(color, $style, true);
+    }
+  } @else {
+    .tc-theme-#{$style} {
+      @include tc-theme-prop(background-color, $style);
+    }
+  }
+}
+
+@each $style in ("primary", "accent") {
+  .tc-theme-#{$style}-bg {
+    @include tc-theme-prop(background-color, $style, true);
+  }
+}

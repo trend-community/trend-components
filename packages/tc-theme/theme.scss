@@ -1,0 +1,19 @@
+@import "variables";
+@import "mixins/theme-prop";
+
+// stylelint-disable selector-max-type
+
+:root {
+  @each $style, $value in $tc-theme-options {
+    --tc-theme-#{$style}: #{$value};
+  }
+}
+
+body {
+  @include tc-theme-prop(background-color, background);
+  @include tc-theme-prop(color, text-primary-over-background);
+}
+
+a {
+  @include tc-theme-prop(color, accent);
+}
