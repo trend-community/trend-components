@@ -22,7 +22,7 @@ const pugPlugins = Object
   .map(name => new HtmlWebpackPlugin({
     template: pugChunks[name],
     filename: `${name}.html`,
-    chunks: [...[name], 'base']
+    chunks: [...[name], 'index']
   }));
 
 const devServerConfig = {
