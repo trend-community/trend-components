@@ -1,0 +1,43 @@
+extends _layout-template
+
+block body
+  header(style="display: flex")
+    a(href="/") back
+    h1 Theme
+
+  div(style="margin: 1.5rem;")
+    h2.tc-type-h4 Theme helpers
+
+    h3.tc-type-subtitle1 Text and background colors
+
+    div.Swatches
+      div.Swatch: span.tc-theme-primary Primary
+      div.Swatch: span.tc-theme-accent Accent
+      div.Swatch.tc-theme-primary-bg: span.tc-theme-over-primary Primary
+      div.Swatch.tc-theme-accent-bg: span.tc-theme-over-accent Accent
+
+    h3.tc-type-subtitle1 Text on background
+
+    div.Swatch.tc-theme-background
+      div.Swatch: span.tc-theme-text-primary-over-background Primary
+      div.Swatch: span.tc-theme-text-accent-over-background Accent
+      div.Swatch: span.tc-theme-text-hint-over-background Hint
+      div.Swatch: span.tc-theme-text-disabled-over-background Disabled
+
+    h3.tc-type-subtitle1 Text on light background
+
+    div.Swatch(style="background-color: #ddd")
+      div.Swatch: span.tc-theme-text-primary-over-light Primary
+      div.Swatch: span.tc-theme-text-accent-over-light Accent
+      div.Swatch: span.tc-theme-text-hint-over-light Hint
+      div.Swatch: span.tc-theme-text-disabled-over-light Disabled
+
+    h3.tc-type-subtitle1 Text on dark background
+
+    div.Swatch(style="background-color: #000")
+      div.Swatch: span.tc-theme-text-primary-over-dark Primary
+      div.Swatch: span.tc-theme-text-accent-over-dark Accent
+      div.Swatch: span.tc-theme-text-hint-over-dark Hint
+      div.Swatch: span.tc-theme-text-disabled-over-dark Disabled
+
+
