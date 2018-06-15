@@ -1,0 +1,15 @@
+{
+  "name": "trend-components",
+  "version": "0.1.0",
+  "description": "Modular suite of UI components trend.community products.",
+  "keywords": [
+    "TREND components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0",
+    "@trend/normalize": "^0.1.0",
+    "@trend/theme": "^0.1.0",
+    "@trend/type": "^0.1.0"
+  }
+}
