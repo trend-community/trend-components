@@ -1,0 +1,27 @@
+////
+/// Add type rules to an existing ruleset.
+///
+/// @group tc-type mixins
+/// @param {string} $style - One of $tc-type-styles key
+/// @param {bool} $important [false] - Add !important declaration
+/// @requires {Variable} $tc-type-styles
+/// @requires {Function} tc-is-important (from helpers)
+////
+
+@mixin tc-type($style, $important: false) {
+  @if not variable-exists(tc-type-styles) {
+    @error("$tc-type-styles does not exist.");
+  }
+
+  @if not map-has-key($tc-type-styles, $style) {
+    $keys: map-keys($tc-type-styles);
+
+    @error("Unrecognized style: #{$style}.  Can choose one of #{$keys}.")
+  }
+
+  $prop: map-get($tc-type-styles, $style);
+
+  @each $key, $value in $prop {
+    #{$key}: $value tc-is-important($important);
+  }
+}
