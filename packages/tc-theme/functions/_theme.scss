@@ -4,10 +4,11 @@
 
 /// Returns a TREND theme option.
 ///
-/// @argument {string} $option
+/// @access private
+/// @param {string} $option
 /// @example scss
 ///   fetch-theme-option(primary) => #333333
-/// @access private
+/// @requires {Variable} $tc-theme-options
 /// @return {boolean | color | list | number | string | error}
 
 @function tc-theme-fetch-option($option) {
