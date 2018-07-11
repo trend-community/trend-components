@@ -15,5 +15,5 @@ body {
 }
 
 a {
-  @include tc-theme-prop(color, accent);
+  @include tc-theme-prop(color, primary);
 }

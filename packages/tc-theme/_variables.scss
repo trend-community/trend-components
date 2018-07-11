@@ -27,7 +27,7 @@ $tc-theme-primary-over: if(
   $_tc-color-contrast-light
 ) !default;
 
-$tc-theme-accent: map-get($tc-color-purple, a400) !default;
+$tc-theme-accent: map-get($tc-color-purple, 500) !default;
 // $tc-theme-over-accent
 $tc-theme-accent-over: if(
   tc-theme-contrast-tone($tc-theme-accent) == "dark",
@@ -51,7 +51,7 @@ $tc-theme-text-colors: (
   dark: (
     primary: rgba($_tc-color-contrast-dark, 0.87),
     accent: rgba($_tc-color-contrast-dark, 0.5),
-    hint: rgba($_tc-color-contrast-dark, .38),
+    hint: rgba($_tc-color-contrast-dark, 0.38),
     disabled: rgba($_tc-color-contrast-dark, 0.25),
     icon: rgba($_tc-color-contrast-dark, 0.38)
   ),
