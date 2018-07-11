@@ -1,0 +1,15 @@
+{
+  "name": "@trend/button",
+  "version": "0.1.0",
+  "description": "TREND Components button component",
+  "keywords": [
+    "TREND Components",
+    "button"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0",
+    "@trend/theme": "^0.1.0",
+    "@trend/type": "^0.1.0"
+  }
+}
