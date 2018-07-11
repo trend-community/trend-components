@@ -16,7 +16,7 @@
     @if map-has-key($tc-theme-options, $option) {
       @return map-get($tc-theme-options, $option);
     } @else {
-      @error "Invalid option: `#{$options}`.  Must be one of: #{map-keys($tc-theme-options)}";
+      @error "Invalid option: `#{$option}`.  Must be one of: #{map-keys($tc-theme-options)}";
     }
   } @else {
     @error "No configuration `tc-theme-options` exists.";
