@@ -1,0 +1,164 @@
+////
+/// Right to left helper mixins
+///
+/// @access public
+/// @group helpers mixin
+////
+
+/// Generates a rule to be applied to a component when w/in the context of a
+/// RTL layout.
+///
+/// @example
+/// .tc-component {
+///   @include tc-trl {
+///     left: 0;
+///     right: auto;
+///   }
+///   // some more rules
+/// }
+///
+/// .tc-component--modifier {
+///   @include rtl(".tc-component") {
+///     margin-right: 4px;
+///     margin-left: auto;
+///   }
+/// }
+/// @param {string} $root-selector [null] - Specify to a ancestor selector.
+
+@mixin tc-rtl($root-selector: null) {
+  @if ($root-selector) {
+    @at-root {
+      #{$root-selector}[dir="rtl"] &,
+      [dir="rtl"] #{$root-selector} & {
+        @content;
+      }
+    }
+  } @else {
+    [dir="rtl"] &,
+    &[dir="rtl"] {
+      @content;
+    }
+  }
+}
+
+/// Takes a box-model property (e.g. margin|border|padding), direction, and
+/// value, and creates rules that assign the value to the properties long form
+/// and flips the direction when within an RTL context.
+///
+/// @example
+///
+/// .tc-component {
+///   @include tc-rtl-flip-box(padding, left, 8px);
+/// }
+///
+/// @param {string} $box-property - CSS box property "margin|border|padding."
+/// @param {string} $direction - CSS valid horizontal direction "left|right."
+/// @param {string} $value - CSS <length> | <percentage>.
+/// @param {string} $root-selector [null] - Will be forwarded to `tc-rtl`,
+
+@mixin tc-rtl-flip-box(
+  $box-property,
+  $direction,
+  $value,
+  $root-selector: null) {
+  @if (index((right, left), $direction) == null) {
+    @error "Invalid direction: '#{$direction}'. Should be 'right' or 'left'.";
+  }
+
+  $left-value: if($direction == right, 0, $value);
+  $right-value: if($direction == right, $value, 0);
+
+  @include tc-rtl-flip-property(
+    $box-property,
+    $left-value,
+    $right-value,
+    $root-selector);
+}
+
+/// Creates rules from a box property and uses its long (left and right) form
+/// in a LTR and RTL context.
+///
+/// @example
+///
+/// .tc-component {
+///   @include tc-rtl-flip-property(padding, 0, 12px);
+/// }
+///
+/// @param {string} $box-property - CSS box property "padding|margin".
+/// @param {string} $left-value - CSS <length> | <percentage>.
+/// @param {string} $right-value - CSS <length> | <percentage>.
+/// @param {string} $root-selector [null] - Will be passed to `tc-rtl`.
+
+@mixin tc-rtl-flip-property(
+  $box-property,
+  $left-value,
+  $right-value,
+  $root-selector: null) {
+  $prop-left: #{$box-property}-left;
+  $prop-right: #{$box-property}-right;
+
+  @include tc-rtl-flip(
+    $prop-left,
+    $left-value,
+    $prop-right,
+    $right-value,
+    $root-selector);
+}
+
+/// Create a RTL ruleset by flipping LTR context set by position property and
+/// the value passed in.
+///
+/// @example
+/// .tc-component {
+///   @include tc-rtl-flip-position(left, 0);
+/// }
+///
+/// @param {string} $position-property - Only accepts "left|right".
+/// @param {string} $value - Valid CSS value for "left|right" properties.
+/// @param {string} $root-selector [null] - Is passed to `tc-rtl`.
+
+@mixin tc-rtl-flip-position($position-property, $value, $root-selector: null) {
+  @if (index((left, right), $position-property) == null) {
+    @error "Invalid position #{position-property}, should be right or left.";
+  }
+
+  $left: $value;
+  $right: initial;
+
+  @if ($position-property == right) {
+    $right: $value;
+    $left: initial;
+  }
+
+  @include tc-rtl-flip(left, $left, right, $right, $root-selector);
+}
+
+/// RTL a pair of properties and values.
+///
+/// @example
+/// .tc-component {
+///   @include tc-rtl-reflect(left, 2px, right, 5px);
+///   position: absolute;
+///  }
+///
+/// @param {string} $left-property - CSS layout property.
+/// @param {string} $left-value - Valid CSS for `$left-property`.
+/// @param {string} $right-property - CSS layout property.
+/// @param {string} $right-value - Valid CSS for `$right-property`.
+/// @param {string} $root-selector [null] - Passed to `tc-rtl`.
+
+@mixin tc-rtl-flip(
+  $left-property,
+  $left-value,
+  $right-property,
+  $right-value,
+  $root-selector: null
+) {
+  #{$left-property}: $left-value;
+  #{$right-property}: $right-value;
+
+  @include tc-rtl($root-selector) {
+    #{$left-property}: $right-value;
+    #{$right-property}: $left-value;
+  }
+}
