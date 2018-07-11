@@ -16,7 +16,7 @@
   @if not map-has-key($tc-type-styles, $style) {
     $keys: map-keys($tc-type-styles);
 
-    @error("Unrecognized style: #{$style}.  Can choose one of #{$keys}.")
+    @error("Unrecognized style: #{$style}.  Can choose one of #{$keys}.");
   }
 
   $prop: map-get($tc-type-styles, $style);
