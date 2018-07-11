@@ -1,0 +1,196 @@
+extends _layout-template
+
+mixin icon
+  svg(viewBox="0 0 1024 1024")&attributes(attributes)
+    title checkmark
+    path(class="path" d="M864 128l-480 480-224-224-160 160 384 384 640-640z")
+
+block body
+  header.tc-flex.tc-flex-middle.tc-background-grey-500.tc-phl.tc-shadow-3
+    a(class="tc-mrl" href="/") back
+    h1.tc-type-h4.tc-theme-over-primary Button
+
+  div.tc-pal
+    p TREND components button variations.
+
+  div(class="tc-mvl tc-flex tc-flex-center tc-flex-middle")
+    button(class="tc-Button tc-mrl" type="button") button
+    button(class="tc-Button tc-Button--accent tc-mrl" type="button") accent
+    button(class="tc-Button tc-mrl" type="button")
+      +icon(class="tc-Button-icon")
+      | icon
+    button(class="tc-Button tc-Button--compact tc-mrl" type="button") compact
+    button(class="tc-Button" disabled type="button") disabled
+
+  pre.language-markup
+    code
+      :markdown
+        <!-- Primary button -->
+        <button class="tc-Button" type="button">
+          button
+        </button>
+
+        <!-- Accent Button -->
+         <button class="tc-Button tc-Button--accent" type="button">
+          accent
+        </button>
+
+        <!-- Button with a child icon -->
+        <button class="tc-Button" type="button">
+          <svg class="tc-Button-icon">...</svg>
+          icon
+        </button>
+
+        <!-- Compact button -->
+        <button class="tc-Button tc-Button--compact" type="button">
+          compact
+        </button>
+
+        <!-- Disabled button -->
+        <button class="tc-Button [is-disabled]" disabled type="button">
+          disabled
+        </button>
+
+  div(class="tc-mvl tc-flex tc-flex-center tc-flex-middle")
+    button(
+      class="tc-Button tc-Button--ghost tc-mrl" type="button") button
+    button(
+      class="tc-Button tc-Button--accent tc-Button--ghost tc-mrl"
+      type="button") accent
+    button(class="tc-Button tc-Button--ghost tc-mrl" type="button")
+      +icon(class="tc-Button-icon")
+      | icon
+    button(
+      class="tc-Button tc-Button--compact tc-Button--ghost tc-mrl"
+      type="button") compact
+    button(class="tc-Button tc-Button--ghost " disabled type="button")
+      | disabled
+
+  pre.language-markup
+    code
+      :markdown
+        <!-- Ghost Buttons -->
+        <button class="tc-Button tc-Button--ghost" type="button">
+          Button
+        </button>
+
+        <!-- Ghost Buttons using accent color -->
+        <button class="tc-Button tc-Button--accent tc-Button--ghost"
+          type="button">
+          Accent
+        </button>
+
+        <!-- Ghost Buttons with a child icon -->
+        <button class="tc-Button tc-Button--ghost" type="button">
+          <svg class="tc-Button-icon">...</svg>
+          Button
+        </button>
+
+        <!-- Ghost compact buttons -->
+        <button class="tc-Button tc-Button--compact tc-Button--ghost"
+          type="button">
+          Accent
+        </button>
+
+        <!-- Disabled ghost button -->
+        <button class="tc-Button tc-Button--ghost" disabled type="button">
+          Button
+        </button>
+
+  div(class="tc-mvl tc-flex tc-flex-center tc-flex-middle")
+    button(
+      class="tc-Button tc-Button--ctab tc-mrl" type="button") button
+    button(
+      class="tc-Button tc-Button--accent tc-Button--ctab tc-mrl"
+      type="button") accent
+    button(
+      class="tc-Button tc-Button--ctab tc-mrl"
+      type="button")
+      +icon(class="tc-Button-icon")
+      | icon
+    button(
+      class="tc-Button tc-Button--compact tc-Button--ctab tc-mrl"
+      type="button") compact
+    button(
+      class="tc-Button tc-Button--ctab" disabled
+      type="button") disabled
+
+  pre.language-markup
+    code
+      :markdown
+        <!-- Call to Action Buttons -->
+        <!-- ctab button -->
+        <button class="tc-Button tc-Button--ctab" type="button">
+          button
+        </button>
+
+        <!-- ctab accent button -->
+        <button class="tc-Button tc-Button--accent tc-Button--ctab"
+          type="button">
+          accent
+        </button>
+
+        <!-- ctab button with child icon -->
+        <button class="tc-Button tc-Button--ctab" type="button">
+          <svg class="tc-Button-icon">...</svg>
+          button
+        </button>
+
+        <!-- ctab compact button -->
+        <button class="tc-Button tc-Button--compact tc-Button--ctab"
+          type="button">
+          compact
+        </button>
+
+        <!-- Disabled ctab button -->
+        <button class="tc-Button tc-Button--ctab" disabled type="button">
+          disabled
+        </button>
+
+  div(class="tc-mvl tc-flex tc-flex-center tc-flex-middle")
+    button(
+      class="tc-Button tc-Button--flat tc-mrl" type="button") button
+    button(
+      class="tc-Button tc-Button--accent tc-Button--flat tc-mrl"
+      type="button") accent
+    button(
+      class="tc-Button tc-Button--flat tc-mrl" type="button")
+      +icon(class="tc-Button-icon")
+      | icon
+    button(
+      class="tc-Button tc-Button--compact tc-Button--flat tc-mrl"
+      type="button") compact
+    button(
+      class="tc-Button tc-Button--flat" disabled
+      type="button") disabled
+
+  pre.language-markup
+    code
+      :markdown
+        <!-- Flat button -->
+        <button class="tc-Button tc-Button--flat" type="button">
+          button
+        </button>
+
+        <!-- Flat accent button -->
+        <button class="tc-Button tc-Button--accent tc-Button--flat"
+          type="button">
+          accent
+        </button>
+
+        <!-- Flat button with child icon -->
+        <button class="tc-Button tc-Button--flat" type="button">
+          <svg class="tc-Button-icon">...</svg>
+          button
+        </button>
+
+        <!-- Flat compact button -->
+        <button class="tc-Button tc-Button--compact tc-Button--flat"
+          type="button">
+          compact
+        </button>
+
+        <!-- Disabled flat button -->
+        <button class="tc-Button tc-Button--flat" disabled type="button">
+          disabled
+        </button>
