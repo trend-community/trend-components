@@ -1,2 +1,15 @@
-@import "@trend/theme/index";
+// Import resets and base styles.
+
+@import "@trend/normalize/index";
+@import "@trend/type/type";
+@import "@trend/theme/theme";
+
+// Import individual components (patterns).
+
+@import "@trend/button/index";
+
+// Import helpers.
+
+@import "@trend/type/helpers";
+@import "@trend/theme/helpers";
 @import "@trend/helpers/index";
