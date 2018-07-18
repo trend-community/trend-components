@@ -82,11 +82,11 @@ function cssBundler() {
       devtool: 'source-map',
       module: {
         rules: [
+          ...rules,
           {
-            test: /\.scss$/,
+            test: /\.(css|scss)$/,
             use: createCssLoader(),
-          },
-          ...rules
+          }
         ],
       },
       plugins: [
@@ -106,6 +106,7 @@ function cssBundler() {
       httpDirAbsolutePath,
     },
     plugins = [],
+    rules = []
   }) {
     return createCustomCss({
       bundleName: 'main-css-combined',
@@ -120,7 +121,8 @@ function cssBundler() {
       plugins: [
         pluginCopyrightBanner(),
         ...plugins
-      ]
+      ],
+      rules
     });
   }
 
@@ -129,7 +131,7 @@ function cssBundler() {
       fsDirAbsolutePath,
       httpDirAbsolutePath
     },
-    plugins = [],
+    plugins = []
   }) {
     return createCustomCss({
       bundleName: 'individual-css-bundles',
