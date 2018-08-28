@@ -68,7 +68,6 @@
     "clean": "npm-run-all --parallel clean:*",
     "clean:build": "del-cli build/** build",
     "clean:docs": "del-cli docs/** docs",
-    "dev": "npm run clean && cross-env TC_ENV=development webpack-dev-server --config=webpack.demo.config.js --progress --inline",
     "dist": "npm-run-all --parallel build:*",
     "lint:css": "stylelint \"packages/**/*.scss\"",
     "start": "cross-env TC_ENV=development webpack-dev-server --config=webpack.dev.config.js --progress --inline",
@@ -97,7 +96,6 @@
           "theme",
           "type",
           "package",
-          "demos",
           "scripts",
           "src",
           "root"
