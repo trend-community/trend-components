@@ -20,12 +20,12 @@ $tc-type-font-weights: (
 ) !default;
 
 $_tc-header-font-sizes: (
-  h1: round(tc-ms($tc-type-font-size-root, 6)),
-  h2: round(tc-ms($tc-type-font-size-root, 5)),
-  h3: round(tc-ms($tc-type-font-size-root, 4)),
-  h4: round(tc-ms($tc-type-font-size-root, 3)),
-  h5: round(tc-ms($tc-type-font-size-root, 2)),
-  h6: round(tc-ms($tc-type-font-size-root, 1)),
+  h1: round(tc-ms($tc-type-font-size-root, 5)),
+  h2: round(tc-ms($tc-type-font-size-root, 4)),
+  h3: round(tc-ms($tc-type-font-size-root, 3)),
+  h4: round(tc-ms($tc-type-font-size-root, 2)),
+  h5: round(tc-ms($tc-type-font-size-root, 1)),
+  h6: round(tc-ms($tc-type-font-size-root, 0)),
   subtitle1: tc-ms($tc-type-font-size-root, 0),
   subtitle2: round(tc-ms($tc-type-font-size-root, -1)),
   body1: round(tc-ms($tc-type-font-size-root, 0)),
@@ -38,7 +38,7 @@ $_tc-header-font-sizes: (
 $tc-type-styles: (
   h1: (
     font-size: tc-rem(map-get($_tc-header-font-sizes, h1)),
-    font-weight: map-get($tc-type-font-weights, light),
+    font-weight: map-get($tc-type-font-weights, regular),
     letter-spacing: tc-rem(-1.5, map-get($_tc-header-font-sizes, h1)),
     line-height: 1.1,
     text-decoration: inherit,
@@ -46,7 +46,7 @@ $tc-type-styles: (
   ),
   h2: (
     font-size: tc-rem(map-get($_tc-header-font-sizes, h2)),
-    font-weight: map-get($tc-type-font-weights, light),
+    font-weight: map-get($tc-type-font-weights, regular),
     letter-spacing: tc-rem(-0.5, map-get($_tc-header-font-sizes, h2)),
     line-height: 1.1,
     text-decoration: inherit,
