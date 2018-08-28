@@ -1,0 +1,15 @@
+{
+  "name": "@trend/react-button",
+  "version": "0.1.0",
+  "description": "React version of the Trend component button pattern.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@trend/button": "^0.1.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}

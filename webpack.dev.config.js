@@ -10,7 +10,9 @@ const DEMO_BASE_DIR = pathResolver.getAbsPath('/src/public');
 const devServerConfig = {
   devServer: {
     contentBase: DEMO_BASE_DIR,
-    hot: true
+    historyApiFallback: true,
+    hot: true,
+    open: 'Google Chrome'
   }
 };
 

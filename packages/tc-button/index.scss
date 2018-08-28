@@ -1,13 +1,14 @@
+@import "variables";
 @import "mixins/index";
 
 // Main component class.
 
 .tc-Button {
-  @include tc-button-base;
+  @include _tc-button-base;
   @include tc-button-radius($tc-button-radius);
   @include tc-button-bg-color(transparent);
   @include tc-button-color(primary);
-  @include tc-button-states(primary);
+  @include _tc-button-states(primary);
 
   .tc-Button-icon {
     @include _tc-button-icon;
@@ -23,7 +24,7 @@
 
 .tc-Button--accent {
   @include tc-button-color(accent);
-  @include tc-button-states(accent);
+  @include _tc-button-states(accent);
 }
 
 .tc-Button--ctab,
@@ -52,17 +53,15 @@
   @include _tc-button-bg;
   @include tc-button-bg-color(primary);
   @include tc-button-color(over-primary);
-  @include tc-button-states(over-primary);
+  @include _tc-button-states(over-primary);
 
   &.tc-Button--accent {
-    @include tc-button-bg-color(accent);
-    @include tc-button-color(over-accent);
-    @include tc-button-states(over-accent);
+    @include tc-button-bg-readable(tc-theme-fetch-option(accent));
   }
 }
 
 .tc-Button--ctab {
-  @include tc-button-shadow;
+  @include _tc-button-shadow;
 }
 
 // Modifier: compact button.

@@ -5,12 +5,33 @@
 ////
 
 @import "@trend/helpers/variables";
+@import "@trend/helpers/functions/relative-unit";
 @import "@trend/helpers/mixins/shadow-levels";
 @import "@trend/helpers/mixins/rtl";
 @import "@trend/theme/variables";
 @import "@trend/theme/mixins/theme-prop";
 @import "@trend/theme/functions/theme";
 @import "@trend/type/functions/modular-scale";
+@import "@trend/type/mixins/type";
+@import "../functions/index";
+
+/// Set a background color for a `ctab` or `flat` button and updates text
+/// color.
+///
+/// @param {string} $bg-color - The color to set as the background.
+/// @requires {Function} tc-theme-tone
+/// @requires {Mixin} tc-button-bg-color
+/// @requires {Mixin} tc-button-color
+/// @requires {Mixin} tc-button-states
+
+@mixin tc-button-bg-readable($bg-color) {
+  $bg-tone: tc-theme-tone($bg-color);
+  $color: "text-primary-over-#{if($bg-tone, dark, light)}";
+
+  @include tc-button-bg-color($bg-color);
+  @include tc-button-color($color);
+  @include _tc-button-states($color);
+}
 
 /// Adjust the text color for a button.
 /// @param {string} $color [primary] - TREND theme option ($tc-theme-options).
@@ -98,9 +119,10 @@
 }
 
 /// Add shadow levels to a button.
+/// @private
 /// @requires {Mixin} tc-shadow-levels
 
-@mixin tc-button-shadow {
+@mixin _tc-button-shadow {
   $td: map-get($tc-helper-variables, transition-duration);
   $tf: map-get($tc-helper-variables, transition-timing-function);
 
@@ -125,9 +147,10 @@
 // State mixins
 
 /// Create ruleset to adjust hover state for a button.
+/// @private
 /// @param {number} $opacity - Valid CSS opacity value.
 
-@mixin tc-button-states-hover-opacity($opacity) {
+@mixin _tc-button-states-hover-opacity($opacity) {
   &:hover::before {
     opacity: $opacity;
     visibility: visible;
@@ -135,9 +158,10 @@
 }
 
 /// Create ruleset to adjust focus state for a button.
+/// @private
 /// @param {number} $opacity - Valid CSS opacity value.
 
-@mixin tc-button-states-focus-opacity($opacity) {
+@mixin _tc-button-states-focus-opacity($opacity) {
   &:focus::before {
     opacity: $opacity;
     visibility: visible;
@@ -146,45 +170,46 @@
 }
 
 /// Create ruleset to adjust active state for a button.
+/// @private
 /// @param {number} $opacity - Valid CSS opacity value.
 
-@mixin tc-button-states-press-opacity($opacity) {
+@mixin _tc-button-states-press-opacity($opacity) {
   &:active::before {
     opacity: $opacity;
     visibility: visible;
   }
 }
 
-/// Add rule to rulest to adjust background color of a button.
+/// Add rule to ruleset to adjust background color of a button.
+/// @private
 /// @param {string} $color - TREND theme option ($tc-theme-options).
 /// @requires {Mixin} tc-theme-prop
 
-@mixin tc-button-states-base-color($color) {
+@mixin _tc-button-states-base-color($color) {
   &::before {
     @include tc-theme-prop(background-color, $color, $edgeOut: true);
   }
 }
 
 /// Add button states to a ruleset.
+/// @private
 /// @param {string} $color - TREND theme option ($tc-theme-options).
 /// @requries {Function} tc-button-states-opacity
-/// @requires {Mixin} tc-button-states-base-color
-/// @requires {Mixin} tc-button-states-hover-opacity
-/// @requires {Mixin} tc-button-states-focus-opacity
-/// @requires {Mixin} tc-button-states-press-opacity
+/// @requires {Mixin} _tc-button-states-base-color
+/// @requires {Mixin} _tc-button-states-hover-opacity
+/// @requires {Mixin} _tc-button-states-focus-opacity
+/// @requires {Mixin} _tc-button-states-press-opacity
 /// @requires {Variable} $tc-helper-variables
 /// @requires {Variable} $tc-easeInOutSine
 
-@import "../functions/index";
-
-@mixin tc-button-states($color) {
-  @include tc-button-states-base-color($color);
-  @include tc-button-states-hover-opacity(
-    tc-button-states-opacity($color, hover));
-  @include tc-button-states-focus-opacity(
-    tc-button-states-opacity($color, focus));
-  @include tc-button-states-press-opacity(
-    tc-button-states-opacity($color, press));
+@mixin _tc-button-states($color) {
+  @include _tc-button-states-base-color($color);
+  @include _tc-button-states-hover-opacity(
+    _tc-button-states-opacity($color, hover));
+  @include _tc-button-states-focus-opacity(
+    _tc-button-states-opacity($color, focus));
+  @include _tc-button-states-press-opacity(
+    _tc-button-states-opacity($color, press));
 
   &:hover,
   &:focus,
@@ -217,10 +242,7 @@
 /// @requires {Mixin} tc-button-padding
 /// @requires {Mixin} tc-type
 
-@import "@trend/type/mixins/type";
-@import "../variables";
-
-@mixin tc-button-base {
+@mixin _tc-button-base {
   @include tc-type(button);
   @include tc-button-padding($tc-button-padding-horizontal);
 
@@ -281,8 +303,6 @@
 /// @requires {Variable} $tc-button-padding-horizontal-modified
 /// @requires {Variable} $tc-button-height
 /// @requires {Function} tc-rem
-
-@import "@trend/helpers/functions/relative-unit";
 
 @mixin tc-button-ghost-width($border-width) {
   @include tc-button-padding(

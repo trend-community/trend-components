@@ -3,13 +3,5 @@
     "env",
     "react",
     "stage-2"
-  ],
-  "plugins": [
-    ["prismjs", {
-      "languages": ["javascript", "css", "markup", "scss"],
-      "plugins": ["copy-to-clipboard"],
-      "theme": "default",
-      "css": true
-    }]
   ]
 }
