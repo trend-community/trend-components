@@ -1,8 +1,9 @@
 import React, { Fragment, PureComponent } from 'react';
-import Markdown from 'react-markdown';
 
 import Code from 'components/Code';
+import Markdown from 'components/Markdown';
 import examples from './examples.md';
+console.log(examples);
 
 const styles = {
   border: '1px solid #efefef',
@@ -38,9 +39,7 @@ class TypePage extends PureComponent {
           Adjust typographic appearance of any HTML element with <code>
           tc-type</code> helper class.
         </p>
-        <Code>
-          <Markdown source={examples} />
-        </Code>
+        <Markdown source={examples} />
         <p className="tc-type-subtitle1">Example subtitle1 text.</p>
         <p className="tc-type-subtitle2">Example subtitle2 text.</p>
         <p className="tc-type-caption">Example caption text.</p>

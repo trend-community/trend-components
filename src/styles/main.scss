@@ -1,0 +1,12 @@
+@import "../../packages/tc-helpers/addons/font-stacks";
+@import "../../packages/tc-normalize/index.scss";
+@import "../../packages/tc-type/index.scss";
+@import "../../packages/tc-theme/index.scss";
+@import "../../packages/tc-helpers/index.scss";
+
+td > code,
+p > code {
+  color: tc-theme-fetch-option(accent);
+  font-family: $consolas;
+  font-weight: 600;
+}

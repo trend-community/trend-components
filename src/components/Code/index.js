@@ -1,22 +1,24 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Prism from 'prismjs';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {
+  atelierCaveLight as style
+} from 'react-syntax-highlighter/styles/hljs';
 
-class Code extends PureComponent {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
-  }
+const propTypes = {
+  language: PropTypes.string,
+  value: PropTypes.string
+};
 
-  componentDidMount() {
-    Prism.highlightAll();
-  }
-
-  render() {
-    const { children, className } = this.props;
-
-    return <pre className={className}>{children}</pre>
-  }
+function Code({ language, value }) {
+  return <SyntaxHighlighter
+    language={language}
+    style={style}>
+      {value}
+  </SyntaxHighlighter>;
 }
+
+Code.propTypes = propTypes;
+Code.displayName = 'Code';
 
 export default Code;

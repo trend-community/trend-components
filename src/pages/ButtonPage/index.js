@@ -1,110 +1,71 @@
-import React, { Fragment } from 'react';
-import Markdown from 'react-markdown';
+import React, { Fragment, PureComponent } from 'react';
 
 import { Checkmark } from 'components/Icons';
+import Button from 'components/Button';
 import Code from 'components/Code';
-import example1 from './example-1.md';
-import example2 from './example-2.md';
-import example3 from './example-3.md';
-import example4 from './example-4.md';
+import Markdown from 'components/Markdown';
+import md from 'packages/tc-button/README.md';
 
-function ButtonPage() {
-  return <Fragment>
-    <p className="tc-mal">TREND components button patterns.</p>
+const installationIdx = md.indexOf('## Installation')
+const intro = md.slice(0, installationIdx - 1);
+const installation = md.slice(installationIdx);
 
-    <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
-      <button className="tc-Button tc-mrl" type="button"> button</button>
-      <button className="tc-Button tc-Button--accent tc-mrl" type="button">
-        accent</button>
-      <button className="tc-Button tc-mrl" type="button">
-        <Checkmark className="tc-Button-icon" />
-        icon
-      </button>
-      <button className="tc-Button tc-Button--compact tc-mrl" type="button">
-        compact
-      </button>
-      <button className="tc-Button" disabled type="button">disabled</button>
-    </div>
+class ButtonPage extends PureComponent {
+  render() {
+    return <div className="tc-mal">
+      <Markdown source={intro} />
+      <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
+        <Button className="tc-mrl">button</Button>
+        <Button className="tc-mrl" modifiers="accent">accent</Button>
+        <Button className="tc-mrl">
+          {({ getButtonIconProps }) =>
+            <Fragment>
+              <Checkmark {...getButtonIconProps()} />
+              icon
+            </Fragment>
+          }
+        </Button>
+        <Button className="tc-mrl" modifiers="compact">
+          compact
+        </Button>
+        <Button disabled={true}>disabled</Button>
+      </div>
 
-    <Code><Markdown source={example1} /></Code>
+      <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
+        <Button className="tc-mrl" modifiers="ghost">button</Button>
+        <Button className="tc-mrl" modifiers="accent ghost">accent</Button>
+        <Button className="tc-mrl" modifiers="ghost">
+          <Checkmark className="tc-Button-icon" />
+          icon
+        </Button>
+        <Button className="tc-mrl" modifiers="compact ghost">compact</Button>
+        <Button modifiers="ghost" disabled>disabled</Button>
+      </div>
 
-    <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
-      <button className="tc-Button tc-Button--ghost tc-mrl" type="button">
-        button
-      </button>
-      <button className="tc-Button tc-Button--accent tc-Button--ghost tc-mrl"
-        type="button">
-        accent
-      </button>
-      <button className="tc-Button tc-Button--ghost tc-mrl" type="button">
-        <Checkmark className="tc-Button-icon" />
-        icon
-      </button>
-      <button className="tc-Button tc-Button--compact tc-Button--ghost tc-mrl"
-        type="button">
-        compact
-      </button>
-      <button className="tc-Button tc-Button--ghost"
-        disabled
-        type="button">
-        disabled
-      </button>
-    </div>
+      <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
+        <Button className="tc-mrl" modifiers="ctab">button</Button>
+        <Button className="tc-mrl" modifiers="accent ctab">accent</Button>
+        <Button className="tc-mrl" modifiers="ctab">
+          <Checkmark className="tc-Button-icon" />
+          icon
+        </Button>
+        <Button className="tc-mrl" modifiers="ctab compact">compact</Button>
+        <Button modifiers="ctab" disabled>disabled</Button>
+      </div>
 
-    <Code><Markdown source={example2} /></Code>
-
-    <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
-      <button className="tc-Button tc-Button--ctab tc-mrl" type="button">
-        button
-      </button>
-      <button className="tc-Button tc-Button--accent tc-Button--ctab tc-mrl"
-        type="button">
-        accent
-      </button>
-      <button className="tc-Button tc-Button--ctab tc-mrl" type="button">
-        <Checkmark className="tc-Button-icon" />
-        icon
-      </button>
-      <button className="tc-Button tc-Button--compact tc-Button--ctab tc-mrl"
-        type="button">
-        compact
-      </button>
-      <button className="tc-Button tc-Button--ctab"
-        disabled
-        type="button">
-        disabled
-      </button>
-    </div>
-
-    <Code><Markdown source={example3} /></Code>
-
-    <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
-      <button className="tc-Button tc-Button--flat tc-mrl" type="button">
-        button
-      </button>
-      <button className="tc-Button tc-Button--accent tc-Button--flat tc-mrl"
-        type="button">
-        accent
-      </button>
-      <button className="tc-Button tc-Button--flat tc-mrl" type="button">
-        <Checkmark className="tc-Button-icon" />
-        icon
-      </button>
-      <button className="tc-Button tc-Button--compact tc-Button--flat tc-mrl"
-        type="button">
-        compact
-      </button>
-      <button className="tc-Button tc-Button--flat"
-        disabled
-        type="button">
-        disabled
-      </button>
-    </div>
-
-    <Code><Markdown source={example4} /></Code>
-  </Fragment>;
+      <div className="tc-mal tc-flex tc-flex-center tc-flex-middle">
+        <Button className="tc-mrl" modifiers="flat">button</Button>
+        <Button className="tc-mrl" modifiers="accent flat">accent</Button>
+        <Button className="tc-mrl" modifiers="flat">
+          <Checkmark className="tc-Button-icon" />
+          icon
+        </Button>
+        <Button className="tc-mrl" modifiers="compact flat">compact</Button>
+        <Button modifiers="tc-Button--flat" disabled>disabled</Button>
+      </div>
+      <Markdown source={installation} />
+    </div>;
+  }
 }
-
-ButtonPage.displayName = 'ButtonPage';
 
 export default ButtonPage;
