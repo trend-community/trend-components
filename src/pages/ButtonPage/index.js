@@ -2,7 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 
 import { Checkmark } from 'components/Icons';
 import Button from 'components/Button';
-import Code from 'components/Code';
 import Markdown from 'components/Markdown';
 import md from 'packages/tc-button/README.md';
 
