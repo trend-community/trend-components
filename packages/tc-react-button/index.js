@@ -30,7 +30,7 @@ class Button extends Component {
     children: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.func
-    ]),
+    ]).isRequired,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     modifiers: PropTypes.oneOfType([
