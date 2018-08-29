@@ -10,3 +10,20 @@ p > code {
   font-family: $consolas;
   font-weight: 600;
 }
+
+table {
+  th {
+    padding: #{map-get($tc-spacings, m)} #{map-get($tc-spacings, l)};
+    background-color: rgba(tc-theme-fetch-option(accent), 0.15);
+    font-weight: map-get($tc-type-font-weights, medium);
+    text-align: left;
+  }
+
+  td {
+    border: 1px solid rgba(map-get($tc-color-concrete, 100), 0.5);
+  }
+
+  td {
+    padding: #{map-get($tc-spacings, s)} #{map-get($tc-spacings, l)};
+  }
+}
