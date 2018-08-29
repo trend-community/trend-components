@@ -305,4 +305,4 @@ Append (after) or prepend (before) whitespace to an HTML element.
 
 - `tc-<append|prepend>-<xofY>` (numerous) - Create a proportional margin rule
   - `x` is an integer less than `Y`
-  - `Y` is can be any one of the `tc-proportional-sizes` (e.g 2, 3, 4, 5...)
+  - `Y` can be any one of the `tc-proportional-sizes` (e.g 2, 3, 4, 5...)

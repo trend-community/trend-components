@@ -4,8 +4,9 @@
 @import "../../packages/tc-theme/index.scss";
 @import "../../packages/tc-helpers/index.scss";
 
-td > code,
-p > code {
+p > code,
+li > code,
+td > code {
   color: tc-theme-fetch-option(accent);
   font-family: $consolas;
   font-weight: 600;
