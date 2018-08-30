@@ -1,9 +1,15 @@
 import React from 'react';
 
+import Markdown from 'components/Markdown';
+import md from 'packages/tc-theme/README.md';
+
+const installationIdx = md.indexOf('## Installation')
+const intro = md.slice(0, installationIdx - 1);
+const installation = md.slice(installationIdx);
+
 function ThemePage() {
   return <div className="tc-mal">
-    <h2 className="tc-type-h4">Theme helpers</h2>
-    <h3 className="tc-type-subtitle1">Text and background colors</h3>
+    <Markdown source={intro} />
 
     <div className="tc-flex tc-mam">
       <div className="tc-flex tc-pas">
@@ -91,6 +97,8 @@ function ThemePage() {
         </span>
       </div>
     </div>
+
+    <Markdown source={installation} />
   </div>;
 }
 
