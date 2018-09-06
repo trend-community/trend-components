@@ -1,0 +1,24 @@
+////
+/// Create rule for a helper custom property.
+///
+/// @group helpers mixins
+/// @requires {Variable} $tc-helper-variables
+/// @requires {Function} tc-is-important
+////
+
+@mixin tc-helper-prop($property, $important: false, $edgeOut: false) {
+  $isImportant: tc-is-important($important);
+
+  @if variable-exists(tc-helper-variables) {
+    @if map-has-key($tc-helper-variables, $property) {
+      $value: map-get($tc-helper-variables, $property);
+
+      #{$property}: $value $isImportant;
+      #{$property}: var(--tc-helper-#{$property}, $value) $isImportant;
+    } @else {
+      @warn "No property \"#{$property}\" detected in $tc-helper-variables.";
+    }
+  } @else {
+    @error "tc-helper-prop depends on $tc-helper-variables map.";
+  }
+}
