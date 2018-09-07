@@ -1,0 +1,17 @@
+{
+  "name": "@trend/state",
+  "version": "0.1.0",
+  "description": "TREND Components state mixins for interactive elements.",
+  "keywords": [
+    "TREND Components",
+    "ui states",
+    "scss",
+    "sass",
+    "mixins"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0",
+    "@trend/theme": "^0.1.0"
+  }
+}

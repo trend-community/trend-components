@@ -1,0 +1,89 @@
+////
+/// State mixins
+////
+
+@import "@trend/helpers/variables";
+@import "@trend/theme/mixins/theme-prop";
+@import "../functions/index";
+
+/// Create ruleset to adjust hover state for a interactive element.
+/// @param {number} $opacity - Valid CSS opacity value.
+
+@mixin tc-state-hover-opacity($opacity) {
+  &:hover::before {
+    opacity: $opacity;
+    visibility: visible;
+  }
+}
+
+/// Create ruleset to adjust focus state for a interactive element.
+/// @param {number} $opacity - Valid CSS opacity value.
+
+@mixin tc-state-focus-opacity($opacity) {
+  &:focus::before {
+    opacity: $opacity;
+    visibility: visible;
+    transition-duration: 75ms;
+  }
+}
+
+/// Create ruleset to adjust active state for a interactive element.
+/// @param {number} $opacity - Valid CSS opacity value.
+
+@mixin tc-state-press-opacity($opacity) {
+  &:active::before {
+    opacity: $opacity;
+    visibility: visible;
+  }
+}
+
+/// Add rule to ruleset to adjust background color of a interactive element.
+/// @param {string} $color - TREND theme option ($tc-theme-options).
+/// @requires {Mixin} tc-theme-prop
+
+@mixin tc-state-base-color($color) {
+  &::before {
+    @include tc-theme-prop(background-color, $color, $edgeOut: true);
+  }
+}
+
+/// Add state rules to a ruleset.
+/// @param {string} $color - TREND theme option ($tc-theme-options).
+/// @requries {Function} tc-button-state-opacity
+/// @requires {Mixin} tc-state-base-color
+/// @requires {Mixin} tc-state-hover-opacity
+/// @requires {Mixin} tc-state-focus-opacity
+/// @requires {Mixin} tc-state-press-opacity
+/// @requires {Variable} $tc-helper-variables
+/// @requires {Variable} $tc-easeInOutSine
+
+@mixin tc-state($color) {
+  @include tc-state-base-color($color);
+  @include tc-state-hover-opacity(tc-state-opacity($color, hover));
+  @include tc-state-focus-opacity(tc-state-opacity($color, focus));
+  @include tc-state-press-opacity(tc-state-opacity($color, press));
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &::before {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    visibility: hidden;
+
+    height: inherit;
+    width: 100%;
+
+    transition-duration: map-get($tc-helper-variables, transition-duration);
+    transition-property: opacity, visibility;
+    transition-timing-function: $tc-easeInOutSine;
+
+    content: "";
+    will-change: opacity;
+  }
+}

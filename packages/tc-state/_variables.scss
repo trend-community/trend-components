@@ -1,0 +1,20 @@
+////
+/// State variable sheet.
+/// @group state variables
+////
+
+$tc-state-dark-color-opacities: (
+  hover: 0.12,
+  focus: 0.2,
+  press: 0.24,
+  selected: 0.16,
+  activated: 0.2
+) !default;
+
+$tc-state-light-color-opacities: (
+  hover: 0.16,
+  focus: 0.32,
+  press: 0.4,
+  selected: 0.2,
+  activated: 0.28
+) !default;

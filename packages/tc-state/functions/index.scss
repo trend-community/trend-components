@@ -1,0 +1,39 @@
+////
+/// TREND Component state functions.
+////
+
+@import "@trend/theme/functions/theme";
+@import "../variables";
+
+/// Returns opacity value for desire state and color passed.
+/// @param {color} $color - A option from `$tc-theme-options` map
+/// @param {string} $state - A valid opacity map key.
+/// @returns {string} - A opacty map value.
+/// @requires {Function} _tc-state-opacities
+
+@function tc-state-opacity($color, $state) {
+  $opacity-map: _tc-state-opacities($color);
+
+  @if not map-has-key($opacity-map, $state) {
+    @error "Invalid state: '#{$state}'. Choose one of: #{map-keys($opacity-map)}";
+  }
+
+  @return map-get($opacity-map, $state);
+}
+
+/// Returns one of the two  button opacity color maps based on the tone
+/// of the passed in `$color`.
+/// @access private
+/// @param {string} $color - An option from `$tc-theme-options` map
+/// @returns {Map}
+
+@function _tc-state-opacities($color) {
+  $color-value: tc-theme-fetch-option($color);
+  $opacity-map: if(
+    tc-theme-tone($color-value) == "light",
+    $tc-state-light-color-opacities,
+    $tc-state-dark-color-opacities
+  );
+
+  @return $opacity-map;
+}
