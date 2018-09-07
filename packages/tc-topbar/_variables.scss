@@ -1,0 +1,37 @@
+////
+/// TREND components topbar variables.
+////
+
+// Default styles.
+$tc-topbar-inner-height: 64px;
+$tc-topbar-title-left-padding: 20px;
+$tc-topbar-section-vertical-padding: 8px;
+$tc-topbar-section-horizontal-padding: 12px;
+
+$tc-topbar-icon-padding: 12px;
+$tc-topbar-icon-size: 24px;
+
+// Default theming styles.
+$tc-topbar-background-color: primary !default;
+$tc-topbar-icon-color: over-primary !default;
+
+$tc-topbar-mobile-breakpoint: 599px !default;
+
+// Default mobile styles.
+$tc-topbar-mobile-inner-height: 56px;
+$tc-topbar-mobile-section-padding: 4px;
+
+// Tall styles.
+$tc-topbar-tall-inner-height: 128px;
+$tc-topbar-tall-title-bottom-padding: 2px;
+
+// tall mobile styles.
+$tc-topbar-tall-mobile-title-bottom-padding: 6px;
+
+// Compact styles.
+$tc-topbar-compact-inner-height: 48px;
+$tc-topbar-compact-section-horizontal-padding: 4px;
+$tc-topbar-compact-title-left-padding: 12px;
+
+// Compact and Tall styles.
+$tc-topbar-tall-compact-title-bottom-padding: 9px;

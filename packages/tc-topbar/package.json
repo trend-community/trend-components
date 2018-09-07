@@ -1,0 +1,21 @@
+{
+  "name": "@trend/topbar",
+  "version": "0.1.0",
+  "description": "TREND Components top bar component.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "trend component",
+    "top bar",
+    "topbar"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@trend/helpers": "^0.1.0",
+    "@trend/state": "^0.1.0",
+    "@trend/theme": "^0.1.0",
+    "@trend/type": "^0.1.0"
+  }
+}

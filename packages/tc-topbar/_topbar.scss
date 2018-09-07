@@ -1,0 +1,202 @@
+@import "@trend/helpers/mixins/helper-prop";
+@import "@trend/helpers/mixins/rtl";
+@import "@trend/helpers/mixins/shadow-levels";
+@import "@trend/helpers/mixins/text-truncate";
+@import "@trend/type/mixins/type";
+@import "mixins/index";
+
+// Main component class.
+
+.tc-Topbar {
+  @include tc-topbar-bg-color-readability($tc-topbar-background-color);
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 4;
+
+  box-sizing: border-box;
+  width: 100%;
+}
+
+// Child: inner
+// A inner wrapper for sections in a topbar.
+
+.tc-Topbar-inner {
+  display: flex;
+  position: relative;
+
+  box-sizing: border-box;
+  height: $tc-topbar-inner-height;
+  width: 100%;
+
+  // Modifier: inner child in a compact topbar
+  .tc-Topbar--compact & {
+    height: $tc-topbar-compact-inner-height;
+  }
+
+  // Modifier: inner child in a tall topbar
+  .tc-Topbar--tall & {
+    height: $tc-topbar-tall-inner-height;
+  }
+
+  // Modifers: inner child in a tall compact topbar
+  .tc-Topbar--tall.tc-Topbar--compact & {
+    height: $tc-topbar-compact-inner-height * 2;
+  }
+
+  @include _tc-topbar-mobile {
+    & {
+      height: $tc-topbar-mobile-inner-height;
+    }
+
+    .tc-Topbar--tall & {
+      padding-bottom: $tc-topbar-tall-mobile-title-bottom-padding;
+    }
+  }
+}
+
+// Child: section
+// Break topbar up into sections.
+
+.tc-Topbar-section {
+  $pv: $tc-topbar-section-vertical-padding;
+  $ph: $tc-topbar-section-horizontal-padding;
+
+  display: inline-flex;
+  z-index: 1;
+  flex: 1 1 auto;
+  align-items: center;
+
+  padding: $pv $ph;
+  min-width: 0;
+
+  // Modifier: compact section
+
+  .tc-Topbar--compact & {
+    padding: 0 $tc-topbar-compact-section-horizontal-padding;
+  }
+
+  // Modifers: section child in a tall compact topbar
+  .tc-Topbar--tall.tc-Topbar--compact & {
+    padding: 0 $tc-topbar-section-horizontal-padding;
+  }
+
+  @include _tc-topbar-mobile {
+    & {
+      padding: $tc-topbar-mobile-section-padding;
+    }
+  }
+}
+
+// Child modifier: start
+// Align section at first.
+
+.tc-Topbar-section--start {
+  justify-content: flex-start;
+  order: -1;
+}
+
+// Child/modifer: end
+// Align section at end.
+
+.tc-Topbar-section--end {
+  justify-content: flex-end;
+  order: 1;
+}
+
+// Child: title
+
+.tc-Topbar-title {
+  @include tc-rtl-flip-box(padding, left, $tc-topbar-title-left-padding);
+  @include tc-text-truncate(false);
+  @include tc-type(h5);
+
+  z-index: 1;
+
+  // Modifier: compact title
+  .tc-Topbar--compact & {
+    @include tc-rtl-flip-box(
+      padding,
+      left,
+      $tc-topbar-compact-title-left-padding);
+  }
+
+  // Modifier: tall title
+  .tc-Topbar--tall & {
+    align-self: flex-end;
+    padding-bottom: $tc-topbar-tall-title-bottom-padding;
+  }
+
+  // Modifers: title child in a tall compact topbar
+  .tc-Topbar--tall.tc-Topbar--compact & {
+    @include tc-rtl-flip-box(
+      padding,
+      left,
+      $tc-topbar-title-left-padding);
+
+    padding-bottom: $tc-topbar-tall-compact-title-bottom-padding;
+  }
+}
+
+// Child: topbar icon
+
+.tc-Topbar-icon {
+  @include _tc-topbar-icon;
+  @include tc-topbar-icon-color($tc-topbar-icon-color);
+
+  // Modifier: icons in a tall topbar
+  .tc-Topbar--tall & {
+    align-self: flex-start;
+  }
+}
+
+// Modifier: fixed topbar
+
+.tc-Topbar--fixed,
+.tc-Topbar--fixedScrolled {
+  @include tc-helper-prop(transition-duration);
+  @include tc-helper-prop(transition-timing-function);
+
+  position: fixed;
+  transition-property: box-shadow;
+}
+
+.tc-Topbar--fixedScrolled {
+  @include tc-shadow-level(4);
+}
+
+// Context classes
+// Add a context class to immediate parent of the topbar.  In many cases
+// that will be the `body` element.
+
+// Context: has a fixed topbar
+
+.tc-has-Topbar--fixed {
+  padding-top: $tc-topbar-inner-height;
+
+  @include _tc-topbar-mobile {
+    & {
+      padding-top: $tc-topbar-mobile-inner-height;
+    }
+  }
+}
+
+// Context: has a compact fixed topbar
+
+.tc-has-Topbar--compactFixed {
+  padding-top: $tc-topbar-compact-inner-height;
+}
+
+// Context: has a tall fixed topbar
+
+.tc-has-Topbar--tallFixed {
+  padding-top: $tc-topbar-tall-inner-height;
+}
+
+// Context: has a compact tall fixed topbar
+
+.tc-has-Topbar--compactTallFixed {
+  padding-top: $tc-topbar-compact-inner-height * 2;
+}

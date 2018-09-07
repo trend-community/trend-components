@@ -1,0 +1,72 @@
+////
+/// Topbar mixins.
+////
+
+@import "@trend/state/index";
+@import "@trend/theme/functions/theme";
+@import "@trend/theme/mixins/theme-prop";
+
+/// Adjust the background color and font color for readability.
+/// @param {color} $color - Valid sass color string.
+/// @requires {Function} tc-theme-accessible-color from theme package
+/// @requires {Mixin} theme-prop mixin from theme package.
+
+@mixin tc-topbar-bg-color-readability($color) {
+  @include tc-theme-prop(background-color, $color);
+  @include tc-theme-prop(color, tc-theme-accessible-color($color));
+}
+
+/// Adjust the appearance of icons in a topbar component.
+/// @param {color} $color - A valid tc-theme-option key.
+/// @requires {Mixin} tc-state
+/// @requires {Mixin} tc-theme-prop
+
+@mixin tc-topbar-icon-color($color) {
+  @include tc-state($color);
+  @include tc-theme-prop(color, $color);
+}
+
+// Private
+
+/// Create ruleset for icons that are children in `Topbar`.
+/// @private
+/// @requires {Variable} $tc-topbar-icon-size
+/// @requires {Variable} $tc-topbar-icon-padding
+
+@mixin _tc-topbar-icon {
+  $size: $tc-topbar-icon-size + $tc-topbar-icon-padding * 2;
+
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  box-sizing: border-box;
+  height: $size;
+  padding: $tc-topbar-icon-padding;
+  width: $size;
+
+  outline: none;
+
+  background-color: transparent;
+
+  fill: currentColor;
+
+  color: inherit;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+/// Create max-width media query blocks.
+/// @private
+/// @content Add ruleset to be honored by media query.
+/// @param {string} $breakpoint [$tc-topbar-mobile-breakpoint]
+
+@mixin _tc-topbar-mobile($breakpoint: $tc-topbar-mobile-breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
