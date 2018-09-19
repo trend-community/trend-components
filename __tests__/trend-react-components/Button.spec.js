@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Button from '../../packages/tc-react-button';
+import Button from '../../packages/trend-react-components/Button';
 
 describe('[tc-react-button]', () => {
   it('should render a button element.', () => {
