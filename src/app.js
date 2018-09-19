@@ -13,16 +13,7 @@ import ButtonPage from './pages/ButtonPage';
 
 function App() {
   return <Fragment>
-    <Header>
-      <div className="tc-Topbar-inner">
-        <div className="tc-Topbar-section tc-Topbar-section--start">
-          <button className="tc-Topbar-icon" type="button">
-            <MenuIcon />
-          </button>
-          <span className="tc-Topbar-title">Trend Components</span>
-        </div>
-      </div>
-    </Header>
+    <Header />
 
     <main style={{ paddingTop: '64px' }}>
       <Route exact path="/" component={Home} />
