@@ -15,7 +15,7 @@ With a module bunlder like [webpack](https://webpack.js.org/), use as you would 
 ```javascript
 // Using ES6 modules.
 @import React from 'react';
-@import Button from '@trend/react-button';
+@import Button from 'trend-react-components/Button';
 
 // Render a basic TREND component button.
 function MyButton(props) {
