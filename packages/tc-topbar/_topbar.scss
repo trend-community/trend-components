@@ -2,6 +2,7 @@
 @import "@trend/helpers/mixins/rtl";
 @import "@trend/helpers/mixins/shadow-levels";
 @import "@trend/helpers/mixins/text-truncate";
+@import "@trend/type/variables";
 @import "@trend/type/mixins/type";
 @import "mixins/index";
 
@@ -155,7 +156,7 @@
 // Modifier: fixed topbar
 
 .tc-Topbar--fixed,
-.tc-Topbar--fixedScrolled {
+.tc-Topbar--fixedScrolling {
   @include tc-helper-prop(transition-duration);
   @include tc-helper-prop(transition-timing-function);
 
@@ -163,7 +164,7 @@
   transition-property: box-shadow;
 }
 
-.tc-Topbar--fixedScrolled {
+.tc-Topbar--fixedScrolling {
   @include tc-shadow-level(4);
 }
 

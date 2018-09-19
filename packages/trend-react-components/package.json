@@ -1,0 +1,22 @@
+{
+  "name": "trend-react-components",
+  "version": "0.1.0",
+  "description": "TREND react UI components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TREND",
+    "components",
+    "react"
+  ],
+  "author": "Christopher DeFelice <defo550@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  }
+}

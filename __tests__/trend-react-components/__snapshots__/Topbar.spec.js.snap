@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[trend-react-components/Topbar] should expose getElementProps. 1`] = `
+Object {
+  "children": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "getElementProps": [Function],
+          "getIconProps": [Function],
+          "getInnerProps": [Function],
+          "getSectionProps": [Function],
+          "getTitleProps": [Function],
+        },
+      ],
+      Array [
+        Object {
+          "getElementProps": [Function],
+          "getIconProps": [Function],
+          "getInnerProps": [Function],
+          "getSectionProps": [Function],
+          "getTitleProps": [Function],
+        },
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": <header>
+          topbar
+        </header>,
+      },
+      Object {
+        "isThrow": false,
+        "value": <header>
+          topbar
+        </header>,
+      },
+    ],
+  },
+  "className": "tc-Topbar",
+  "ref": Object {
+    "current": null,
+  },
+  "style": Object {
+    "backfaceVisibility": "invisible",
+    "transform": "translateY(0)",
+    "transition": "transform 0.2s linear",
+  },
+}
+`;
+
+exports[`[trend-react-components/Topbar] should expose getIconProps. 1`] = `
+Object {
+  "className": "tc-Topbar-icon",
+}
+`;
+
+exports[`[trend-react-components/Topbar] should expose getInnerProps. 1`] = `
+Object {
+  "className": "tc-Topbar-inner",
+}
+`;
+
+exports[`[trend-react-components/Topbar] should expose getSectionProps. 1`] = `
+Object {
+  "className": "tc-Topbar-section",
+}
+`;
+
+exports[`[trend-react-components/Topbar] should expose getTitleProps. 1`] = `
+Object {
+  "className": "tc-Topbar-title",
+}
+`;
+
+exports[`[trend-react-components/Topbar] should render the component. 1`] = `
+<header>
+  topbar
+</header>
+`;

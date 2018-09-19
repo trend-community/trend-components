@@ -5,23 +5,23 @@ import Button from '../../packages/tc-react-button';
 
 describe('[tc-react-button]', () => {
   it('should render a button element.', () => {
-    const wrapper = shallow(<Button />);
+    const wrapper = shallow(<Button>button</Button>);
     expect(wrapper.type()).toEqual('button');
   });
 
   it('should have correct className.', () => {
-    const wrapper = shallow(<Button />);
+    const wrapper = shallow(<Button>button</Button>);
     expect(wrapper.prop('className').includes('tc-Button')).toBeTruthy();
   });
 
   it('should default prop "type" to button.', () => {
-    const wrapper = shallow(<Button />);
+    const wrapper = shallow(<Button>button</Button>);
     expect(wrapper.prop('type')).toEqual('button');
   });
 
   ['accent', ['accent', 'flat'], 'ctab compact'].forEach(modifiers => {
     it(`should construct the modifiers ${modifiers} correctly.`, () => {
-      const wrapper = shallow(<Button modifiers={modifiers} />);
+      const wrapper = shallow(<Button modifiers={modifiers}>button</Button>);
       expect(wrapper.prop('className')).toMatchSnapshot();
     });
   });
