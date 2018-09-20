@@ -95,7 +95,7 @@ function cssBundler() {
           chunkFilename: env.isProd() ? '[id].min.css' : '[id].css'
         }),
         ...fsCleanupPlugins,
-        ...plugins,
+        ...plugins
       ],
     };
   }
@@ -156,6 +156,7 @@ function cssBundler() {
   }
 
   const api = {
+    createCssLoader,
     createCustomCss,
     createFullBundle,
     createIndividualBundles

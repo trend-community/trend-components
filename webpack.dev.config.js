@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const cssBundler =  require('./scripts/webpack/cssBundler')();
 const pathResolver = require('./scripts/pathResolver')();
@@ -36,7 +37,12 @@ const config = {
         use: ['raw-loader']
       }
     ],
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: pathResolver.getAbsPath('./src/public/index.html')
+      }),
+      new webpack.HotModuleReplacementPlugin()
+    ]
   }),
   resolve: {
     modules: [
