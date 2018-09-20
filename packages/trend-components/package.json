@@ -10,7 +10,9 @@
     "@trend/button": "^0.1.0",
     "@trend/helpers": "^0.1.0",
     "@trend/normalize": "^0.1.0",
+    "@trend/state": "^0.1.0",
     "@trend/theme": "^0.1.0",
+    "@trend/topbar": "^0.1.0",
     "@trend/type": "^0.1.0"
   }
 }
