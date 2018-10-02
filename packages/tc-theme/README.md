@@ -78,6 +78,12 @@ Returns value of option passed in from `$tc-theme-options` variable.
 
 Returns either "light" or "dark" from passed in color value.
 
+### tc-theme-text-priority
+
+> `string: $priority` | required, Existing key from `$tc-theme-text-priority` map
+
+Returns value from key name passed in.
+
 ## Mixins
 
 ### tc-theme-prop
