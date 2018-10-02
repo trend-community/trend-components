@@ -64,6 +64,12 @@ $tc-theme-text-colors: (
   )
 ) !default;
 
+$tc-theme-text-priority: (
+  high: 0.87,
+  medium: 0.6,
+  disabled: 0.38
+) !default;
+
 // Primary text colors for each of the theme colors.
 // ----------------------------------------------------------------------------
 

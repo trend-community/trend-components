@@ -142,3 +142,16 @@
     @error "No configuration `$tc-theme-text-colors` exists.";
   }
 }
+
+/// Returns a string (number) from tc-theme-text-priority variable.
+///
+/// @requires {Variable} $tc-theme-text-priority
+/// @returns {string} Value from the priority key passed in.
+
+@function tc-theme-text-priority($priority) {
+  @if not variable-exists(tc-theme-text-priority) {
+    @error("No `$tc-theme-text-priority` variable in scope.");
+  }
+
+  @return map-get($tc-theme-text-priority, $priority);
+}
