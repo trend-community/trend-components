@@ -1,0 +1,32 @@
+////
+/// Adjust leading text nodes.  Ideal for positioning headers.
+////
+
+@mixin tc-type-leading-top($amount) {
+  @include _tc-type-leading($amount, before) {
+    vertical-align: 0;
+  }
+
+  display: block;
+  margin-top: 0;
+  line-height: normal;
+}
+
+@mixin tc-type-leading-bottom($amount) {
+  @include _tc-type-leading($amount, after) {
+    vertical-align: $amount * -1;
+  }
+
+  margin-bottom: $amount * -1;
+}
+
+@mixin _tc-type-leading($amount, $pseudoClass) {
+  &::#{unquote($pseudoClass)} {
+    display: inline-block;
+    height: $amount;
+    width: 0;
+    content: "";
+
+    @content;
+  }
+}
