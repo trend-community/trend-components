@@ -65,7 +65,7 @@
     @error "Invalid direction: '#{$direction}'. Should be 'right' or 'left'.";
   }
 
-  $left-value: if($direction == right, 0, $value);
+  $left-value: if($direction == left, $value, 0);
   $right-value: if($direction == right, $value, 0);
 
   @include tc-rtl-flip-property(
