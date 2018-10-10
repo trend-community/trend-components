@@ -20,22 +20,38 @@ $tc-type-font-weights: (
 ) !default;
 
 $_tc-header-font-sizes: (
-  h1: round(tc-ms($tc-type-font-size-root, 5)),
-  h2: round(tc-ms($tc-type-font-size-root, 4)),
-  h3: round(tc-ms($tc-type-font-size-root, 3)),
-  h4: round(tc-ms($tc-type-font-size-root, 2)),
-  h5: round(tc-ms($tc-type-font-size-root, 1)),
-  h6: round(tc-ms($tc-type-font-size-root, 0)),
-  subtitle1: tc-ms($tc-type-font-size-root, 0),
-  subtitle2: round(tc-ms($tc-type-font-size-root, -1)),
+  h1: round(tc-ms($tc-type-font-size-root, 5)), // 48px
+  h2: round(tc-ms($tc-type-font-size-root, 4)), // 39px
+  h3: round(tc-ms($tc-type-font-size-root, 3)), // 31px
+  h4: round(tc-ms($tc-type-font-size-root, 2)), // 25px
+  h5: round(tc-ms($tc-type-font-size-root, 1)), // 20px
+  h6: round(tc-ms($tc-type-font-size-root, 0)), // 16px
+  subtitle1: tc-ms($tc-type-font-size-root, 0), // 16px
+  subtitle2: round(tc-ms($tc-type-font-size-root, -1)), // 13px
   body1: round(tc-ms($tc-type-font-size-root, 0)),
   body2: ceil(tc-ms($tc-type-font-size-root, -1)),
-  caption: ceil(tc-ms($tc-type-font-size-root, -2)),
+  caption: ceil(tc-ms($tc-type-font-size-root, -2)), // 10px
   button: round(tc-ms($tc-type-font-size-root, 0)),
   overline: ceil(tc-ms($tc-type-font-size-root, -2))
 ) !default;
 
 $tc-type-styles: (
+  leading1: (
+    font-size: tc-rem(round(tc-ms($tc-type-font-size-root, 8))), // 95px
+    line-height: 1,
+    font-weight: map-get($tc-type-font-weights, light),
+    letter-spacing: tc-rem(-1.5, map-get($_tc-header-font-sizes, h1)),
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
+  leading2: (
+    font-size: tc-rem(round(tc-ms($tc-type-font-size-root, 6))), // 61px
+    line-height: 1.75,
+    font-weight: map-get($tc-type-font-weights, light),
+    letter-spacing: tc-rem(-0.5, map-get($_tc-header-font-sizes, h2)),
+    text-decoration: inherit,
+    text-transform: inherit
+  ),
   h1: (
     font-size: tc-rem(map-get($_tc-header-font-sizes, h1)),
     font-weight: map-get($tc-type-font-weights, regular),
@@ -69,7 +85,7 @@ $tc-type-styles: (
   ),
   h5: (
     font-size: tc-rem(map-get($_tc-header-font-sizes, h5)),
-    font-weight: map-get($tc-type-font-weights, regular),
+    font-weight: map-get($tc-type-font-weights, medium),
     line-height: 2,
     text-decoration: inherit,
     text-transform: inherit
