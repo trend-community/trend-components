@@ -1,8 +1,11 @@
 {
   "devDependencies": {
-    "@commitlint/cli": "7.0.0",
-    "@commitlint/config-conventional": "7.0.1",
-    "@commitlint/config-lerna-scopes": "7.0.0",
+    "@commitlint/cli": "7.2.0",
+    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/config-lerna-scopes": "7.1.2",
+    "@storybook/addon-actions": "3.4.11",
+    "@storybook/addons": "3.4.11",
+    "@storybook/react": "4.0.0-alpha.24",
     "autoprefixer": "8.3.0",
     "babel-core": "6.26.0",
     "babel-jest": "23.4.0",
@@ -50,6 +53,8 @@
     "react-test-renderer": "16.4.1",
     "sass-loader": "7.0.1",
     "scss-parser": "1.0.0",
+    "storybook-addon-jsx": "5.4.0",
+    "style-loader": "0.23.0",
     "stylelint": "9.2.0",
     "stylelint-config-standard": "18.2.0",
     "stylelint-order": "0.8.1",
@@ -73,6 +78,7 @@
     "dist": "npm-run-all --parallel build:*",
     "lint:css": "stylelint \"packages/**/*.scss\"",
     "start": "cross-env TC_ENV=development webpack-dev-server --config=webpack.dev.config.js --progress --inline",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest --config",
     "test:watch": "jest --watch --config"
   },
@@ -93,6 +99,8 @@
         "always",
         [
           "button",
+          "drawer",
+          "focustrap",
           "helpers",
           "normalize",
           "state",
@@ -102,6 +110,7 @@
           "package",
           "scripts",
           "src",
+          "stories",
           "root"
         ]
       ]

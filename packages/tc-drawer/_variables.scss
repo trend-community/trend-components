@@ -1,0 +1,47 @@
+////
+/// TREND components Drawer variables.
+/// @requires @trend/theme/variables
+////
+
+@import "@trend/helpers/functions/relative-unit";
+@import "@trend/helpers/variables";
+@import "@trend/theme/variables";
+
+// Colors
+$tc-drawer-title-color: over-surface;
+$tc-drawer-subtitle-color: over-surface;
+// Not using yet.
+$tc-drawer-item-inactive-color: tc-theme-fetch-option(over-surface);
+$tc-drawer-item-activated-color: tc-theme-fetch-option(primary);
+//
+$tc-drawer-divider-color: over-surface;
+$tc-drawer-surface-color: surface;
+
+// Widths
+$tc-drawer-width: tc-rem(256);
+// Not using yet.
+$tc-drawer-list-item-spacing: map-get($tc-spacings, s);
+//
+$tc-drawer-surface-padding: map-get($tc-spacings, b);
+
+// Opacity
+$tc-drawer-title-opacity: tc-theme-text-priority(high);
+$tc-drawer-subtitle-opacity: tc-theme-text-priority(medium);
+// Not using yet.
+$tc-drawer-item-inactive-icover-opacity: tc-theme-text-priority(medium);
+$tc-drawer-item-inactive-text-opacity: tc-theme-text-priority(high);
+$tc-drawer-item-active-icover-opacity: 1;
+$tc-drawer-item-active-text-opacity: tc-theme-text-priority(high);
+//
+$tc-drawer-divider-opacity: 0.12;
+
+// Transitions
+$tc-drawer-transition-open: 250ms;
+$tc-drawer-transition-close: 200ms;
+
+// Mask (Scrim)
+$tc-drawer-modal-mask-color: tc-theme-fetch-option(over-surface);
+$tc-drawer-modal-mask-opacity: 0.32;
+
+$tc-drawer-z-index: 6;
+$tc-drawer-modal-shadow-level: 16;

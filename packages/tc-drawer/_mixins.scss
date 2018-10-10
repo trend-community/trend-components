@@ -1,0 +1,58 @@
+////
+/// TREND Components Drawer mixins.
+////
+
+@import "@trend/theme/variables";
+@import "@trend/theme/functions/theme";
+@import "@trend/theme/mixins/theme-prop";
+@import "@trend/type/index";
+@import "variables";
+
+/// Create a `rgba` rule.
+/// @requires {Mixin} tc-theme-prop
+
+@mixin _themeRgbaRule($variable, $property, $color) {
+  @include tc-theme-prop(
+    $property,
+    rgba(tc-theme-fetch-option($color), $variable)
+  );
+}
+
+/// Adds the border color drawer ruleset.
+/// @param {string} $color
+/// @requires {Mixin} _themeRgbaRule
+
+@mixin tc-drawer-border-color($color) {
+  @include _themeRgbaRule($tc-drawer-divider-opacity, border-color, $color);
+}
+
+/// Adds the theme background color rule.
+/// @param {string} $color
+/// @requires {Mixin} tc-theme-prop
+
+@mixin tc-drawer-surface-color($color) {
+  @include tc-theme-prop(
+    background-color,
+    tc-theme-fetch-option($color)
+  );
+}
+
+/// Adds a theme color rule title ruleset.
+/// @param {string} $color
+/// @requires {Mixin} _themeRgbaRule
+
+@mixin tc-drawer-title-color($color) {
+  @include _themeRgbaRule($tc-drawer-title-opacity, color, $color);
+}
+
+/// Adds a theme color rule subtitle ruleset.
+/// @param {string} $color
+/// @requires {Mixin} _themeRgbaRule
+
+@mixin tc-drawer-subtitle-color($color) {
+  @include _themeRgbaRule($tc-drawer-subtitle-opacity, color, $color);
+}
+
+@mixin tc-drawer-width($width) {
+  width: $width;
+}
