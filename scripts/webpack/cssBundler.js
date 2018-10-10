@@ -21,18 +21,18 @@ function cssBundler() {
     return [
       MiniCssExtractPlugin.loader,
       {
-        loader: 'css-loader',
+        loader: require.resolve('css-loader'),
         options: { sourceMap: true }
       },
       {
-        loader: 'postcss-loader',
+        loader: require.resolve('postcss-loader'),
         options: {
           sourceMap: true,
           plugins: () => [autoprefixer({ grid: false })]
         }
       },
       {
-        loader: 'sass-loader',
+        loader: require.resolve('sass-loader'),
         options: {
           sourceMap: true,
           includePaths: [
