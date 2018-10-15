@@ -51,9 +51,9 @@ class Overlay extends React.Component {
     this._removeListeners();
   }
 
-  getStateAndHelpers = () => {
+  api = () => {
     const getters = {
-      ...Drawer.getStateAndHelpers(),
+      ...Drawer.api(),
       refs: {
         focusNode: this.focusNode
       }
@@ -81,13 +81,14 @@ class Overlay extends React.Component {
         className={classes}
         aria-hidden={!open}
         active={open}
+        tag="aside"
         focusTrapOptions={{
           returnFocusOnDeactivate: true,
           clickOutsideDeactivates: true
         }}
         ref={this.focustrap}>
         {typeof children === 'function'
-          ? children(this.getStateAndHelpers())
+          ? children(this.api())
           : children
         }
       </FocusTrap>

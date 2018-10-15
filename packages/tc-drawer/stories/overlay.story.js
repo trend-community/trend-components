@@ -4,11 +4,26 @@ import { DrawerOverlay as Drawer } from '../src';
 
 class Wrapper extends Component {
   state = {
-    open: false
+    open: false,
+    rtl: false
+  }
+
+  componentDidUpdate() {
+    if (this.state.rtl) {
+      document.body.setAttribute('dir', 'rtl');
+    }
+
+    if (!this.state.rtl) {
+      document.body.removeAttribute('dir');
+    }
   }
 
   toggleDrawer = () => {
     this.setState(prevState => ({ open: !prevState.open }));
+  }
+
+  onRtl = () => {
+    this.setState(prevState => ({ rtl: !prevState.rtl }));
   }
 
   onLinkClick = evt => {
@@ -22,13 +37,13 @@ class Wrapper extends Component {
 
     return <Fragment>
       <Drawer open={open} onToggle={this.toggleDrawer}>
-        { helpers => (
+        { api => (
           <Fragment>
-            <div {...helpers.getHdProps()}>
-              <h1 {...helpers.getTitleProps()}>Title</h1>
-              <h2 {...helpers.getSubtitleProps()}>SubTitle</h2>
+            <div {...api.getHdProps()}>
+              <h1 {...api.getTitleProps()}>Title</h1>
+              <h2 {...api.getSubtitleProps()}>SubTitle</h2>
             </div>
-            <div {...helpers.getInnerProps({className: 'tc-phb'})}>
+            <div {...api.getInnerProps({className: 'tc-phb'})}>
               <a className="tc-display-block"
                 href="#"
                 onClick={this.onLinkClick}>
@@ -54,6 +69,9 @@ class Wrapper extends Component {
           </p>
           <p>The drawer will trap focus when active and return focus to
             previously active item.  <a href="#" onClick={this.onLinkClick}>Click!</a>
+          </p>
+          <p>
+            Let's try <button onClick={this.onRtl} type="button">rtl</button>
           </p>
         </div>
       </div>

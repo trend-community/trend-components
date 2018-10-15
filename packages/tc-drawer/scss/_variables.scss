@@ -35,13 +35,9 @@ $tc-drawer-item-active-text-opacity: tc-theme-text-priority(high);
 //
 $tc-drawer-divider-opacity: 0.12;
 
-// Transitions
-$tc-drawer-transition-open: 250ms;
-$tc-drawer-transition-close: 200ms;
-
-// Mask (Scrim)
+// Mask
 $tc-drawer-modal-mask-color: tc-theme-fetch-option(over-surface);
 $tc-drawer-modal-mask-opacity: 0.32;
 
 $tc-drawer-z-index: 6;
-$tc-drawer-modal-shadow-level: 16;
+$tc-drawer-shadow-level: 16;

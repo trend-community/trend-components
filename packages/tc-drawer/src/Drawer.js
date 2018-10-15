@@ -11,7 +11,7 @@ function classNameGetter(defaultProps = {}) {
 }
 
 class Drawer extends Component {
-  static getStateAndHelpers() {
+  static api() {
     return {
       getRootProps: classNameGetter({ className: cssClasses.ROOT }),
       getHdProps: classNameGetter({ className: cssClasses.HD }),
@@ -22,14 +22,11 @@ class Drawer extends Component {
   }
 
   render() {
-    const { children, render, ...rest } = this.props;
-    const { getRootProps } = Drawer.getStateAndHelpers();
+    const { children, ...rest } = this.props;
 
-    return render
-      ? render(this.getStateAndHelpers())
-      : typeof children === 'function'
-        ? children(Drawer.getStateAndHelpers())
-        : children || null;
+    return typeof children === 'function'
+      ? children(Drawer.api())
+      : children || null;
   }
 }
 

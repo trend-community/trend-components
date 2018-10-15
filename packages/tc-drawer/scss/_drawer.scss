@@ -50,7 +50,7 @@
   will-change: transform;
 
   &.is-open {
-    @include tc-shadow-level($tc-drawer-modal-shadow-level);
+    @include tc-shadow-level($tc-drawer-shadow-level);
 
     transform: translateX(0);
   }
@@ -99,5 +99,5 @@
 // Context: standard drawer offset.
 
 .tc-has-Drawer-offset {
-  @include tc-rtl-flip-box(margin, left, $tc-drawer-width);
+  @include tc-rtl-flip-box(padding, left, $tc-drawer-width);
 }
