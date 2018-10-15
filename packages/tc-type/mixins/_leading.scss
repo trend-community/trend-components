@@ -21,12 +21,12 @@
 }
 
 @mixin _tc-type-leading($amount, $pseudoClass) {
-  &::#{unquote($pseudoClass)} {
+  &#{unquote("::")}#{unquote($pseudoClass)} {
+    @content;
+
     display: inline-block;
     height: $amount;
     width: 0;
     content: "";
-
-    @content;
   }
 }
