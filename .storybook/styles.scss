@@ -1,0 +1,25 @@
+html {
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+
+  width: 100%;
+
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@import "../packages/trend-components/index";
+
+#root {
+  width: 100%;
+}
+
+.frame-root {
+  display: flex;
+}
