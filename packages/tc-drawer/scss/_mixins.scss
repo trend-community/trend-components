@@ -11,7 +11,7 @@
 /// Create a `rgba` rule.
 /// @requires {Mixin} tc-theme-prop
 
-@mixin _themeRgbaRule($variable, $property, $color) {
+@mixin _tc-themeRgbaRule($variable, $property, $color) {
   @include tc-theme-prop(
     $property,
     rgba(tc-theme-fetch-option($color), $variable)
@@ -20,10 +20,10 @@
 
 /// Adds the border color drawer ruleset.
 /// @param {string} $color
-/// @requires {Mixin} _themeRgbaRule
+/// @requires {Mixin} _tc-themeRgbaRule
 
 @mixin tc-drawer-border-color($color) {
-  @include _themeRgbaRule($tc-drawer-divider-opacity, border-color, $color);
+  @include _tc-themeRgbaRule($tc-drawer-divider-opacity, border-color, $color);
 }
 
 /// Adds the theme background color rule.
@@ -39,18 +39,18 @@
 
 /// Adds a theme color rule title ruleset.
 /// @param {string} $color
-/// @requires {Mixin} _themeRgbaRule
+/// @requires {Mixin} _tc-themeRgbaRule
 
 @mixin tc-drawer-title-color($color) {
-  @include _themeRgbaRule($tc-drawer-title-opacity, color, $color);
+  @include _tc-themeRgbaRule($tc-drawer-title-opacity, color, $color);
 }
 
 /// Adds a theme color rule subtitle ruleset.
 /// @param {string} $color
-/// @requires {Mixin} _themeRgbaRule
+/// @requires {Mixin} _tc-themeRgbaRule
 
 @mixin tc-drawer-subtitle-color($color) {
-  @include _themeRgbaRule($tc-drawer-subtitle-opacity, color, $color);
+  @include _tc-themeRgbaRule($tc-drawer-subtitle-opacity, color, $color);
 }
 
 @mixin tc-drawer-width($width) {

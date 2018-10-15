@@ -13,6 +13,7 @@
   @include tc-drawer-border-color($tc-drawer-divider-color);
   @include tc-drawer-surface-color($tc-drawer-surface-color);
   @include tc-drawer-width($tc-drawer-width);
+
   @include tc-rtl {
     border-width: 0 0 0 1px;
     border-style: none none none solid;
@@ -37,6 +38,7 @@
   @include tc-rtl-flip-position(left, 0);
   @include tc-helper-prop(transition-timing-function);
   @include tc-helper-prop(transition-duration);
+
   @include tc-rtl {
     transform: translateX(100%);
 
