@@ -17,7 +17,7 @@ const req = require.context(
 setOptions({
   name: 'TREND Components',
   url: 'https://github.com/trend-community/trend-components',
-  showAddonPanel: true,
+  // showAddonPanel: true,
   addonPanelInRight: true
 })
 

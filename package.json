@@ -4,6 +4,7 @@
     "@commitlint/config-conventional": "7.1.2",
     "@commitlint/config-lerna-scopes": "7.1.2",
     "@storybook/addon-actions": "4.0.0-alpha.24",
+    "@storybook/addon-knobs": "v4.0.0-rc.0",
     "@storybook/addon-options": "3.4.11",
     "@storybook/react": "4.0.0-alpha.24",
     "autoprefixer": "8.3.0",
