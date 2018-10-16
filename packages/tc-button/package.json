@@ -2,6 +2,10 @@
   "name": "@trend/button",
   "version": "0.1.0",
   "description": "TREND Components button component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trend-community/trend-components.git"
+  },
   "keywords": [
     "TREND Components",
     "button"
@@ -11,5 +15,9 @@
     "@trend/helpers": "^0.1.0",
     "@trend/theme": "^0.1.0",
     "@trend/type": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }
