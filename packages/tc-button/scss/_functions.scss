@@ -3,7 +3,7 @@
 ////
 
 @import "@trend/theme/functions/theme";
-@import "../variables";
+@import "variables";
 
 @function tc-button-states-opacity($color, $state) {
   $opacity-map: _tc-button-states-opacities($color);

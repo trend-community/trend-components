@@ -13,7 +13,7 @@
 @import "@trend/theme/functions/theme";
 @import "@trend/type/functions/modular-scale";
 @import "@trend/type/mixins/type";
-@import "../functions/index";
+@import "functions";
 
 /// Set a background color for a `ctab` or `flat` button and updates text
 /// color.

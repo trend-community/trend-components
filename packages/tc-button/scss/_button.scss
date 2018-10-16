@@ -1,0 +1,71 @@
+@import "variables";
+@import "mixins";
+
+// Main component class.
+
+.tc-Button {
+  @include _tc-button-base;
+  @include tc-button-radius($tc-button-radius);
+  @include tc-button-bg-color(transparent);
+  @include tc-button-color(primary);
+  @include _tc-button-states(primary);
+
+  .tc-Button-icon {
+    @include _tc-button-icon;
+  }
+
+  // stylelint-disable-next-line selector-no-qualifying-type
+  svg.tc-Button-icon {
+    @include _tc-button-icon-svg;
+  }
+}
+
+// Modifier: buttons using accent color.
+
+.tc-Button--accent {
+  @include tc-button-color(accent);
+  @include _tc-button-states(accent);
+}
+
+.tc-Button--ctab,
+.tc-Button--flat,
+.tc-Button--ghost {
+  @include _tc-button-icon-modified;
+}
+
+// Modifier: ghost (outlined) buttons
+
+.tc-Button--ghost {
+  @include tc-button-ghost;
+  @include tc-button-ghost-width(2px);
+  @include tc-button-ghost-color(primary);
+
+  &.tc-Button--accent {
+    @include tc-button-ghost-color(accent);
+  }
+}
+
+// Modifier: flat buttons.
+// Modifier: call to action buttons (i.e. ctab).
+
+.tc-Button--flat,
+.tc-Button--ctab {
+  @include _tc-button-bg;
+  @include tc-button-bg-color(primary);
+  @include tc-button-color(over-primary);
+  @include _tc-button-states(over-primary);
+
+  &.tc-Button--accent {
+    @include tc-button-bg-readable(tc-theme-fetch-option(accent));
+  }
+}
+
+.tc-Button--ctab {
+  @include _tc-button-shadow;
+}
+
+// Modifier: compact button.
+
+.tc-Button--compact {
+  @include tc-button-compact;
+}
