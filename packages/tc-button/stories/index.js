@@ -8,7 +8,6 @@ import { withKnobs } from '@storybook/addon-knobs'
 import readme from '../README.md';
 import scssReadme from '../scss/README.md';
 import Demo from './demo.story';
-// import OverlayStory from './overlay.story';
 
 storiesOf('Button', module)
   .addDecorator(withKnobs)
