@@ -16,6 +16,11 @@
     "@trend/helpers": "^0.1.0",
     "@trend/state": "^0.1.0",
     "@trend/theme": "^0.1.0",
-    "@trend/type": "^0.1.0"
+    "@trend/type": "^0.1.0",
+    "lodash": "^4.17.11"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   }
 }
