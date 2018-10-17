@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@trend/button": "^0.1.0",
+    "@trend/drawer": "^0.1.0",
     "@trend/helpers": "^0.1.0",
     "@trend/normalize": "^0.1.0",
     "@trend/state": "^0.1.0",
