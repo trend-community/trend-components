@@ -30,7 +30,7 @@ npm install @trend/topbar
 
 ### Styles
 
-```scss
+```css
 // Import all variables, mixins, and css.
 @import "@trend/topbar/index";
 
@@ -107,7 +107,7 @@ Wrap icons with a "topbar" child component.
 ### CSS Class Interface
 
 Class name | Type | Description
---- | ---
+--- | --- | ---
 `tc-Topbar` | Base | Required. Base component.
 `tc-Topbar-inner` | Child | Required. Inner wrapper for a "topbar."
 `tc-Topbar-section` | Child | Optional. Break up inner content into sections.

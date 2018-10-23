@@ -17,10 +17,14 @@
     "@trend/state": "^0.1.0",
     "@trend/theme": "^0.1.0",
     "@trend/type": "^0.1.0",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "prop-types": "^15.6.2"
   }
 }
