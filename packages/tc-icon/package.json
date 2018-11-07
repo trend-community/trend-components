@@ -1,11 +1,23 @@
 {
   "name": "@trend/icon",
   "version": "0.1.0",
-  "description": "",
+  "description": "TREND Components icons.",
   "main": "index.js",
   "scripts": {
     "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trend-components",
+    "react",
+    "reactjs",
+    "aria",
+    "accessibility",
+    "icons"
+  ],
+  "peerDependencies": {
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
   "repository": {
     "type": "git",

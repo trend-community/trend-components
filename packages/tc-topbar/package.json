@@ -21,8 +21,8 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
   "devDependencies": {
     "prop-types": "^15.6.2"
