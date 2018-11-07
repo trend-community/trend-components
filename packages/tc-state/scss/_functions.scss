@@ -3,7 +3,7 @@
 ////
 
 @import "@trend/theme/functions/theme";
-@import "../variables";
+@import "variables";
 
 /// Returns opacity value for desire state and color passed.
 /// @param {color} $color - A option from `$tc-theme-options` map

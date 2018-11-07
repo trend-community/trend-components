@@ -2,31 +2,37 @@
 
 Sass mixins for state transition for interactive elements.
 
-## Installation
+* [Installation](#installation)
+* [Basic Usage](#usage)
+* [Variables](#variables)
+* [Mixins](#mixins)
+* [Functions](#functions)
+
+## <a name="installation"></a> Installation
 
 ```bash
 npm install @trend/state
 ```
 
-## Basic Usage
+## <a name="usage"></a> Basic Usage
 
-```scss
+```css
 // Import all variables, mixins, and functions.
-@import "@trend/state/index";
+@import "@trend/state/styles";
 
 // Import just variables.
-@import "@trend/state/variables";
+@import "@trend/state/scss/variables";
 
 // Import just mixins.
 // NOTE: Will import variables and functions.
-@import "@trend/state/mixins/index";
+@import "@trend/state/scss/mixins";
 
 // Import just functions.
 // NOTE: Will import variables.
-@import "@trend/state/functions/index";
+@import "@trend/state/scss/functions";
 ```
 
-### Variables
+## <a name="variables"></a> Variables
 
 Name | Type
 --- | ---
@@ -35,7 +41,7 @@ Name | Type
 
 Both maps provide: `hover`, `focus`, `press`, `selected`, and `activated` keys.
 
-### Mixin Interface
+## <a name="mixins"></a> Mixins
 
 Name | Arguments | Description
 --- | --- | ---
@@ -45,7 +51,7 @@ Name | Arguments | Description
 `tc-state-press-opacity` | `$opacity` (required) | Create ruleset to adjust active state for a interactive element.
 `tc-state-base-color` | `$color` (required) | Add rule to ruleset to adjust background color of a interactive element.
 
-### Function Interface
+## <a name="functions"></a> Functions
 
 Name | Arguments | Description
 --- | --- | ---

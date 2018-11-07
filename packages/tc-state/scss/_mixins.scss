@@ -4,7 +4,7 @@
 
 @import "@trend/helpers/variables";
 @import "@trend/theme/mixins/theme-prop";
-@import "../functions/index";
+@import "functions";
 
 /// Create ruleset to adjust hover state for a interactive element.
 /// @param {number} $opacity - Valid CSS opacity value.
