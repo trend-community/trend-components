@@ -1,0 +1,23 @@
+{
+  "name": "@trend/icon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "author": "Christopher DeFelice <defo550@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "homepage": "https://github.com/trend-community/trend-components#readme",
+  "devDependencies": {
+    "@svgr/cli": "^4.0.0"
+  }
+}
