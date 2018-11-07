@@ -13,10 +13,10 @@
 
   display: flex;
   position: relative;
+  z-index: 4;
   flex-direction: column;
   align-self: flex-start;
   justify-content: space-between;
-  z-index: 4;
 
   box-sizing: border-box;
   width: 100%;
@@ -49,9 +49,7 @@
   }
 
   @include _tc-topbar-mobile {
-    & {
-      height: $tc-topbar-mobile-inner-height;
-    }
+    height: $tc-topbar-mobile-inner-height;
 
     .tc-Topbar--tall & {
       padding-bottom: $tc-topbar-tall-mobile-title-bottom-padding;
@@ -86,9 +84,7 @@
   }
 
   @include _tc-topbar-mobile {
-    & {
-      padding: $tc-topbar-mobile-section-padding;
-    }
+    padding: $tc-topbar-mobile-section-padding;
   }
 }
 
@@ -179,9 +175,7 @@
   padding-top: $tc-topbar-inner-height;
 
   @include _tc-topbar-mobile {
-    & {
-      padding-top: $tc-topbar-mobile-inner-height;
-    }
+    padding-top: $tc-topbar-mobile-inner-height;
   }
 }
 
