@@ -1,14 +1,14 @@
 /// Convert pixels to a relative unit.
-/// @group functions
+///
+/// @example
+///  $value: relative-unit(12px, 'rem', 16px);
+///  // $value: 0.75rem;
+/// @group Helper functions
 /// @param {number} $target - Target px value to convert.
 /// @param {string} $unit - Set the approprite unit.
 /// @param {number} $base=16px - Pixel to convert $target from.
 /// @return {number} Returns computed em value.
 /// @require {function} tc-strip-unit
-///
-/// @example
-///  $value: relative-unit(12px, 'rem', 16px);
-///  // $value: 0.75rem;
 
 @import "strip-unit";
 

@@ -1,18 +1,64 @@
-# TREND component - Helpers
+# Helpers
 
-Trend helpers are a combination of functions, mixins, variables, and class selectors to scaffold, prototype, or build out UI.  For the most part, this package is used throughout all the individual packages.
+Trend Helpers are a combination of functions, mixins, variables, and class selectors to scaffold, prototype, or build out UI.  For the most part, this package is used throughout all the individual packages.
 
-### Variables
+* [Installation](#installation)
+* [Basic Usage](#usage)
+* [Variables](#variables)
+* [Background Helpers](#background)
+* [Border Helpers](#border)
+* [Display Helpers](#display)
+* [Flex Helpers](#flex)
+* [Image Helpers](#image)
+* [Link Helpers](#link)
+* [List Helpers](#list)
+* [Layout Helpers](#layout)
+* [Margin Helpers](#margin)
+* [Padding Helpers](#padding)
+* [Shadow Helpers](#shadow)
+* [Size Helpers](#size)
+* [Text Helpers](#text)
+* [Whitespace Helpers](#whitespace)
+* [Mixins](#mixins)
+* [Functions](#functions)
 
-Base package variables shared between indiviudal helpers and also used for providing consistent values between other **TREND component** packages.
+## <a name="installation"></a> Installation
+
+```bash
+npm install @trend/helpers
+```
+
+## <a name="usage"></a> Basic Usage
+
+```css
+// Import entire package contents.
+@import "@trend/helpers/styles";
+
+// Import classes only.
+@import "@trend/helpers/scss/helpers";
+
+// Import specific pieces.
+@import "@trend/helpers/scss/variables";
+@import "@trend/helpers/scss/functions";
+@import "@trend/helpers/scss/mixins";
+
+// Import even more granular pieces.
+@import "@trend/helpers/scss/functions/relative-units";
+@import "@trend/helpers/scss/mixins/rtl";
+@import "@trend/helpers/scss/addons/easing-variables";
+```
+
+## <a name="variables"></a> Variables
+
+Base package variables shared between indiviudal Helpers and also used for providing consistent values between other **TREND component** packages.
 
 - `$tc-spacings` - `map` of n (none), s (small), m (medium), l (large)
 - `$tc-breakpoints` - `map` of xs, sm, md, lg, xl
 - `$tc-proportional-sizes` - `list` of default proportional sizes
 
-### CSS Variables
+## Variables
 
-**Variables**
+**SCSS Variables**
 
 - `$tc-helper-variables` - `map` of css variables to generate
 
@@ -21,21 +67,41 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `--tc-helper-transition-duration`
 - `--tc-helper-transition-timing-function`
 
-### Background helpers
+
+## <a name="variables"></a> Variables
+
+Base package variables shared between indiviudal Helpers and also used for providing consistent values between other **TREND component** packages.
+
+- `$tc-spacings` - `map` of n (none), s (small), m (medium), l (large)
+- `$tc-breakpoints` - `map` of xs, sm, md, lg, xl
+- `$tc-proportional-sizes` - `list` of default proportional sizes
+
+## Variables
+
+**SCSS Variables**
+
+- `$tc-helper-variables` - `map` of css variables to generate
+
+**CSS Variables**
+
+- `--tc-helper-transition-duration`
+- `--tc-helper-transition-timing-function`
+
+## <a name="background"></a> Background Helpers
 
 **Variables**
 
-- `tc-has-background` - Turn on/off available classes
-- `tc-has-background-media` - Turn on/off media classes
-- `tc-background-breakpoints` - List of breakpoints to generate media queries
-- `tc-backgrounds` - Map of rulesets to generate, values can be a `$tc-color-<color-map>` variable
+- `$tc-has-background` - Turn on/off available classes
+- `$tc-has-background-media` - Turn on/off media classes
+- `$tc-background-breakpoints` - List of breakpoints to generate media queries
+- `$tc-backgrounds` - Map of rulesets to generate, values can be a `$tc-color-<color-map>` variable
 
 **Available classes**
 
 - `tc-background-transparent` - Background color `transparent`
 - `tc-background-<color>-<weight>` - Background color weight from color map
 
-### Border helpers
+## <a name="borders"></a> Border Helpers
 
 **Variables**
 
@@ -61,7 +127,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-border-rounded`
 - `tc-border-<color>-<weight>`
 
-### Display helpers
+## <a name="display"></a> Display Helpers
 
 **Variables**
 
@@ -82,7 +148,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-display-table-row` - Display `table-row`
 - `tc-display-visually-hide` - Visually hide an element but leave available to screenreaders
 
-### Flex helpers
+## <a name="flex"></a> Flex Helpers
 
 **Variables**
 
@@ -136,7 +202,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-flex-basis-auto` - flex-basis `auto`
 - `tc-flex-basis0` - flex-basis `0`
 
-### Image helpers
+## <a name="image"></a> Image Helpers
 
 **Variables**
 
@@ -150,7 +216,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-image-fluid` - responsive image
 - `tc-image-circle` - circular images
 
-### Links helpers
+## <a name="link"></a> Link Helpers
 
 **Variables**
 
@@ -165,7 +231,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-link-decorate` - text-decoration `underline`
  - **NOTE** Will apply rule just the `:hover`, `:focus`, and `:active` pseudoclasses
 
-### List helpers
+## <a name="list"></a> List Helpers
 
 **Variables**
 
@@ -179,7 +245,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-list-styleless` - strip all `margin`, `padding` and `list-style`
 - `tc-list-inline` - horizontal list
 
-### Layout helpers
+## <a name="layout"></a> Layout Helpers
 
 **Variables**
 
@@ -204,7 +270,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-layout-fixed-viewport` - Positon `fixed` to be size of viewport
 - `tc-layout-clearfix` - Apply clearfix to an element
 
-### Margin helpers
+## <a name="margin"></a> Margin Helpers
 
 **Variables**
 
@@ -218,7 +284,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 
 - `tc-m<t|r|b|l><n|s|m|l|a>` - `margin-<top|right|bottom|left|right>` rule
 
-### Padding helpers
+## <a name="padding"></a> Padding Helpers
 
 **Variables**
 
@@ -232,7 +298,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 
 - `tc-p<t|r|b|l><n|s|m|l|a>` - `padding-<top|right|bottom|left|right>` rule
 
-### Shadow helpers
+## <a name="shadow"></a> Shadow Helpers
 
 **Variables**
 
@@ -246,7 +312,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 
 - `tc-shadow-<1-24>` - box-shadow rule
 
-### Size helpers
+## <a name="size"></a> Size Helpers
 
 **Variables**
 
@@ -265,7 +331,7 @@ Base package variables shared between indiviudal helpers and also used for provi
 - `tc-size-full` - Make element width of parent
 - `tc-size-<xofY>` 
 
-### Text helpers
+## <a name="text"></a> Text Helpers
 
 **Variables**
 
@@ -290,7 +356,7 @@ Base package variables shared between indiviudal helpers and also used for provi
   - `color` is name of a color map
   - `weight` is the color weight from map
 
-### Whitespace helpers (Append/Prepend)
+## <a name="whitespace"></a> Whitespace Helpers (Append/Prepend)
 
 Append (after) or prepend (before) whitespace to an HTML element.
 
@@ -306,3 +372,11 @@ Append (after) or prepend (before) whitespace to an HTML element.
 - `tc-<append|prepend>-<xofY>` (numerous) - Create a proportional margin rule
   - `x` is an integer less than `Y`
   - `Y` can be any one of the `tc-proportional-sizes` (e.g 2, 3, 4, 5...)
+
+## <a name="mixins"></a> Mixins
+
+Todo.
+
+## <a name="funcions"></a> Functions
+
+Todo.

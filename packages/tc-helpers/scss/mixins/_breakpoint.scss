@@ -4,7 +4,7 @@
 /// .foo
 ///   @include breakpoint-media-min('md', $breakpoints map)
 ///    width: 50%
-/// @group helpers mixin
+/// @group Helper mixins
 /// @param {String} $size - Key in map passed in.
 /// @param {Map} $_breakpoint=$breakpoints - SASS map.
 /// @requires underscores em function
@@ -29,7 +29,7 @@
 /// .foo
 ///   @include breakpoint-media-min('md', $breakpoints map)
 ///    width: 50%
-/// @group mixin
+/// @group Helper mixins
 /// @param {String} $size - Key in map passed in.
 /// @param {Map} $_breakpoint=$breakpoints - SASS map.
 /// @requires underscores em function

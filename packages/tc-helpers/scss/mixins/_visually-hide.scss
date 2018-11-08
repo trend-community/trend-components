@@ -5,6 +5,7 @@
 ///   .visuallyHidden {
 ///     @include visually-hide;
 ///   }
+/// @group Helper mixins
 /// @param {boolean} $important - add !important to each rules value.
 /// @return {ruleset}
 

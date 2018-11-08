@@ -1,7 +1,5 @@
-@import "@trend/helpers/mixins/helper-prop";
-@import "@trend/helpers/mixins/rtl";
-@import "@trend/helpers/mixins/shadow-levels";
-@import "@trend/helpers/variables";
+@import "@trend/helpers/scss/mixins";
+@import "@trend/helpers/scss/variables";
 @import "@trend/type/variables";
 @import "@trend/type/mixins/type";
 @import "mixins";

@@ -8,7 +8,7 @@
 ///   // .size1of2, .size2of4 { width: 50% !important; }
 ///   // .size1of4 { width: 25% !important; }
 ///   // .size3of4 { width: 75% !important; }
-/// @group helpers mixins
+/// @group Helper mixins
 /// @param {String} $prefix - create selector name.
 /// @param {List} $size-units - Space separated list of integers.
 /// @param {String} $property [width] - Property to add dimensions to.

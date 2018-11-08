@@ -16,7 +16,7 @@
 ///   font-size: ms(16px, -1, 1.25);
 ///   // returns 12.800
 
-@import "@trend/helpers/addons/ratio-variables";
+@import "@trend/helpers/scss/addons/ratio-variables";
 
 @function tc-modular-scale($value, $increment, $ratio: $major-third) {
   $v1: nth($value, 1);

@@ -1,10 +1,11 @@
-/// Returns a boolean of whetner or not a value appears in a list.
+/// Returns a boolean of whether or not a value appears in a list.
 ///
 /// @example
 ///   $list: ('foo', 'bar', 'baz');
 ///   $value: 'bar';
 ///   $result: contains($list, $value);
 ///   // $result: true;
+/// @group Helper functions
 /// @param {list} $list
 /// @param {number | string} $value - Value to find in list.
 /// @return {boolean}
