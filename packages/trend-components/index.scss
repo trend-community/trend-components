@@ -1,7 +1,7 @@
 // Import resets and base styles.
 
 @import "@trend/normalize/styles";
-@import "@trend/type/type";
+@import "@trend/type/scss/type";
 @import "@trend/theme/theme";
 
 // Import individual components (patterns).
@@ -13,6 +13,6 @@
 
 // Import helpers.
 
-@import "@trend/type/helpers";
+@import "@trend/type/scss/helpers";
 @import "@trend/theme/helpers";
 @import "@trend/helpers/styles";

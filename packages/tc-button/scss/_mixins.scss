@@ -10,8 +10,8 @@
 @import "@trend/theme/variables";
 @import "@trend/theme/mixins/theme-prop";
 @import "@trend/theme/functions/theme";
-@import "@trend/type/functions/modular-scale";
-@import "@trend/type/mixins/type";
+@import "@trend/type/scss/functions/modular-scale";
+@import "@trend/type/scss/mixins/type";
 @import "functions";
 
 /// Set a background color for a `ctab` or `flat` button and updates text
