@@ -2,7 +2,7 @@
 
 @import "@trend/normalize/styles";
 @import "@trend/type/scss/type";
-@import "@trend/theme/theme";
+@import "@trend/theme/scss/theme";
 
 // Import individual components (patterns).
 
@@ -14,5 +14,5 @@
 // Import helpers.
 
 @import "@trend/type/scss/helpers";
-@import "@trend/theme/helpers";
+@import "@trend/theme/scss/helpers";
 @import "@trend/helpers/styles";

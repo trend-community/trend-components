@@ -3,9 +3,9 @@
 ////
 
 @import "@trend/state/styles";
-@import "@trend/theme/variables";
-@import "@trend/theme/functions/theme";
-@import "@trend/theme/mixins/theme-prop";
+@import "@trend/theme/scss/variables";
+@import "@trend/theme/scss/functions/theme";
+@import "@trend/theme/scss/mixins/theme-prop";
 
 /// Adjust the background color and font color for readability.
 /// @param {color} $color - Valid sass color string.

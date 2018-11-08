@@ -2,13 +2,42 @@
 
 Provides a combination of functions, mixins, variables, helper classes, and base normalizations for theming any **TREND** project.
 
-## Installation
+* [Installation](#installation)
+* [Basic Usage](#usage)
+* [Variables](#variables)
+* [Functions](#functions)
+* [Mixins](#mixins)
+* [Classes](#classes)
+
+## <a name="installation"></a> Installation
 
 ```bash
 npm install @trend/theme
 ```
+## <a name="usage"></a> Basic Usage
 
-## SCSS Variables
+```css
+// Import entire package.
+@import "@trend/theme/styles";
+
+// Import specific pieces.
+@import "@trend/theme/scss/functions";
+@import "@trend/theme/scss/mixins";
+@import "@trend/theme/scss/variables";
+// Default (normalization styles).
+@import "@trend/theme/scss/theme";
+// Additional typographic helper classes.
+@import "@trend/theme/scss/helpers";
+
+// Import more granular pieces.
+@import "@trend/theme/scss/functions/pow";
+@import "@trend/theme/scss/functions/theme";
+@import "@trend/theme/scss/mixins/theme-prop";
+```
+
+## <a name="variables"></a> Variables
+
+**SCSS**
 
 > `$tc-theme-options` | `map`
 
@@ -39,7 +68,7 @@ Available options:
 
 See `tc-theme-fetch-option` function on how to access map for values.
 
-## CSS Variables
+**CSS**
 
 - `--tc-theme-primary`
 - `--tc-theme-accent`
@@ -64,7 +93,7 @@ See `tc-theme-fetch-option` function on how to access map for values.
 - `--tc-theme-text-disabled-over-dark`
 - `--tc-theme-text-icon-over-dark`
 
-## Functions
+## <a name="functions"></a> Functions
 
 ### tc-theme-fetch-option
 
@@ -84,18 +113,21 @@ Returns either "light" or "dark" from passed in color value.
 
 Returns value from key name passed in.
 
-## Mixins
+## <a name="mixins"></a> Mixins
 
 ### tc-theme-prop
 
 Generate a rule that applies the correct theme color style to the passed in property.
 
 > `string: $property` | required | css property
-> `string: $style` | required | can one of "color", "currenColor" or theme option from `$tc-theme-options`
-> `boolean: $important` | optional defaults to `false` | add a important declaration to rule
-> `boolean: $edgeOut` | optional defaults to `false` | avoide emitting CSS variables in Edge
 
-## Helper Classes
+> `string: $style` | required | can be one of "color", "currenColor" or theme option from `$tc-theme-options`
+
+> `boolean: $important` | optional, defaults to `false` | add a important declaration to rule
+
+> `boolean: $edgeOut` | optional, defaults to `false` | avoid emitting CSS variables in Edge
+
+## <a name="classes"></a> Helper Classes
 
 Adjust the color of HTML node.
 

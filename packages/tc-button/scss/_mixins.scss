@@ -7,9 +7,9 @@
 @import "@trend/helpers/scss/variables";
 @import "@trend/helpers/scss/functions";
 @import "@trend/helpers/scss/mixins";
-@import "@trend/theme/variables";
-@import "@trend/theme/mixins/theme-prop";
-@import "@trend/theme/functions/theme";
+@import "@trend/theme/scss/variables";
+@import "@trend/theme/scss/mixins/theme-prop";
+@import "@trend/theme/scss/functions/theme";
 @import "@trend/type/scss/functions/modular-scale";
 @import "@trend/type/scss/mixins/type";
 @import "functions";
