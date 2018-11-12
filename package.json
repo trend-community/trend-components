@@ -7,6 +7,7 @@
     "@storybook/addon-knobs": "4.0.4",
     "@storybook/addon-options": "4.0.4",
     "@storybook/react": "4.0.4",
+    "@storybook/storybook-deployer": "2.3.0",
     "autoprefixer": "8.3.0",
     "babel-core": "6.26.0",
     "babel-jest": "23.4.0",
@@ -80,6 +81,7 @@
     "lint:css": "stylelint \"packages/**/*.scss\"",
     "start": "cross-env TC_ENV=development webpack-dev-server --config=webpack.dev.config.js --progress --inline",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook:deploy": "storybook-to-ghpages",
     "test": "jest --config",
     "test:watch": "jest --watch --config"
   },
