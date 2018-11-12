@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 const defaultStyle = {
   display: 'inline-block',
   fill: 'currentColor',
-  verticalAlign: 'middle'
+  verticalAlign: 'middle',
+  height: 'auto',
+  width: 'inherit'
 };
 
 function withIcon(Component) {
