@@ -1,7 +1,5 @@
 import React from 'react';
 
-import "../styles.scss";
-
 function Story() {
   return <div className="tc-mal">
     <h1>Theme</h1>
