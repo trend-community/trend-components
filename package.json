@@ -106,6 +106,7 @@
           "focustrap",
           "helpers",
           "icon",
+          "layout",
           "normalize",
           "state",
           "theme",
