@@ -42,7 +42,7 @@ function ComponentStory() {
           <div {...api.getInnerProps()}>
             <div {...api.getSectionProps({ position: 'start' })}>
               <button {...api.getIconProps({ type: 'button' })}>
-                <Menu />
+                <Menu size={4} />
               </button>
               <h1 {...api.getTitleProps()}>TREND Components - Topbar</h1>
             </div>
