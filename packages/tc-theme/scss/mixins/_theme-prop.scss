@@ -1,4 +1,5 @@
 /// Applies the correct theme color style to the specified property.
+/// @group theme mixins
 /// @param {string} $property - Any CSS property that accepts color values.
 /// @param {string} $style - Key in $tc-theme-options or a literal color value.
 /// @param {bool} $edgeOut - Avoid emitting CSS variables in Edge.

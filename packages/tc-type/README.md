@@ -38,7 +38,7 @@ npm install @trend/type
 @import "@trend/scss/mixins/type";
 ```
 
-**SCSS**
+## <a name="variables"></a> Variables
 
 > `$tc-type-font-size-root` | `string` | Defaults to 16px
 

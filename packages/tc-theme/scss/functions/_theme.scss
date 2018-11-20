@@ -126,12 +126,13 @@
 ///
 /// @group theme functions
 /// @requires {function} tc-theme-fetch-option
+/// @requires {variable} $tc-theme-text-colors
 /// @returns {color} A color value from $tc-theme-text-colors variable.
 
-@function tc-theme-accessible-color($fill-color, $text-style: primary) {
+@function tc-theme-accessible-color($bg-color, $text-style: primary) {
   @if variable-exists(tc-theme-text-colors) {
-    $fill-color-value: tc-theme-fetch-option($fill-color);
-    $color-map-for-tone: map-get($tc-theme-text-colors, tc-theme-contrast-tone($fill-color-value));
+    $bg-color-value: tc-theme-fetch-option($bg-color);
+    $color-map-for-tone: map-get($tc-theme-text-colors, tc-theme-contrast-tone($bg-color-value));
 
     @if not map-has-key($color-map-for-tone, $text-style) {
       @error "Invalid $text-style: '#{$text-style}'. Must be one of: #{map-keys($color-map-for-tone)}";
