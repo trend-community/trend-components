@@ -59,7 +59,7 @@ class Topbar extends Component {
 
     // Track some state internally to avoid unecessary renders.
     this.lastScrollTop = 0;
-    this.currentScrollTop =
+    this.currentScrollTop = 0;
 
     this._scrollHandler = throttle(TIMEOUT)(this._scrollHandler.bind(this));
   }

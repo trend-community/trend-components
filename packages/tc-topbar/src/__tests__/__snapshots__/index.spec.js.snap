@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tc-topbar should expose getElementProps. 1`] = `
+Object {
+  "children": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "getElementProps": [Function],
+          "getIconProps": [Function],
+          "getInnerProps": [Function],
+          "getSectionProps": [Function],
+          "getTitleProps": [Function],
+        },
+      ],
+      Array [
+        Object {
+          "getElementProps": [Function],
+          "getIconProps": [Function],
+          "getInnerProps": [Function],
+          "getSectionProps": [Function],
+          "getTitleProps": [Function],
+        },
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": <div />,
+      },
+      Object {
+        "isThrow": false,
+        "value": <div />,
+      },
+    ],
+  },
+  "className": "tc-Topbar",
+  "ref": Object {
+    "current": null,
+  },
+  "style": Object {
+    "backfaceVisibility": "invisible",
+    "transform": "translateY(0)",
+    "transition": "transform 0.2s linear",
+  },
+}
+`;
+
+exports[`tc-topbar should expose getIconProps. 1`] = `
+Object {
+  "className": "tc-Topbar-icon",
+}
+`;
+
+exports[`tc-topbar should expose getInnerProps. 1`] = `
+Object {
+  "className": "tc-Topbar-inner",
+}
+`;
+
+exports[`tc-topbar should expose getSectionProps. 1`] = `
+Object {
+  "className": "tc-Topbar-section",
+}
+`;
+
+exports[`tc-topbar should expose getTitleProps. 1`] = `
+Object {
+  "className": "tc-Topbar-title",
+}
+`;
