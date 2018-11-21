@@ -12,77 +12,57 @@ const classNames = {
   GHOST: 'tc-Button--ghost'
 };
 
-const modifiers = {
-  ACCENT: 'accent',
-  CTAB: 'ctab',
-  FLAT: 'flat',
-  GHOST: 'ghost',
-  COMPACT: 'compact'
+const modifier = modifier => modifier.replace(/^.*--/, '');
+
+const propTypes = {
+  accent: PropTypes.bool,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  size: PropTypes.oneOf([modifier(classNames.COMPACT)]),
+  variant: PropTypes.oneOf([
+    modifier(classNames.CTAB),
+    modifier(classNames.FLAT),
+    modifier(classNames.GHOST)
+  ])
 };
 
-class Button extends PureComponent {
-  static propTypes = {
-    accent: PropTypes.bool,
-    children: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.func
-    ]).isRequired,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    type: PropTypes.oneOf(['button', 'submit', 'reset']),
-    size: PropTypes.oneOf([modifiers.COMPACT]),
-    variant: PropTypes.oneOf([modifiers.CTAB, modifiers.FLAT, modifiers.GHOST])
-  }
+const defaultProps = {
+  accent: false,
+  type: 'button'
+};
 
-  static defaultProps = {
-    accent: false,
-    type: 'button'
-  }
+function Button(props) {
+  const {
+    accent,
+    className,
+    size,
+    type,
+    variant,
+    ...rest
+  } = props;
 
-  getButtonIconProps(props = {}) {
-    return {
-      ...props,
-      className: cn(classNames.ICON, props.className),
-      'aria-hidden': true
-    };
-  }
-
-  api() {
-    return {
-      getButtonIconProps: this.getButtonIconProps
-    };
-  }
-
-  render() {
-    const {
-      accent,
-      children,
-      className,
-      size,
-      type,
-      variant,
-      ...rest
-    } = this.props;
-
-    return <button
-      {...rest}
-      className={cn(
-        classNames.BASE,
-        className, {
-          [classNames.ACCENT]: accent,
-          [classNames.COMPACT]: size === modifiers.COMPACT,
-          [classNames.CTAB]: variant === modifiers.CTAB,
-          [classNames.FLAT]: variant === modifiers.FLAT,
-          [classNames.GHOST]: variant === modifiers.GHOST,
-        }
-      )}
-      type={type}>
-      {typeof children === 'function'
-        ? children(this.api())
-        : children
+  return <button
+    {...rest}
+    className={cn(
+      classNames.BASE,
+      className, {
+        [classNames.ACCENT]: accent,
+        [classNames.COMPACT]: size === modifier(classNames.COMPACT),
+        [classNames.CTAB]: variant === modifier(classNames.CTAB),
+        [classNames.FLAT]: variant === modifier(classNames.FLAT),
+        [classNames.GHOST]: variant === modifier(classNames.GHOST),
       }
-    </button>;
-  }
+    )}
+    type={type} />;
 }
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
+Button.getIconProps = (props = {}) => ({
+  ...props,
+  className: cn(classNames.ICON, props.className),
+  'aria-hidden': true
+});
 
 export default Button;

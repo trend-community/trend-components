@@ -14,10 +14,22 @@
   "dependencies": {
     "@trend/helpers": "^0.1.0",
     "@trend/theme": "^0.1.0",
-    "@trend/type": "^0.1.0"
+    "@trend/type": "^0.1.0",
+    "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   },
   "peerDependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "setupFiles": ["../../setUpTests.js"],
+    "testRegex": ".+\\.spec\\.js$"
   }
 }

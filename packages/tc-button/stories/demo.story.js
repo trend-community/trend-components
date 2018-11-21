@@ -46,12 +46,8 @@ function Story() {
         size={size}
         type={type}
         variant={variants}>
-        {({ getButtonIconProps }) =>
-          <React.Fragment>
-            {withIcon ? <Checkmark {...getButtonIconProps()} /> : null}
-            {label}
-          </React.Fragment>
-        }
+          {withIcon ? <Checkmark {...Button.getIconProps()} /> : null}
+          {label}
       </Button>
     </div>
     <Marked md={demo} />
