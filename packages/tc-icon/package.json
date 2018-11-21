@@ -4,8 +4,7 @@
   "description": "TREND Components icons.",
   "main": "index.js",
   "scripts": {
-    "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex"
   },
   "keywords": [
     "trend-components",
