@@ -22,7 +22,6 @@
     "type": "git",
     "url": "git+https://github.com/trend-community/trend-components.git"
   },
-  "author": "Christopher DeFelice <defo550@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trend-community/trend-components/issues"

@@ -14,19 +14,14 @@ function template(
     .openingElement
     .attributes = [
       t.jsxAttribute(
-        t.jsxIdentifier('aria-labelledby'),
+        t.jsxIdentifier('aria-label'),
         t.stringLiteral(`icon_${name}`)
       ),
       ...jsx.openingElement.attributes
     ];
 
-  const idAttribute = t.jsxAttribute(
-    t.jsxIdentifier('id'),
-    t.stringLiteral(`icon_${name}`)
-  );
-
   const titleElement = t.jsxElement(
-    t.jsxOpeningElement(t.jsxIdentifier('title'), [idAttribute]),
+    t.jsxOpeningElement(t.jsxIdentifier('title'), []),
     t.jsxClosingElement(t.jsxIdentifier('title')),
     [t.jsxText(`${name}`)],
   )
