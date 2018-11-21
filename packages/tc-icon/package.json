@@ -30,5 +30,8 @@
   "homepage": "https://github.com/trend-community/trend-components#readme",
   "devDependencies": {
     "@svgr/cli": "^4.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2"
   }
 }
