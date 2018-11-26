@@ -4,7 +4,9 @@
   "description": "TREND Components icons.",
   "main": "index.js",
   "scripts": {
-    "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex"
+    "build:icons": "npx @svgr/cli --svg-props role=img --template ./src/template.js --icon --expand-props end --out-dir ./ svgs && node ./bin/generateIndex",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "trend-components",
@@ -28,9 +30,14 @@
   },
   "homepage": "https://github.com/trend-community/trend-components#readme",
   "devDependencies": {
-    "@svgr/cli": "^4.0.0"
+    "@svgr/cli": "^4.0.0",
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "prop-types": "^15.6.2"
+  },
+  "jest": {
+    "setupFiles": ["../../setUpTests.js"],
+    "testRegex": ".+\\.spec\\.js$"
   }
 }

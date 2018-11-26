@@ -9,14 +9,14 @@ const defaultStyle = {
   width: 'inherit'
 };
 
-function withIcon(Component) {
+function withIcon(WrappedComponent) {
   function WithIcon({ size, unit, style, ...rest }) {
     const styles = {
       ...defaultStyle,
       ...style
     };
 
-    return <Component
+    return <WrappedComponent
       {...rest}
       height={`${parseInt(size, 10)}${unit}`}
       width={`${parseInt(size, 10)}${unit}`}
@@ -32,13 +32,13 @@ function withIcon(Component) {
     size: 1,
     unit: 'rem'
   };
-  WithIcon.displayName = `WithIcon(${getDisplayName(Component)})`;
+  WithIcon.displayName = `WithIcon(${getDisplayName(WrappedComponent)})`;
 
   return WithIcon;
 }
 
-function getDisplayName(Component) {
-  return Component.displayName || Component.name || 'Component';
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
 export default withIcon;

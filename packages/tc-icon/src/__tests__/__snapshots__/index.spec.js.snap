@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tc-icon (withIcon) should allow the size to be updated. 1`] = `
+Object {
+  "height": "2rem",
+  "style": Object {
+    "display": "inline-block",
+    "fill": "currentColor",
+    "height": "auto",
+    "verticalAlign": "middle",
+    "width": "inherit",
+  },
+  "width": "2rem",
+}
+`;
+
+exports[`tc-icon (withIcon) should merge the styles. 1`] = `
+Object {
+  "display": "inline-block",
+  "fill": "currentColor",
+  "height": "1rem",
+  "overflow": "hidden",
+  "verticalAlign": "middle",
+  "width": "1rem",
+}
+`;
+
+exports[`tc-icon (withIcon) should set the wrapped icon with the correct props. 1`] = `
+Object {
+  "height": "1rem",
+  "style": Object {
+    "display": "inline-block",
+    "fill": "currentColor",
+    "height": "auto",
+    "verticalAlign": "middle",
+    "width": "inherit",
+  },
+  "width": "1rem",
+}
+`;
