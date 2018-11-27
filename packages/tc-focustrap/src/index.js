@@ -100,4 +100,5 @@ const FocusTrap = React.forwardRef(({ children, ...props }, ref) => (
   <Trap {...props} ref={ref}>{children}</Trap>
 ));
 
+export { Trap };
 export default FocusTrap;
