@@ -1,6 +1,6 @@
 {
   "name": "@trend/topbar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TREND Components top bar component.",
   "repository": {
     "type": "git",
@@ -13,10 +13,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/helpers": "^0.1.0",
-    "@trend/state": "^0.1.0",
-    "@trend/theme": "^0.1.0",
-    "@trend/type": "^0.1.0",
+    "@trend/helpers": "^0.2.0",
+    "@trend/state": "^0.2.0",
+    "@trend/theme": "^0.2.0",
+    "@trend/type": "^0.2.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2"
@@ -29,7 +29,9 @@
     "jest": "^23.6.0"
   },
   "jest": {
-    "setupFiles": ["../../setUpTests.js"],
+    "setupFiles": [
+      "../../setUpTests.js"
+    ],
     "testRegex": ".+\\.spec\\.js$"
   },
   "scripts": {

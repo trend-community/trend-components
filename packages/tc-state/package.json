@@ -1,6 +1,6 @@
 {
   "name": "@trend/state",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TREND Components state mixins for interactive elements.",
   "keywords": [
     "TREND Components",
@@ -11,7 +11,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/helpers": "^0.1.0",
-    "@trend/theme": "^0.1.0"
+    "@trend/helpers": "^0.2.0",
+    "@trend/theme": "^0.2.0"
   }
 }

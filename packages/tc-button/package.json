@@ -1,6 +1,6 @@
 {
   "name": "@trend/button",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TREND Components button component",
   "repository": {
     "type": "git",
@@ -12,9 +12,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/helpers": "^0.1.0",
-    "@trend/theme": "^0.1.0",
-    "@trend/type": "^0.1.0",
+    "@trend/helpers": "^0.2.0",
+    "@trend/theme": "^0.2.0",
+    "@trend/type": "^0.2.0",
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
@@ -29,7 +29,9 @@
     "test:watch": "jest --watch"
   },
   "jest": {
-    "setupFiles": ["../../setUpTests.js"],
+    "setupFiles": [
+      "../../setUpTests.js"
+    ],
     "testRegex": ".+\\.spec\\.js$"
   }
 }

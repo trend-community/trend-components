@@ -1,6 +1,6 @@
 {
   "name": "trend-components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Modular suite of UI components trend.community products.",
   "keywords": [
     "TREND components"
@@ -8,16 +8,16 @@
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "@trend/button": "^0.1.0",
-    "@trend/drawer": "^0.1.0",
-    "@trend/focustrap": "^0.1.0",
-    "@trend/helpers": "^0.1.0",
-    "@trend/icon": "^0.1.0",
-    "@trend/layout": "^0.1.0",
-    "@trend/normalize": "^0.1.0",
-    "@trend/state": "^0.1.0",
-    "@trend/theme": "^0.1.0",
-    "@trend/topbar": "^0.1.0",
-    "@trend/type": "^0.1.0"
+    "@trend/button": "^0.2.0",
+    "@trend/drawer": "^0.2.0",
+    "@trend/focustrap": "^0.2.0",
+    "@trend/helpers": "^0.2.0",
+    "@trend/icon": "^0.2.0",
+    "@trend/layout": "^0.2.0",
+    "@trend/normalize": "^0.2.0",
+    "@trend/state": "^0.2.0",
+    "@trend/theme": "^0.2.0",
+    "@trend/topbar": "^0.2.0",
+    "@trend/type": "^0.2.0"
   }
 }
