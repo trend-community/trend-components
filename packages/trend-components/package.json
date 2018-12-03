@@ -6,6 +6,7 @@
     "TREND components"
   ],
   "license": "MIT",
+  "main": "index.js",
   "dependencies": {
     "@trend/button": "^0.1.0",
     "@trend/drawer": "^0.1.0",
