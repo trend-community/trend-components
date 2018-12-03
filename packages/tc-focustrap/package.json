@@ -1,6 +1,6 @@
 {
   "name": "@trend/focustrap",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A React component that traps focus.",
   "main": "index.js",
   "keywords": [

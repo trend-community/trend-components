@@ -1,6 +1,6 @@
 {
   "name": "@trend/drawer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "\"TREND Components drawer component.\"",
   "repository": {
     "type": "git",
@@ -13,10 +13,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/focustrap": "^0.2.0",
-    "@trend/helpers": "^0.2.0",
-    "@trend/theme": "^0.2.0",
-    "@trend/type": "^0.2.0",
+    "@trend/focustrap": "^0.3.0",
+    "@trend/helpers": "^0.3.0",
+    "@trend/theme": "^0.3.0",
+    "@trend/type": "^0.3.0",
     "focus-trap-react": "^4.0.1"
   },
   "peerDependencies": {

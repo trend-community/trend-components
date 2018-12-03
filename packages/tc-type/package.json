@@ -1,6 +1,6 @@
 {
   "name": "@trend/type",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Typographic normalize, classes, mixins, and configuration for TREND components.",
   "keywords": [
     "typography",
@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/helpers": "^0.2.0"
+    "@trend/helpers": "^0.3.0"
   },
   "publishConfig": {
     "access": "public"

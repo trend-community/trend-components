@@ -1,6 +1,6 @@
 {
   "name": "@trend/theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "TREND Components theming system.",
   "keywords": [
     "TREND Components",
@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@trend/helpers": "^0.2.0"
+    "@trend/helpers": "^0.3.0"
   },
   "publishConfig": {
     "access": "public"
