@@ -19,5 +19,8 @@
     "@trend/theme": "^0.2.0",
     "@trend/topbar": "^0.2.0",
     "@trend/type": "^0.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

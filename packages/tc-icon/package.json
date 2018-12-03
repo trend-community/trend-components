@@ -41,5 +41,8 @@
       "../../setUpTests.js"
     ],
     "testRegex": ".+\\.spec\\.js$"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

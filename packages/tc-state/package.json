@@ -13,5 +13,8 @@
   "dependencies": {
     "@trend/helpers": "^0.2.0",
     "@trend/theme": "^0.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

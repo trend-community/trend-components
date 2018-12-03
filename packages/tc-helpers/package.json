@@ -6,5 +6,8 @@
     "TREND Components",
     "helpers"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

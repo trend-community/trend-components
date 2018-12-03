@@ -107,6 +107,7 @@
           "trend-components",
           "type",
           "package",
+          "packages",
           "scripts",
           "src",
           "stories",
