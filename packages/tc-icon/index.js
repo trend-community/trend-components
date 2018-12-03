@@ -1,4 +1,4 @@
-export { default as default } from './src';
+export { default } from './src';
 export { default as Add } from './Add.js'
 export { default as App } from './App.js'
 export { default as Bell } from './Bell.js'
