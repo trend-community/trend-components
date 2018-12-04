@@ -2,7 +2,7 @@
 /// TREND Component button functions.
 ////
 
-@import "@trend/theme/scss/functions/theme";
+@import "~@trend/theme/scss/functions/theme";
 @import "variables";
 
 @function tc-button-states-opacity($color, $state) {

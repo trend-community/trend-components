@@ -4,10 +4,10 @@
 /// @group button variables
 ////
 
-@import "@trend/helpers/scss/variables";
-@import "@trend/type/scss/variables";
-@import "@trend/theme/scss/variables";
-@import "@trend/theme/scss/functions/theme";
+@import "~@trend/helpers/scss/variables";
+@import "~@trend/type/scss/variables";
+@import "~@trend/theme/scss/variables";
+@import "~@trend/theme/scss/functions/theme";
 
 $tc-button-height: 40px !default;
 $tc-button-height-compact: 36px !default;

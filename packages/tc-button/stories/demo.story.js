@@ -8,7 +8,7 @@ import {
 } from '@storybook/addon-knobs/react';
 
 import demo from './demo.md';
-import Button from '../src/Button';
+import Button from '../src';
 
 function Checkmark({ className, ...rest }) {
   return <svg className={className} {...rest} viewBox="0 0 1024 1024">

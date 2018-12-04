@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Button from '../Button';
+import Button from '../';
 
 describe('tc-button', () => {
   it('should render a button element.', () => {
