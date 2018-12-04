@@ -3,9 +3,9 @@
 /// @requires @trend/theme/variables
 ////
 
-@import "@trend/helpers/scss/functions/relative-unit";
-@import "@trend/helpers/scss/variables";
-@import "@trend/theme/scss/variables";
+@import "~@trend/helpers/scss/functions/relative-unit";
+@import "~@trend/helpers/scss/variables";
+@import "~@trend/theme/scss/variables";
 
 // Colors
 $tc-drawer-title-color: over-surface;
