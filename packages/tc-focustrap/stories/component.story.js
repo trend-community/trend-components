@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import Button from '../../tc-button';
+import Button from '../../tc-button/src';
 import FocusTrap from '../src';
 
 class Demo extends React.Component {
