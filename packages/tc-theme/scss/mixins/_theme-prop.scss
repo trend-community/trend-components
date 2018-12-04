@@ -5,7 +5,7 @@
 /// @param {bool} $edgeOut - Avoid emitting CSS variables in Edge.
 /// @requires {function} tc-is-important
 
-@import "@trend/helpers/scss/functions";
+@import "~@trend/helpers/scss/functions";
 @import "../functions/theme";
 
 @mixin tc-theme-prop($property, $style, $important: false, $edgeOut: false) {
