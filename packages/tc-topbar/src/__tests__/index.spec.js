@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Topbar from '../Topbar';
+import Topbar from '../';
 
 describe('tc-topbar', () => {
   [

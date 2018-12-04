@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
-import Topbar from 'packages/tc-topbar';
+import Topbar from 'packages/tc-topbar/src';
 import Menu from 'packages/tc-icon/Menu';
-import { DrawerOverlay as Drawer } from 'packages/tc-drawer';
-import Layout, { LayoutContext, withLayoutConsumer } from '../';
+import { DrawerOverlay as Drawer } from 'packages/tc-drawer/src';
+import Layout, { LayoutContext, withLayoutConsumer } from '../src';
 
 function MenuButton({ layout, ...rest }) {
   return <button {...rest}

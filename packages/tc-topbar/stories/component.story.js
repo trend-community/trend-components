@@ -6,7 +6,7 @@ import {
   select
 } from '@storybook/addon-knobs/react';
 
-import Topbar from '../';
+import Topbar from '../src';
 
 function Menu() {
   return <svg
