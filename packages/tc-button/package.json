@@ -17,22 +17,12 @@
     "@trend/type": "^0.3.0",
     "prop-types": "^15.6.2"
   },
-  "devDependencies": {
-    "jest": "^23.6.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
-  },
-  "jest": {
-    "setupFiles": [
-      "../../setUpTests.js"
-    ],
-    "testRegex": ".+\\.spec\\.js$"
   },
   "publishConfig": {
     "access": "public"
