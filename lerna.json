@@ -6,7 +6,7 @@
   "version": "independent",
   "command": {
     "publish": {
-      "ignore": [
+      "ignoreChanges": [
         "*.md"
       ]
     }
