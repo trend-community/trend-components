@@ -17,12 +17,12 @@
     "@trend/type": "^0.3.0",
     "prop-types": "^15.6.2"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },
   "scripts": {
+    "build": "node ../../scripts/build-js"
   },
   "publishConfig": {
     "access": "public"

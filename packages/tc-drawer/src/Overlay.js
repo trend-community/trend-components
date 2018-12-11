@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import FocusTrap from '@trend/focustrap';
+import FocusTrap from '@trend/focustrap/src';
 
 import { cssClasses } from './constants';
 import Drawer from './Drawer';

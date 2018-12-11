@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
@@ -13,24 +13,6 @@ const classNames = {
 };
 
 const modifier = modifier => modifier.replace(/^.*--/, '');
-
-const propTypes = {
-  accent: PropTypes.bool,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  size: PropTypes.oneOf([modifier(classNames.COMPACT)]),
-  variant: PropTypes.oneOf([
-    modifier(classNames.CTAB),
-    modifier(classNames.FLAT),
-    modifier(classNames.GHOST)
-  ])
-};
-
-const defaultProps = {
-  accent: false,
-  type: 'button'
-};
 
 function Button(props) {
   const {
@@ -57,8 +39,22 @@ function Button(props) {
     type={type} />;
 }
 
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
+Button.propTypes = {
+  accent: PropTypes.bool,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  size: PropTypes.oneOf([modifier(classNames.COMPACT)]),
+  variant: PropTypes.oneOf([
+    modifier(classNames.CTAB),
+    modifier(classNames.FLAT),
+    modifier(classNames.GHOST)
+  ])
+};
+Button.defaultProps = {
+  accent: false,
+  type: 'button'
+};
 Button.getIconProps = (props = {}) => ({
   ...props,
   className: cn(classNames.ICON, props.className),
