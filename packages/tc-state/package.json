@@ -1,6 +1,6 @@
 {
   "name": "@trend/state",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "TREND Components state mixins for interactive elements.",
   "keywords": [
     "TREND Components",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@trend/helpers": "^0.3.0",
-    "@trend/theme": "^0.3.0"
+    "@trend/theme": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"

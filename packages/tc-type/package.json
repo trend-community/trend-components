@@ -1,6 +1,6 @@
 {
   "name": "@trend/type",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Typographic normalize, classes, mixins, and configuration for TREND components.",
   "keywords": [
     "typography",

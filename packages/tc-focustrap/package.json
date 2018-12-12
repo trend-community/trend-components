@@ -1,6 +1,6 @@
 {
   "name": "@trend/focustrap",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A React component that traps focus.",
   "main": "index.js",
   "keywords": [
@@ -18,7 +18,6 @@
   "dependencies": {
     "focus-trap": "^3.0.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },
