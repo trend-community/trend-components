@@ -5,26 +5,27 @@ const isBuilding = BABEL_ENV !== undefined && BABEL_ENV !== "cjs";
 
 module.exports = {
   babelrcRoots: [
-    ".",
-    "packages/*",
+    '.',
+    'packages/*',
   ],
   presets: [
-    ["@babel/preset-env", {
+    ['@babel/preset-env', {
       loose: true,
-      modules: isBuilding ? false : "cjs"
+      modules: isBuilding ? false : 'cjs'
     }],
-    "@babel/preset-react"
+    '@babel/preset-react'
   ],
   plugins: [
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-proposal-throw-expressions",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-syntax-dynamic-import",
-    "dev-expression",
-    "transform-react-remove-prop-types",
-    ["transform-inline-environment-variables", {
-        include: ["COMPAT"]
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-export-namespace-from',
+    '@babel/plugin-proposal-throw-expressions',
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-syntax-dynamic-import',
+    'dev-expression',
+    'transform-react-remove-prop-types',
+    ['transform-inline-environment-variables', {
+        include: ['COMPAT']
     }]
   ]
 };
