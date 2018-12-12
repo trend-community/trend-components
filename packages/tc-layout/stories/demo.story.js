@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import Topbar from 'packages/tc-topbar/src';
-import Menu from 'packages/tc-icon/Menu';
+import Menu from 'packages/tc-icon/src/Menu';
 import { DrawerOverlay as Drawer } from 'packages/tc-drawer/src';
 import Layout, { LayoutContext, withLayoutConsumer } from '../src';
 

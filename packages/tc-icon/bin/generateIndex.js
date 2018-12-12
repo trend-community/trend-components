@@ -6,10 +6,10 @@ const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
 
-glob('./!(index)*.js', {}, (err, files) => {
-  const stream = fs.createWriteStream('index.js');
+glob('./src/!(index)*.js', {}, (err, files) => {
+  const stream = fs.createWriteStream('src/index.js');
 
-  stream.write(`export { default as default } from './src';\n`);
+  stream.write(`export default from './withIcon';\n`);
 
   files.forEach(file => {
     const name = path.basename(file, '.js');

@@ -1,44 +1,43 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-const defaultStyle = {
-  display: 'inline-block',
-  fill: 'currentColor',
-  verticalAlign: 'middle',
-  height: 'auto',
-  width: 'inherit'
-};
-
-function withIcon(WrappedComponent) {
-  function WithIcon({ size, unit, style, ...rest }) {
-    const styles = {
-      ...defaultStyle,
-      ...style
-    };
-
-    return <WrappedComponent
-      {...rest}
-      height={`${parseInt(size, 10)}${unit}`}
-      width={`${parseInt(size, 10)}${unit}`}
-      style={styles} />;
-  }
-
-  WithIcon.propTypes = {
-    size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    unit: PropTypes.oneOf(['em', 'rem']),
-    style: PropTypes.object
-  };
-  WithIcon.defaultProps = {
-    size: 1,
-    unit: 'rem'
-  };
-  WithIcon.displayName = `WithIcon(${getDisplayName(WrappedComponent)})`;
-
-  return WithIcon;
-}
-
-function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-}
-
-export default withIcon;
+export default from './withIcon';
+export { default as Add } from './Add.js'
+export { default as App } from './App.js'
+export { default as Bell } from './Bell.js'
+export { default as Calendar } from './Calendar.js'
+export { default as Camera } from './Camera.js'
+export { default as Check } from './Check.js'
+export { default as ChevronLeft } from './ChevronLeft.js'
+export { default as ChevronRight } from './ChevronRight.js'
+export { default as Close } from './Close.js'
+export { default as Cog } from './Cog.js'
+export { default as Comment } from './Comment.js'
+export { default as Crop } from './Crop.js'
+export { default as Data } from './Data.js'
+export { default as Edit } from './Edit.js'
+export { default as Ellipsis } from './Ellipsis.js'
+export { default as Exclamation } from './Exclamation.js'
+export { default as Filter } from './Filter.js'
+export { default as Location } from './Location.js'
+export { default as Lock } from './Lock.js'
+export { default as Menu } from './Menu.js'
+export { default as Message } from './Message.js'
+export { default as Move } from './Move.js'
+export { default as Mute } from './Mute.js'
+export { default as Pause } from './Pause.js'
+export { default as Play } from './Play.js'
+export { default as Print } from './Print.js'
+export { default as Profile } from './Profile.js'
+export { default as QuestionMark } from './QuestionMark.js'
+export { default as Search } from './Search.js'
+export { default as Share } from './Share.js'
+export { default as Sort } from './Sort.js'
+export { default as SoundOn } from './SoundOn.js'
+export { default as Stats } from './Stats.js'
+export { default as Tag } from './Tag.js'
+export { default as Trash } from './Trash.js'
+export { default as Unlock } from './Unlock.js'
+export { default as Users } from './Users.js'
+export { default as Video } from './Video.js'
+export { default as Weblink } from './Weblink.js'
+export { default as withIcon } from './withIcon.js'
+export { default as ZoomIn } from './ZoomIn.js'
+export { default as ZoomOut } from './ZoomOut.js'

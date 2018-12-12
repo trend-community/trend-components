@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import withIcon from '../';
+import withIcon from '../withIcon';
 
 const IconComponent = props => <svg {...props} />;
 

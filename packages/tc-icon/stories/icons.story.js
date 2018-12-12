@@ -11,7 +11,7 @@ function importIcons(r) {
   r.keys().forEach(key => icons.push(r(key).default));
 }
 
-importIcons(require.context('../', false, /^((?!index).)*\.js$/));
+importIcons(require.context('../src', false, /^((?!index|withIcon).)*\.js$/));
 
 const label = 'Size';
 const defaultValue = 2;
@@ -43,8 +43,8 @@ function Story() {
 
   return <div className="tc-mal tc-flex tc-flex-wrap" style={style}>
     {icons.map((Icon, idx) => (
-      <div class="tc-mam tc-text-center">
-        <div key={`icon-${idx}`} style={iconStyle}>
+      <div className="tc-mam tc-text-center" key={`icon-${idx}`}>
+        <div style={iconStyle}>
           <Icon size={size} unit={unit} />
         </div>
         <p>{formatName(Icon.displayName)}</p>
