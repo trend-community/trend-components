@@ -37,7 +37,7 @@ import { withLayoutConsumer } from '@trend/layout';
 Wrap a **TREND** application with the main provider near the top of the render tree.
 
 ```javascript
-@import Layout from '@trend/layout';
+import Layout from '@trend/layout';
 
 function App() {
   return <Layout>
@@ -51,7 +51,7 @@ function App() {
 Use `withLayoutConsumer` [higher-order](https://reactjs.org/docs/higher-order-components.html) component to gain access to layout state.
 
 ```javascript
-@import { withLayoutConsumer } from '@trend/layout';
+import { withLayoutConsumer } from '@trend/layout';
 
 function Button({ layout, ...props }) {
   return <button onClick={layout.toggleDrawer} type="button">
@@ -76,8 +76,8 @@ Prop | Type | Description
 ## <a name="example"></a> Example
 
 ```javascript
-@import { OverlayDrawer as Drawer } from '@trend/drawer';
-@import Topbar from '@trend/topbar';
+import { OverlayDrawer as Drawer } from '@trend/drawer';
+import Topbar from '@trend/topbar';
 import Layout, { withLayoutConsumer } from '@trend/layout';
 
 function Button({ layout, ...props }) {
