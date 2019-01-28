@@ -18,8 +18,8 @@ function withIcon(WrappedComponent) {
 
     return <WrappedComponent
       {...rest}
-      height={`${parseInt(size, 10)}${unit}`}
-      width={`${parseInt(size, 10)}${unit}`}
+      height={`${parseFloat(size)}${unit}`}
+      width={`${parseFloat(size)}${unit}`}
       style={styles} />;
   }
 
