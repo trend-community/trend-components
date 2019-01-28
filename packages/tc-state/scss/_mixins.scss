@@ -37,6 +37,16 @@
   }
 }
 
+/// Create ruleset to adjust opacity for static state.
+/// @param {number} $opacity - Valid CSS opacity value.
+
+@mixin tc-state-opacity($opacity) {
+  &::before {
+    opacity: $opacity;
+    visibility: visible;
+  }
+}
+
 /// Add rule to ruleset to adjust background color of a interactive element.
 /// @param {string} $color - TREND theme option ($tc-theme-options).
 /// @requires {Mixin} tc-theme-prop
@@ -47,22 +57,11 @@
   }
 }
 
-/// Add state rules to a ruleset.
-/// @param {string} $color - TREND theme option ($tc-theme-options).
-/// @requries {Function} tc-button-state-opacity
-/// @requires {Mixin} tc-state-base-color
-/// @requires {Mixin} tc-state-hover-opacity
-/// @requires {Mixin} tc-state-focus-opacity
-/// @requires {Mixin} tc-state-press-opacity
-/// @requires {Variable} $tc-helper-variables
-/// @requires {Variable} $tc-easeInOutSine
+/// Provide ruleset for "before" pseudo-element.
+/// @requires {Variable} - tc-helper-variables.
+/// @requires {Variable} - tc-easeInOutSine from helpers package.
 
-@mixin tc-state($color) {
-  @include tc-state-base-color($color);
-  @include tc-state-hover-opacity(tc-state-opacity($color, hover));
-  @include tc-state-focus-opacity(tc-state-opacity($color, focus));
-  @include tc-state-press-opacity(tc-state-opacity($color, press));
-
+@mixin tc-state-ruleset {
   &:hover,
   &:focus,
   &:active {
@@ -83,7 +82,26 @@
     transition-property: opacity, visibility;
     transition-timing-function: $tc-easeInOutSine;
 
+    pointer-events: none;
     content: "";
     will-change: opacity;
   }
+}
+
+/// Add state rules to create a ruleset.
+/// @param {string} $color - TREND theme option ($tc-theme-options).
+/// @requries {Function} tc-button-state-opacity
+/// @requires {Mixin} tc-state-base-color
+/// @requires {Mixin} tc-state-hover-opacity
+/// @requires {Mixin} tc-state-focus-opacity
+/// @requires {Mixin} tc-state-press-opacity
+/// @requires {Variable} $tc-helper-variables
+/// @requires {Variable} $tc-easeInOutSine
+
+@mixin tc-state($color) {
+  @include tc-state-base-color($color);
+  @include tc-state-hover-opacity(tc-state-opacity($color, hover));
+  @include tc-state-focus-opacity(tc-state-opacity($color, focus));
+  @include tc-state-press-opacity(tc-state-opacity($color, press));
+  @include tc-state-ruleset;
 }
