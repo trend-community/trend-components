@@ -30,7 +30,7 @@ function withIcon(WrappedComponent) {
   };
   WithIcon.defaultProps = {
     size: 1,
-    unit: 'rem'
+    unit: 'em'
   };
   WithIcon.displayName = `WithIcon(${getDisplayName(WrappedComponent)})`;
 

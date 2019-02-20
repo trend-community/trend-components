@@ -2,7 +2,7 @@
 
 exports[`tc-icon (withIcon) should allow the size to be updated. 1`] = `
 Object {
-  "height": "2rem",
+  "height": "2em",
   "style": Object {
     "display": "inline-block",
     "fill": "currentColor",
@@ -10,7 +10,7 @@ Object {
     "verticalAlign": "middle",
     "width": "inherit",
   },
-  "width": "2rem",
+  "width": "2em",
 }
 `;
 
@@ -27,7 +27,7 @@ Object {
 
 exports[`tc-icon (withIcon) should set the wrapped icon with the correct props. 1`] = `
 Object {
-  "height": "1rem",
+  "height": "1em",
   "style": Object {
     "display": "inline-block",
     "fill": "currentColor",
@@ -35,6 +35,6 @@ Object {
     "verticalAlign": "middle",
     "width": "inherit",
   },
-  "width": "1rem",
+  "width": "1em",
 }
 `;

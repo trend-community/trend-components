@@ -24,7 +24,7 @@ const options = {
 
 function Story() {
   const size = number(label, defaultValue, options);
-  const unit = select('Unit', ['rem', 'em'], 'rem');
+  const unit = select('Unit', ['rem', 'em'], 'em');
   const color = text('Color', 'rgba(51, 51, 51, 0.87)');
 
   const style = {
