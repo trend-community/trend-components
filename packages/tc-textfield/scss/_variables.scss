@@ -1,0 +1,104 @@
+/// TextField variables
+
+@import "~@trend/helpers/scss/variables";
+@import "~@trend/theme/scss/variables";
+@import "~@trend/theme/scss/functions";
+
+// Classnames
+$tc-textfield-classnames: (
+  root: ".tc-TextField",
+  modifier-beginning-icon: ".tc-TextField--beginningIcon",
+  modifier-ending-icon: ".tc-TextField--endingIcon",
+  modifier-rim: ".tc-TextField--rim",
+  modifier-stretch: ".tc-TextField--stretch",
+  modifier-textarea: ".tc-TextField--textarea",
+  child-helper: ".tc-TextField-helper",
+  child-icon: ".tc-TextField-icon",
+  child-input: ".tc-TextField-input",
+  child-label: ".tc-TextField-label",
+  state-active: ".is-active",
+  state-disabled: ".is-disabled",
+  state-focused: ".is-focused",
+  state-invalid: ".is-invalid"
+);
+
+// Colors
+$tc-textfield-error: error;
+$tc-textfield-stretch-border-color:
+  rgba(tc-theme-fetch-option(over-background), 0.12);
+$tc-textfield-disabled-border:
+  rgba(tc-theme-fetch-option(over-background), 0.06);
+$tc-textfield-disabled-icon: rgba(tc-theme-fetch-option(over-background), 0.3);
+$tc-textfield-bottom-color-hover:
+  rgba(tc-theme-fetch-option(over-background), 0.87);
+$tc-textfield-border-color:
+  rgba(tc-theme-fetch-option(over-background), 0.42);
+$tc-textfield-label: rgba(tc-theme-fetch-option(over-background), 0.6);
+
+$tc-textfield-color: rgba(tc-theme-fetch-option(over-background), 0.87);
+$tc-textfield-helper-text-color:
+  rgba(tc-theme-fetch-option(over-background), 0.6);
+$tc-textfield-icon-color: rgba(tc-theme-fetch-option(over-background), 0.54);
+$tc-textfield-focused-label-color: rgba(tc-theme-fetch-option(accent), 1);
+
+$tc-textfield-disabled-label-color:
+  rgba(tc-theme-fetch-option(over-background), 0.37);
+$tc-textfield-disabled-color:
+  rgba(tc-theme-fetch-option(over-background), 0.37);
+$tc-textfield-disabled-helper-text-color:
+  rgba(tc-theme-fetch-option(over-background), 0.37);
+
+$tc-textfield-background:
+  mix(
+    tc-theme-fetch-option(over-background),
+    tc-theme-fetch-option(background),
+    4%
+  );
+$tc-textfield-disabled-background:
+  mix(
+    tc-theme-fetch-option(over-background),
+    tc-theme-fetch-option(background),
+    2%
+  );
+$tc-textfield-secondary-text: rgba(
+  tc-theme-fetch-option(over-background),
+  0.6
+);
+
+$tc-textfield-rim-border:
+  rgba(tc-theme-fetch-option(over-background), 0.24);
+$tc-textfield-rim-disabled-border:
+  rgba(tc-theme-fetch-option(over-background), 0.06);
+$tc-textfield-rim-hover-border:
+  rgba(tc-theme-fetch-option(over-background), 0.87);
+
+$tc-textarea-border: rgba(tc-theme-fetch-option(over-background), 0.73);
+$tc-textarea-background: rgba(tc-theme-fetch-option(background), 1);
+// $tc-textarea-disabled-border-color:
+//   rgba(tc-theme-fetch-option(over-background), 0.26);
+// cannot be transparent because multiline textarea input
+// will make text unreadable
+$tc-textarea-disabled-background: rgba(249, 249, 249, 1);
+
+// Box and layout.
+$tc-textfield-border-radius: 4px;
+$tc-textfield-height: 56px;
+$tc-textfield-textarea-label-position-y: 130%;
+
+// Label
+$tc-textfield-label-offset: map-get($tc-spacings, b);
+$tc-textfield-label-position-y: 50%;
+$tc-textfield-label-transition-duration: 150ms;
+$tc-textfield-rim-label-position-y: 135%;
+
+// Icons
+$tc-textfield-icon-bottom: map-get($tc-spacings, m);
+$tc-textfield-icon-offset: map-get($tc-spacings, b);
+$tc-textfield-ending-icon-offset: map-get($tc-spacings, m);
+$tc-textfield-icon-padding: map-get($tc-spacings, l) * 2;
+$tc-textfield-rim-with-leading-icon-label-position-x: 0;
+
+// Input
+$tc-textfield-border-width: 2px;
+$tc-textfield-input-top: calc(#{map-get($tc-spacings, b)} + 4px);
+$tc-textfield-input-bottom: map-get($tc-spacings, s);

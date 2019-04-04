@@ -1,0 +1,40 @@
+////
+/// TextField label mixins
+/// @group textfield mixins
+////
+
+@import "~@trend/helpers/scss/mixins/rtl";
+@import "~@trend/theme/scss/mixins";
+@import "../variables";
+
+// Used for textarea in case of scrolling
+@mixin tc-textfield-label-background-color($color) {
+  @include tc-theme-prop(background-color, $color);
+}
+
+@mixin tc-textfield-label-active(
+  $positionY,
+  $positionX: 0%,
+  $size: 0.75) {
+  $scale: scale($size);
+  $translateY: translateY(-1 * $positionY);
+  $translateX: translateX(-1 * $positionX);
+
+  &#{tc-textfield-classname(state-active)} {
+    @if $positionX > 0 or $positionX < 0 {
+      transform: #{$translateY} #{$translateX} #{$scale};
+
+      @include tc-rtl {
+        transform: #{$translateY} translateX($positionX) #{$scale};
+      }
+    } @else {
+      transform: #{$translateY} #{$scale};
+    }
+
+    @content;
+  }
+}
+
+@mixin tc-textfield-label-max-width($max-width) {
+  max-width: $max-width;
+}

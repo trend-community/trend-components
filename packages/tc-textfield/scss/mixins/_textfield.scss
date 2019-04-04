@@ -1,0 +1,331 @@
+/// Text field mixins
+
+@import "~@trend/helpers/scss/mixins";
+@import "~@trend/state/styles";
+@import "~@trend/theme/scss/mixins";
+@import "../variables";
+@import "../functions";
+@import "icon";
+
+@mixin _tc-textfield-not-disabled {
+  &:not(#{tc-textfield-classname(state-disabled)}) {
+    @content;
+  }
+}
+
+@mixin tc-textfield-transition($property) {
+  @include tc-helper-prop(transition-timing-function);
+  @include tc-helper-prop(transition-duration);
+
+  transition-property: $property;
+}
+
+@mixin tc-textfield-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-color($color);
+  }
+}
+
+@mixin tc-textfield-helper-text-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-helper-text-color($color);
+  }
+}
+
+@mixin tc-textfield-background($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-background($color);
+  }
+}
+
+@mixin tc-textfield-label-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-label-color($color);
+  }
+}
+
+@mixin tc-textfield-stretch-border-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-stretch-border-color($color);
+  }
+}
+
+@mixin tc-textfield-border-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-border-color($color);
+  }
+}
+
+@mixin tc-textfield-hover-border-color($color) {
+  @include _tc-textfield-not-disabled {
+    @include _tc-textfield-hover-border-color($color);
+  }
+}
+
+@mixin tc-textfield-caret-color($color) {
+  #{tc-textfield-classname(child-input)} {
+    @include tc-theme-prop(caret-color, $color);
+  }
+}
+
+@mixin _tc-textfield-disabled {
+  @include _tc-textfield-border-color($tc-textfield-disabled-border);
+  @include _tc-textfield-color($tc-textfield-disabled-color);
+  @include _tc-textfield-label-color($tc-textfield-disabled-label-color);
+  @include _tc-textfield-helper-text-color(
+    $tc-textfield-disabled-helper-text-color
+  );
+  @include _tc-textfield-icon-color($tc-textfield-disabled-icon);
+  @include _tc-textfield-stretch-border-color(
+    $tc-textfield-stretch-border-color
+  );
+  @include _tc-textfield-background($tc-textfield-disabled-background);
+
+  border-bottom: none;
+  pointer-events: none;
+}
+
+@mixin _tc-textfield-focused {
+  @include tc-state-opacity(tc-state-opacity($tc-textfield-color, focus));
+  @include tc-textfield-border-color($tc-textfield-focused-label-color);
+  @include tc-textfield-label-color($tc-textfield-focused-label-color);
+
+  @include _tc-required-textfield-label-asterisk {
+    @include tc-theme-prop(color, $tc-textfield-error);
+  }
+}
+
+@mixin _tc-textfield-invalid {
+  $color: $tc-textfield-error;
+
+  @include tc-textfield-border-color($color);
+  @include tc-textfield-hover-border-color($color);
+  @include tc-textfield-caret-color($color);
+  @include tc-textfield-label-color($color);
+
+  &#{tc-textfield-classname(modifier-ending-icon)} {
+    @include tc-textfield-icon-color($color);
+  }
+
+  @include _tc-textfield-not-disabled {
+    + #{tc-textfield-classname(child-helper)} {
+      @include tc-theme-prop(color, $tc-textfield-error);
+    }
+  }
+}
+
+@mixin _tc-required-textfield-label-asterisk {
+  #{tc-textfield-classname(child-input)}:required ~ {
+    #{tc-textfield-classname(child-label)}::after {
+      @content;
+    }
+  }
+}
+
+// Rimmed textfields.
+
+@mixin _tc-textfield-rim {
+  @include _tc-textfield-border;
+
+  @include _tc-textfield-border-input {
+    display: flex;
+
+    padding: map-get($tc-spacings, m) map-get($tc-spacings, b);
+  }
+
+  overflow: visible;
+  border: none;
+
+  #{tc-textfield-classname(child-icon)} {
+    z-index: 2;
+  }
+}
+
+@mixin _tc-textfield-rim-disabled {
+  @include _tc-textfield-border-color(
+    $tc-textfield-rim-disabled-border
+  );
+}
+
+@mixin _tc-textfield-rim-beginning-icon {
+  @include _tc-textfield-icon-horizontal-position(
+    left,
+    $tc-textfield-icon-offset,
+    $tc-textfield-icon-padding
+  );
+}
+
+// Textarea
+
+@mixin _tc-textfield-textarea {
+  @include _tc-textfield-border;
+
+  @include _tc-textfield-border-input {
+    $padding-inset: #{map-get($tc-spacings, b)};
+
+    align-self: auto;
+
+    padding-top: #{map-get($tc-spacings, s)};
+    padding-bottom: #{map-get($tc-spacings, b)};
+  }
+}
+
+// Icons
+
+@mixin _tc-textfield-beginning-icon {
+  @include _tc-textfield-icon-horizontal-position(
+    left,
+    $tc-textfield-icon-offset,
+    $tc-textfield-icon-padding
+  );
+
+  #{tc-textfield-classname(child-label)} {
+    @include tc-rtl-flip(
+      left, $tc-textfield-icon-padding, right, auto
+    );
+  }
+}
+
+@mixin _tc-textfield-ending-icon {
+  @include _tc-textfield-icon-horizontal-position(
+    right,
+    $tc-textfield-ending-icon-offset,
+    $tc-textfield-icon-padding
+  );
+
+  // Outlined uses 16px for text alignment when using a trailing icon.
+  &#{tc-textfield-classname(modifier-rim)} {
+    @include _tc-textfield-icon-horizontal-position(
+      right,
+      $tc-textfield-icon-offset,
+      $tc-textfield-icon-padding
+    );
+  }
+}
+
+@mixin _tc-textfield-has-both-icons {
+  @include _tc-textfield-icon-horizontal-position-both-icons(
+    $tc-textfield-icon-offset,
+    $tc-textfield-icon-padding,
+    $tc-textfield-ending-icon-offset,
+    $tc-textfield-icon-padding
+  );
+}
+
+// Stretch
+
+@mixin _tc-textarea-stretch {
+  width: 100%;
+
+  &:not(#{tc-textfield-classname(modifier-rim)}) {
+    @include tc-textfield-background(transparent);
+    @include tc-state-base-color(transparent);
+
+    display: block;
+  }
+
+  #{tc-textfield-classname(modifier-rim)} {
+    #{tc-textfield-classname(child-input)} {
+      resize: vertical;
+    }
+  }
+}
+
+// Customization
+
+@mixin _tc-textfield-color($color) {
+  #{tc-textfield-classname(child-input)} {
+    @include tc-theme-prop(color, $color);
+  }
+}
+
+@mixin _tc-textfield-helper-text-color($color) {
+  + #{tc-textfield-classname(child-helper)} {
+    @include tc-theme-prop(color, $color);
+  }
+}
+
+@mixin _tc-textfield-background($color) {
+  @include tc-theme-prop(background-color, $color);
+}
+
+@mixin _tc-textfield-stretch-border-color($color) {
+  &:not(.tc-TextField--textarea) {
+    @include tc-theme-prop(border-color, $color);
+  }
+}
+
+@mixin _tc-textfield-border-color($color) {
+  #{tc-textfield-classname(child-input)} {
+    @include tc-theme-prop(border-color, $color);
+  }
+}
+
+@mixin _tc-textfield-hover-border-color($color) {
+  #{tc-textfield-classname(child-input)}:hover {
+    @include tc-theme-prop(border-color, $color);
+  }
+}
+
+@mixin _tc-textfield-label-color($color) {
+  #{tc-textfield-classname(child-label)},
+  #{tc-textfield-classname(child-input)}::placeholder {
+    @include tc-theme-prop(color, $color);
+  }
+}
+
+@mixin _tc-textfield-border {
+  @include tc-textfield-background(transparent);
+  @include tc-state-base-color(transparent);
+  @include tc-state-hover-opacity(
+    tc-state-opacity(transparent, hover)
+  );
+
+  > #{tc-textfield-classname(child-label)} {
+    @include tc-textfield-label-active(
+      $tc-textfield-rim-label-position-y
+    ) {
+      @include tc-rtl-flip(left, $tc-textfield-label-offset, right, auto);
+
+      overflow: visible;
+
+      &::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    z-index: 2;
+    transition-property: all;
+
+    &::before {
+      @include tc-theme-prop(background-color, background);
+      @include tc-helper-prop(transition-timing-function);
+      @include tc-helper-prop(transition-duration);
+
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      left: 0;
+      visibility: hidden;
+      z-index: -1;
+
+      height: 100%;
+      margin: 0 -#{map-get($tc-spacings, s)};
+
+      content: "";
+    }
+  }
+}
+
+@mixin _tc-textfield-border-input {
+  #{tc-textfield-classname(child-input)} {
+    @include _tc-textfield-background(transparent);
+    @content;
+
+    z-index: 1;
+
+    border: $tc-textfield-border-width solid;
+    border-radius: $tc-textfield-border-radius;
+  }
+}

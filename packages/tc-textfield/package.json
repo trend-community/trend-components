@@ -1,0 +1,28 @@
+{
+  "name": "@trend/textfield",
+  "version": "0.1.0",
+  "description": "TREND Component for inputting, editing, and selecting text.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "TREND Components",
+    "textfield",
+    "input"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/helpers": "^0.3.0",
+    "@trend/state": "^0.4.0",
+    "@trend/theme": "^0.4.0",
+    "@trend/type": "^0.4.0",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2"
+  }
+}

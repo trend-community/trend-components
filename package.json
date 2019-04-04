@@ -110,6 +110,7 @@
           "layout",
           "normalize",
           "state",
+          "textfield",
           "theme",
           "topbar",
           "trend-components",

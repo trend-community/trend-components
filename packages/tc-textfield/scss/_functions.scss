@@ -1,0 +1,10 @@
+////
+/// TextField functions
+/// @group textfield functions
+////
+
+@import "variables";
+
+@function tc-textfield-classname($name) {
+  @return map-get($tc-textfield-classnames, $name);
+}

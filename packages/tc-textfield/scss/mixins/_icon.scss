@@ -1,0 +1,68 @@
+////
+/// TextField icon mixins
+/// @group textfield mixins
+////
+
+@import "../functions";
+
+@mixin tc-textfield-icon-color($color, $styleSecondIcon: false) {
+  &:not(#{tc-textfield-classname(state-disabled)}) {
+    @include _tc-textfield-icon-color($color, $styleSecondIcon);
+  }
+}
+
+// Private mixins
+
+@mixin _tc-textfield-icon-horizontal-position(
+  $position-property,
+  $position,
+  $padding
+) {
+  #{tc-textfield-classname(child-icon)} {
+    @include tc-rtl-flip-position($position-property, $position);
+  }
+
+  $leftValue: if($position-property == left, $padding, $position);
+  $rightValue: if($position-property == left, $position, $padding);
+
+  #{tc-textfield-classname(child-input)} {
+    @include tc-rtl-flip-property(padding, $leftValue, $rightValue);
+  }
+}
+
+@mixin _tc-textfield-icon-horizontal-position-both-icons(
+  $position-left,
+  $padding-left,
+  $position-right,
+  $padding-right
+) {
+  #{tc-textfield-classname(child-icon)} {
+    @include tc-rtl-flip(left, $position-left, right, auto);
+
+    @include _tc-textfield-icon-general-sibling {
+      @include tc-rtl-flip(right, $position-right, left, auto);
+    }
+  }
+
+  #{tc-textfield-classname(child-input)} {
+    @include tc-rtl-flip-property(padding, $padding-left, $padding-right);
+  }
+}
+
+@mixin _tc-textfield-icon-color($color, $endingIcon: false) {
+  #{tc-textfield-classname(child-icon)} {
+    @if ($endingIcon) {
+      @include _tc-textfield-icon-general-sibling {
+        @include tc-theme-prop(color, $color);
+      }
+    } @else {
+      @include tc-theme-prop(color, $color);
+    }
+  }
+}
+
+@mixin _tc-textfield-icon-general-sibling {
+  ~ #{tc-textfield-classname(child-icon)} {
+    @content;
+  }
+}

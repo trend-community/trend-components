@@ -1,0 +1,217 @@
+@import "~@trend/helpers/scss/variables";
+@import "~@trend/helpers/scss/mixins";
+@import "~@trend/state/styles";
+@import "~@trend/theme/scss/mixins";
+@import "~@trend/type/scss/variables";
+@import "~@trend/type/scss/mixins";
+@import "variables";
+@import "functions";
+@import "mixins";
+
+// Main component.
+
+#{tc-textfield-classname(root)} {
+  @include tc-state-base-color($tc-textfield-color);
+  @include tc-state-hover-opacity(
+    tc-state-opacity($tc-textfield-color, hover)
+  );
+  @include tc-state-ruleset;
+  @include tc-textfield-label-color($tc-textfield-label);
+  @include tc-textfield-color($tc-textfield-color);
+  @include tc-textfield-caret-color(primary);
+  @include tc-textfield-border-color($tc-textfield-border-color);
+  @include tc-textfield-hover-border-color(
+    $tc-textfield-bottom-color-hover);
+  @include tc-textfield-stretch-border-color(
+    $tc-textfield-stretch-border-color);
+  @include tc-textfield-icon-color($tc-textfield-icon-color);
+  @include tc-textfield-background($tc-textfield-background);
+  @include tc-textfield-helper-text-color($tc-textfield-helper-text-color);
+
+  display: inline-flex;
+  overflow: hidden;
+  position: relative;
+
+  box-sizing: border-box;
+  border-radius: $tc-textfield-border-radius $tc-textfield-border-radius 0 0;
+  height: $tc-textfield-height;
+
+  will-change: opacity, transform, color;
+
+  // State
+  &#{tc-textfield-classname(state-disabled)} {
+    @include _tc-textfield-disabled;
+  }
+
+  &#{tc-textfield-classname(state-focused)} {
+    @include _tc-textfield-focused;
+  }
+
+  &#{tc-textfield-classname(state-invalid)} {
+    @include _tc-textfield-invalid;
+  }
+}
+
+// Modifier: textfields with a beginning icon.
+
+#{tc-textfield-classname(modifier-beginning-icon)} {
+  @include _tc-textfield-beginning-icon;
+
+  // Modifier: handle both beginning and ending icons simultaneously.
+  &#{tc-textfield-classname(modifier-ending-icon)} {
+    @include _tc-textfield-has-both-icons;
+  }
+}
+
+// Modifier: textfields with a ending icon.
+
+#{tc-textfield-classname(modifier-ending-icon)} {
+  @include _tc-textfield-ending-icon;
+}
+
+// Modifier: add a border to a textfield.
+
+#{tc-textfield-classname(modifier-rim)} {
+  @include _tc-textfield-rim;
+
+  // Icons.
+  &#{tc-textfield-classname(modifier-beginning-icon)} {
+    @include _tc-textfield-rim-beginning-icon;
+  }
+
+  // State.
+  &#{tc-textfield-classname(state-disabled)} {
+    @include _tc-textfield-rim-disabled;
+  }
+}
+
+// Modifier: textarea textfields.
+
+#{tc-textfield-classname(modifier-textarea)} {
+  @include _tc-textfield-textarea;
+
+  display: inline-flex;
+  overflow: visible;
+
+  border-radius: 0;
+  height: auto;
+  width: auto;
+}
+
+// Modidifier: textareas that stretch full width of parent.
+
+#{tc-textfield-classname(modifier-stretch)} {
+  @include _tc-textarea-stretch;
+}
+
+// Child: the actual input.
+
+#{tc-textfield-classname(child-input)} {
+  @include tc-type(subtitle1);
+  @include tc-helper-prop(transition-timing-function);
+  @include tc-helper-prop(transition-duration);
+
+  align-self: flex-end;
+
+  box-sizing: border-box;
+  border: none;
+  border-bottom: $tc-textfield-border-width solid;
+  border-radius: 0;
+  height: 100%;
+  padding:
+    $tc-textfield-input-top
+    $tc-textfield-label-offset
+    $tc-textfield-input-bottom;
+  width: 100%;
+
+  transition-property: border-color;
+
+  background: none;
+
+  appearance: none;
+
+  &::placeholder {
+    @include tc-textfield-transition(color);
+
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:invalid {
+    box-shadow: none;
+  }
+}
+
+// Child: label for a text-field
+
+#{tc-textfield-classname(child-label)} {
+  @include tc-type(subtitle1);
+  @include tc-text-truncate($important: false);
+  @include tc-helper-prop(transition-timing-function);
+  @include tc-helper-prop(transition-duration);
+  @include tc-rtl-flip(left, $tc-textfield-label-offset, right, auto);
+
+  @include tc-textfield-label-active($tc-textfield-label-position-y) {
+    cursor: auto;
+  }
+
+  @include tc-rtl {
+    transform-origin: right top;
+
+    text-align: right;
+  }
+
+  position: absolute;
+  top: 18px;
+
+  transform-origin: left top;
+  transition-property: transform, color;
+
+  font-weight: #{map-get($tc-type-font-weights, medium)};
+  line-height: 1.15rem;
+  text-align: left;
+  text-transform: capitalize;
+  cursor: text;
+
+  pointer-events: none;
+  will-change: transform;
+
+  #{tc-textfield-classname(child-input)}:-webkit-autofill + #{tc-textfield-classname(child-label)} {
+    transform: translateY(-50%) scale(0.75);
+    cursor: auto;
+  }
+}
+
+@include _tc-required-textfield-label-asterisk {
+  margin-left: 1px;
+  content: "*";
+}
+
+// Child: helper information
+
+#{tc-textfield-classname(child-helper)} {
+  @include tc-type(caption);
+  @include tc-type-leading-top(16px);
+
+  margin: 0 #{map-get($tc-spacings, m)};
+}
+
+// Child: icons
+
+#{tc-textfield-classname(child-icon)} {
+  #{tc-textfield-classname(root)} & {
+    position: absolute;
+    bottom: map-get($tc-spacings, b);
+
+    cursor: pointer;
+  }
+
+  &:not([tabindex]),
+  &[tabindex="-1"] {
+    cursor: default;
+    pointer-events: none;
+  }
+}
