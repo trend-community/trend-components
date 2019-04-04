@@ -33,6 +33,14 @@ $tc-theme-over-accent: if(
   $_tc-color-contrast-light
 ) !default;
 
+$tc-theme-background: $_tc-color-contrast-light !default;
+$tc-theme-over-background: if(
+  tc-theme-contrast-tone($tc-theme-background) == "dark",
+  $_tc-color-contrast-dark,
+  $_tc-color-contrast-light
+) !default;
+
+// Kill these variables.
 $tc-theme-surface: $_tc-color-contrast-light !default;
 $tc-theme-over-surface: if(
   tc-theme-contrast-tone($tc-theme-surface) == "dark",
@@ -46,8 +54,6 @@ $tc-theme-over-error: if(
   $_tc-color-contrast-dark,
   $_tc-color-contrast-light
 ) !default;
-
-$tc-theme-background: $_tc-color-contrast-light !default;
 
 // Text colors according to light vs dark and text type.
 // ----------------------------------------------------------------------------
@@ -86,6 +92,7 @@ $tc-theme-options: (
   surface: $tc-theme-surface,
   over-primary: $tc-theme-over-primary,
   over-accent: $tc-theme-over-accent,
+  over-background: $tc-theme-over-background,
   over-surface: $tc-theme-over-surface,
   over-error: $tc-theme-over-error,
   // Text primary over "background"
