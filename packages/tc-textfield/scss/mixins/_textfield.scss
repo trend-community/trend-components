@@ -1,4 +1,8 @@
-/// Text field mixins
+/// TextField mixins
+/// @group textfield mixins
+/// @require @trend/textfield/scss/functions
+/// @require @trend/textfield/scss/mixins/icon
+/// @require @trend/textfield/scss/variables
 
 @import "~@trend/helpers/scss/mixins";
 @import "~@trend/state/styles";
@@ -7,11 +11,18 @@
 @import "../functions";
 @import "icon";
 
+/// Helper mixin to target selectors not in a disabled state.
+/// @private
+
 @mixin _tc-textfield-not-disabled {
   &:not(#{tc-textfield-classname(state-disabled)}) {
     @content;
   }
 }
+
+/// Transition a single property
+/// @param {String} $property - Valid css property that can be transtioned.
+/// @require {Mixin} tc-helper-prop
 
 @mixin tc-textfield-transition($property) {
   @include tc-helper-prop(transition-timing-function);
@@ -20,11 +31,19 @@
   transition-property: $property;
 }
 
+/// Adjust the color of text in a textfield.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
+
 @mixin tc-textfield-color($color) {
   @include _tc-textfield-not-disabled {
     @include _tc-textfield-color($color);
   }
 }
+
+/// Adjust the text color for helper text.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
 
 @mixin tc-textfield-helper-text-color($color) {
   @include _tc-textfield-not-disabled {
@@ -32,11 +51,19 @@
   }
 }
 
+/// Adjust the background color.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
+
 @mixin tc-textfield-background($color) {
   @include _tc-textfield-not-disabled {
     @include _tc-textfield-background($color);
   }
 }
+
+/// Adjust text color for labels.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
 
 @mixin tc-textfield-label-color($color) {
   @include _tc-textfield-not-disabled {
@@ -44,11 +71,19 @@
   }
 }
 
+/// Adjust border for stretched textfields.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
+
 @mixin tc-textfield-stretch-border-color($color) {
   @include _tc-textfield-not-disabled {
     @include _tc-textfield-stretch-border-color($color);
   }
 }
+
+/// Adjsut the border color of the child input.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
 
 @mixin tc-textfield-border-color($color) {
   @include _tc-textfield-not-disabled {
@@ -56,17 +91,28 @@
   }
 }
 
+/// Adjust the border color of the child input on hover.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
+
 @mixin tc-textfield-hover-border-color($color) {
   @include _tc-textfield-not-disabled {
     @include _tc-textfield-hover-border-color($color);
   }
 }
 
+/// Adjust the caret color for labels for required textfields.
+/// @param {String} $color - Valid style for tc-theme-prop mixin.
+/// @require {mixin} tc-theme-prop
+
 @mixin tc-textfield-caret-color($color) {
   #{tc-textfield-classname(child-input)} {
     @include tc-theme-prop(caret-color, $color);
   }
 }
+
+/// Adjust styles for disabled textfields.
+/// @private
 
 @mixin _tc-textfield-disabled {
   @include _tc-textfield-border-color($tc-textfield-disabled-border);
@@ -85,6 +131,9 @@
   pointer-events: none;
 }
 
+/// Adjust styles while textfield is in focused state.
+/// @private
+
 @mixin _tc-textfield-focused {
   @include tc-state-opacity(tc-state-opacity($tc-textfield-color, focus));
   @include tc-textfield-border-color($tc-textfield-focused-label-color);
@@ -94,6 +143,9 @@
     @include tc-theme-prop(color, $tc-textfield-error);
   }
 }
+
+/// Adjust the styles for an invalid textfield.
+/// @private
 
 @mixin _tc-textfield-invalid {
   $color: $tc-textfield-error;
@@ -114,6 +166,9 @@
   }
 }
 
+/// Helper mixin for adjusting inherited values for labels.
+/// @content Add rules for `after` pseudo element of a label.
+
 @mixin _tc-required-textfield-label-asterisk {
   #{tc-textfield-classname(child-input)}:required ~ {
     #{tc-textfield-classname(child-label)}::after {
@@ -123,6 +178,9 @@
 }
 
 // Rimmed textfields.
+
+/// Apply `rim` effect to textfield.
+/// @private
 
 @mixin _tc-textfield-rim {
   @include _tc-textfield-border;
@@ -141,11 +199,17 @@
   }
 }
 
+/// Apply disabled styles for a `rim` textfield.
+/// @private
+
 @mixin _tc-textfield-rim-disabled {
   @include _tc-textfield-border-color(
     $tc-textfield-rim-disabled-border
   );
 }
+
+/// Adjust positioning of beginning icon for a `rim` textfield.
+/// @private
 
 @mixin _tc-textfield-rim-beginning-icon {
   @include _tc-textfield-icon-horizontal-position(
@@ -156,6 +220,9 @@
 }
 
 // Textarea
+
+/// Create a `textarea` variant for a textfield.
+/// @private
 
 @mixin _tc-textfield-textarea {
   @include _tc-textfield-border;
@@ -172,6 +239,9 @@
 
 // Icons
 
+/// Adjust positioining for beginning icons of a textfield.
+/// @private
+
 @mixin _tc-textfield-beginning-icon {
   @include _tc-textfield-icon-horizontal-position(
     left,
@@ -185,6 +255,9 @@
     );
   }
 }
+
+/// Adjust positioining for ending icons of a textfield.
+/// @private
 
 @mixin _tc-textfield-ending-icon {
   @include _tc-textfield-icon-horizontal-position(
@@ -203,6 +276,9 @@
   }
 }
 
+/// Adjust horizontal positioining when both icons are present in a textfield.
+/// @private
+
 @mixin _tc-textfield-has-both-icons {
   @include _tc-textfield-icon-horizontal-position-both-icons(
     $tc-textfield-icon-offset,
@@ -213,6 +289,9 @@
 }
 
 // Stretch
+
+/// Apply the `stretch` variant styles for a textfield.
+/// @private
 
 @mixin _tc-textarea-stretch {
   width: 100%;
@@ -233,11 +312,17 @@
 
 // Customization
 
+/// Helper to adjust the textfield color.
+/// @private
+
 @mixin _tc-textfield-color($color) {
   #{tc-textfield-classname(child-input)} {
     @include tc-theme-prop(color, $color);
   }
 }
+
+/// Helper to adjust the helper text.
+/// @private
 
 @mixin _tc-textfield-helper-text-color($color) {
   + #{tc-textfield-classname(child-helper)} {
@@ -245,15 +330,25 @@
   }
 }
 
+/// Helper to adjust background color of main textfield.
+/// @private
+
 @mixin _tc-textfield-background($color) {
   @include tc-theme-prop(background-color, $color);
 }
 
+/// Helper to adjust border color of textfields that are not a textarea
+/// variant.
+/// @private
+
 @mixin _tc-textfield-stretch-border-color($color) {
-  &:not(.tc-TextField--textarea) {
+  &:not(#{tc-textfield-classname(modifier-textarea)}) {
     @include tc-theme-prop(border-color, $color);
   }
 }
+
+/// Helper to adjust the border color for the input.
+/// @private
 
 @mixin _tc-textfield-border-color($color) {
   #{tc-textfield-classname(child-input)} {
@@ -261,11 +356,17 @@
   }
 }
 
+/// Helper to adjust the border color of input during hover.
+/// @private
+
 @mixin _tc-textfield-hover-border-color($color) {
   #{tc-textfield-classname(child-input)}:hover {
     @include tc-theme-prop(border-color, $color);
   }
 }
+
+/// Helper to adjust the label color or placeholder text color of input.
+/// @private
 
 @mixin _tc-textfield-label-color($color) {
   #{tc-textfield-classname(child-label)},
@@ -273,6 +374,10 @@
     @include tc-theme-prop(color, $color);
   }
 }
+
+/// Helper to apply a border to `textarea` and `rim` variants.  Adds label
+/// effects for focus and blur states of textfield.
+/// @private
 
 @mixin _tc-textfield-border {
   @include tc-textfield-background(transparent);
@@ -317,6 +422,9 @@
     }
   }
 }
+
+/// Helper to apply border treatments to the input.
+/// @private
 
 @mixin _tc-textfield-border-input {
   #{tc-textfield-classname(child-input)} {

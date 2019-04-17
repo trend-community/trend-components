@@ -7,10 +7,19 @@
 @import "~@trend/theme/scss/mixins";
 @import "../variables";
 
-// Used for textarea in case of scrolling
+/// Apply background color to a label.
+/// @param {$color} - Valid css property that can be transtioned.
+/// @requrie {Mixin} tc-theme-prop
+
 @mixin tc-textfield-label-background-color($color) {
   @include tc-theme-prop(background-color, $color);
 }
+
+/// Apply stylings for labels when textfield is active.
+/// @param {String} $positionY - Translate Y position.
+/// @param {String} $positionX [0%] - Translate X position.
+/// @param {String} $size [0.75] - Scales label.
+/// @require {Function} tc-textfield-classname
 
 @mixin tc-textfield-label-active(
   $positionY,
@@ -34,6 +43,9 @@
     @content;
   }
 }
+
+/// Apply a maximum width rule to the label.
+/// @param {String} $max-width - A number and unit value.
 
 @mixin tc-textfield-label-max-width($max-width) {
   max-width: $max-width;

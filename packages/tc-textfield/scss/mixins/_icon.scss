@@ -5,6 +5,10 @@
 
 @import "../functions";
 
+/// Adjust the color of the icon(s).
+/// @param {String} $color - Valid css property that can be transtioned.
+/// @param {Bool} $styleSecondIcon [false]
+
 @mixin tc-textfield-icon-color($color, $styleSecondIcon: false) {
   &:not(#{tc-textfield-classname(state-disabled)}) {
     @include _tc-textfield-icon-color($color, $styleSecondIcon);
@@ -12,6 +16,9 @@
 }
 
 // Private mixins
+
+/// Adjust horizontal position of a single icon.
+/// @private
 
 @mixin _tc-textfield-icon-horizontal-position(
   $position-property,
@@ -29,6 +36,9 @@
     @include tc-rtl-flip-property(padding, $leftValue, $rightValue);
   }
 }
+
+/// Adjust the horizontal position of icons when both are present.
+/// @private
 
 @mixin _tc-textfield-icon-horizontal-position-both-icons(
   $position-left,
@@ -49,6 +59,10 @@
   }
 }
 
+/// Adjust color of icon(s).
+/// @param {String} - Valid css property that can be transtioned.
+/// @private
+
 @mixin _tc-textfield-icon-color($color, $endingIcon: false) {
   #{tc-textfield-classname(child-icon)} {
     @if ($endingIcon) {
@@ -60,6 +74,10 @@
     }
   }
 }
+
+/// Target sibling icon.
+/// @content Add rules for last icon in the textfield.
+/// @private
 
 @mixin _tc-textfield-icon-general-sibling {
   ~ #{tc-textfield-classname(child-icon)} {

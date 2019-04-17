@@ -1,4 +1,4 @@
-/// TextField variables
+// TextField variables
 
 @import "~@trend/helpers/scss/variables";
 @import "~@trend/theme/scss/variables";
@@ -60,43 +60,23 @@ $tc-textfield-disabled-background:
     tc-theme-fetch-option(background),
     2%
   );
-$tc-textfield-secondary-text: rgba(
-  tc-theme-fetch-option(over-background),
-  0.6
-);
 
-$tc-textfield-rim-border:
-  rgba(tc-theme-fetch-option(over-background), 0.24);
 $tc-textfield-rim-disabled-border:
   rgba(tc-theme-fetch-option(over-background), 0.06);
-$tc-textfield-rim-hover-border:
-  rgba(tc-theme-fetch-option(over-background), 0.87);
-
-$tc-textarea-border: rgba(tc-theme-fetch-option(over-background), 0.73);
-$tc-textarea-background: rgba(tc-theme-fetch-option(background), 1);
-// $tc-textarea-disabled-border-color:
-//   rgba(tc-theme-fetch-option(over-background), 0.26);
-// cannot be transparent because multiline textarea input
-// will make text unreadable
-$tc-textarea-disabled-background: rgba(249, 249, 249, 1);
 
 // Box and layout.
 $tc-textfield-border-radius: 4px;
 $tc-textfield-height: 56px;
-$tc-textfield-textarea-label-position-y: 130%;
 
 // Label
 $tc-textfield-label-offset: map-get($tc-spacings, b);
 $tc-textfield-label-position-y: 50%;
-$tc-textfield-label-transition-duration: 150ms;
 $tc-textfield-rim-label-position-y: 135%;
 
 // Icons
-$tc-textfield-icon-bottom: map-get($tc-spacings, m);
 $tc-textfield-icon-offset: map-get($tc-spacings, b);
 $tc-textfield-ending-icon-offset: map-get($tc-spacings, m);
 $tc-textfield-icon-padding: map-get($tc-spacings, l) * 2;
-$tc-textfield-rim-with-leading-icon-label-position-x: 0;
 
 // Input
 $tc-textfield-border-width: 2px;
