@@ -18,6 +18,11 @@ class TextField extends React.Component {
     BeginningIcon: PropTypes.func,
     cssClasses: PropTypes.shape({
       ROOT: PropTypes.string,
+      BEGINNING_ICON: PropTypes.string,
+      ENDING_ICON: PropTypes.string,
+      RIM: PropTypes.string,
+      STRETCH: PropTypes.string,
+      TEXTAREA: PropTypes.string,
       HELPER: PropTypes.string,
       ICON: PropTypes.string,
       INPUT: PropTypes.string,
