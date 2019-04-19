@@ -1,6 +1,6 @@
 {
   "name": "@trend/textfield",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TREND Component for inputting, editing, and selecting text.",
   "repository": {
     "type": "git",
@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@trend/helpers": "^0.3.0",
-    "@trend/state": "^0.4.0",
-    "@trend/theme": "^0.4.0",
+    "@trend/state": "^0.5.0",
+    "@trend/theme": "^0.5.0",
     "@trend/type": "^0.4.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
