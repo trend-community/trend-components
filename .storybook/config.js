@@ -1,28 +1,26 @@
 import path from 'path';
 import React from 'react';
 import {
-  configure,
-  storiesOf
+  addParameters,
+  configure
 } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
 
 import './styles.scss';
 
-const req = require.context(
-  '../packages',
-  true,
-  /^((?!node_modules).)*\/stories\/index.js$/
-);
-
-setOptions({
-  name: 'TREND Components',
-  url: 'https://github.com/trend-community/trend-components',
-  // showAddonPanel: true,
-  addonPanelInRight: true
-})
+addParameters({
+  options: {
+    panelPosition: 'right'
+  }
+});
 
 function loadStories() {
-  req.keys().forEach(req);
+  const req = require.context(
+    '../packages',
+    true,
+    /^((?!node_modules).)*\/stories\/index.js$/
+  );
+
+  req.keys().forEach(filename => req(filename));
 }
 
 configure(loadStories, module);

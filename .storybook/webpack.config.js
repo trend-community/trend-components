@@ -2,8 +2,8 @@ const autoprefixer = require('autoprefixer');
 const pathResolver = require('../scripts/pathResolver')();
 const cssBundler = require('../scripts/webpack/cssBundler')();
 
-module.exports = (baseConfig, env, defaultConfig) => {
-  defaultConfig.module.rules.push({
+module.exports = async ({ config }) => {
+  config.module.rules.push({
     test: /\.(css|scss)$/,
     use: [
       require.resolve('style-loader'),
@@ -11,12 +11,12 @@ module.exports = (baseConfig, env, defaultConfig) => {
     ]
   });
 
-  const superAlias = { ...defaultConfig.resolve.alias };
+  const superAlias = { ...config.resolve.alias };
 
-  defaultConfig.resolve.alias = {
+  config.resolve.alias = {
     ...superAlias,
     packages: pathResolver.getAbsPath('./packages')
   };
 
-  return defaultConfig;
+  return config;
 };
