@@ -1,10 +1,4 @@
 import React from 'react';
-import {
-  array,
-  boolean,
-  text,
-  select
-} from '@storybook/addon-knobs/react';
 
 import Topbar from '../src';
 
@@ -19,12 +13,7 @@ function Menu() {
   </svg>;
 }
 
-function ComponentStory() {
-  const compact = boolean('Compact', false);
-  const fixed = boolean('Fixed', false);
-  const fixedScroll = boolean('Fixed scroll', false);
-  const tall = boolean('Tall', false);
-
+function ComponentStory({ compact, fixed, fixedScroll, tall }) {
   const style = {}
 
   if (fixed || fixedScroll) {
