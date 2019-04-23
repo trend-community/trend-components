@@ -1,9 +1,4 @@
 import React from 'react';
-import {
-  number,
-  select,
-  text
-} from '@storybook/addon-knobs/react';
 
 const icons = [];
 
@@ -13,24 +8,7 @@ function importIcons(r) {
 
 importIcons(require.context('../src', false, /^((?!index|withIcon).)*\.js$/));
 
-const label = 'Size';
-const defaultValue = 2;
-const options = {
-   range: true,
-   min: 1,
-   max: 10,
-   step: 1,
-};
-
-function Story() {
-  const size = number(label, defaultValue, options);
-  const unit = select('Unit', ['rem', 'em'], 'em');
-  const color = text('Color', 'rgba(51, 51, 51, 0.87)');
-
-  const style = {
-    color
-  };
-
+function Story({ size, style, unit }) {
   const iconStyle = {
     display: 'inline-block',
     border: '1px solid #ddd',
