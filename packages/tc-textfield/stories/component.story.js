@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  boolean,
-} from '@storybook/addon-knobs/react';
 
 import Data from '../../tc-icon/src/Data';
 import Edit from '../../tc-icon/src/Edit';
@@ -14,13 +11,11 @@ class ComponentStory extends React.Component {
   }
 
   onChange = evt => {
-    console.log('onChange: ', evt.target.value);
     this.setState({ value: evt.target.value });
   }
 
   render() {
-    const rtl = boolean('rtl', false);
-    const disabled = boolean('Disable Textfields', false);
+    const { rtl, disabled } = this.props;
 
     return <div
       className="tc-pal"
