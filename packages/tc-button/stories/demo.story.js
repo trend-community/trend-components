@@ -1,11 +1,5 @@
 import React, { Fragment } from 'react';
 import Marked from 'storybook-readme/components/Marked';
-import {
-  array,
-  boolean,
-  text,
-  select
-} from '@storybook/addon-knobs/react';
 
 import demo from './demo.md';
 import Button from '../src';
@@ -18,29 +12,18 @@ function Checkmark({ className, ...rest }) {
   </svg>;
 }
 
-function Story() {
-  const accent = boolean('Use accent', false);
-  const disabled = boolean('Disabled', false);
-  const size = select(
-    'Size',
-    ['', 'compact']
-  );
-  const variants = select(
-    'Variants',
-    ['', 'ctab', 'flat', 'ghost']
-  );
-  const type = select(
-    'Type',
-    ['button', 'submit', 'reset'],
-    'button'
-  );
-  const label = text('Label', 'button');
-  const withIcon = boolean('With icon', false);
-
+function Story({
+  accent,
+  disabled,
+  label,
+  size,
+  type,
+  variants,
+  withIcon }) {
   return <React.Fragment>
     <div
       className="tc-mal tc-flex tc-flex-wrap tc-flex-center tc-flex-middle">
-      <Button className="tc-mrl"
+      <Button
         accent={accent}
         disabled={disabled}
         size={size}
