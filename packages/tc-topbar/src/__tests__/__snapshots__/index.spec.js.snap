@@ -25,11 +25,11 @@ Object {
     ],
     "results": Array [
       Object {
-        "isThrow": false,
+        "type": "return",
         "value": <div />,
       },
       Object {
-        "isThrow": false,
+        "type": "return",
         "value": <div />,
       },
     ],
