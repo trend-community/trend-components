@@ -14,7 +14,7 @@
     @include _tc-button-icon;
   }
 
-  // stylelint-disable-next-line selector-no-qualifying-type
+  // stylelint-disable-next-line
   svg.tc-Button-icon {
     @include _tc-button-icon-svg;
   }
