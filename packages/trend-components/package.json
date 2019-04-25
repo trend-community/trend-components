@@ -1,7 +1,7 @@
 {
   "name": "trend-components",
   "version": "0.6.0",
-  "description": "Modular suite of UI components trend.community products.",
+  "description": "Modular suite of scss and React UI components TREND Community products.",
   "keywords": [
     "TREND components"
   ],
@@ -16,6 +16,7 @@
     "@trend/layout": "^0.5.0",
     "@trend/normalize": "^0.3.0",
     "@trend/state": "^0.5.0",
+    "@trend/textfield": "^0.2.0",
     "@trend/theme": "^0.5.0",
     "@trend/topbar": "^0.5.0",
     "@trend/type": "^0.4.0"
