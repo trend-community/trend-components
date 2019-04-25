@@ -1,6 +1,6 @@
 {
   "name": "@trend/textfield",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "TREND Component for inputting, editing, and selecting text.",
   "repository": {
     "type": "git",

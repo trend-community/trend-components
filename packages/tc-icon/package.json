@@ -1,6 +1,6 @@
 {
   "name": "@trend/icon",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "TREND Components icons.",
   "main": "index.js",
   "scripts": {
