@@ -48,7 +48,6 @@ class ComponentStory extends React.Component {
         <div className="has-tc-TextField" style={{ width: '200px' }}>
           <TextField
             disabled={disabled}
-            helperText="Helper text"
             disabled={disabled}
             BeginningIcon={Data}>
             <TextField.Input minLength={3} />

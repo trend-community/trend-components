@@ -5,7 +5,7 @@ import { validityMap } from './constants';
 
 const isInput = ({ nodeName: n }) => n === 'INPUT' || n === 'TEXTAREA';
 
-const validations = {
+export const validations = {
   required: target => {
     const error = {
       type: 'required',

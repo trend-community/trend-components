@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TextFieldContext from './Context';
+import { validations } from './validator';
+
+const validators = Object.keys(validations);
 
 // NOTE: This should be moved to a new package for handling utilities.
 function callAll(...fns) {
@@ -29,6 +32,10 @@ class Input extends React.Component {
     }
   }
 
+  hasValidations(props) {
+    return validators.some(v => props.hasOwnProperty(v))
+  }
+
   isTextarea(variant) {
     return variant === 'textarea';
   }
@@ -51,6 +58,12 @@ class Input extends React.Component {
             this.isTextarea(textfield.variant) ? 'textarea' : 'input',
             {
               ...props,
+              'aria-controls':
+                textfield.hasHelperText() && this.hasValidations(props)
+                  ? textfield.helperId
+                  : undefined,
+              'aria-invalid': textfield.isInvalid,
+              'aria-describedby': textfield.describeInput(),
               className: cn(textfield.cssClasses.INPUT, props.className),
               disabled: textfield.isDisabled,
               id: textfield.id,

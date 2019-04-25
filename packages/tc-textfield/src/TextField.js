@@ -68,6 +68,9 @@ class TextField extends React.Component {
     super(props);
     this.state = {
       cssClasses: props.cssClasses,
+      describeInput: this.describeInput,
+      hasHelperText: this.hasHelperText,
+      helperId: `${props.id}-helper-text`,
       id: props.id,
       isDirty: false,
       isDisabled: props.disabled,
@@ -110,10 +113,20 @@ class TextField extends React.Component {
     this.setState(prev => ({ isFocused: !prev.isFocused }));
   }
 
+  describeInput = () => {
+    return this.hasHelperText() || !!this.props.validators
+      ? this.state.helperId
+      : undefined;
+  }
+
   getIconProps = () => ({
     className: this.state.cssClasses.ICON,
     size: 1.25
   })
+
+  hasHelperText = () => {
+    return this.props.helperText || this.state.validationMessage;
+  }
 
   render() {
     const {
@@ -126,6 +139,7 @@ class TextField extends React.Component {
     } = this.props;
     const {
       cssClasses,
+      helperId,
       id,
       isDirty,
       isDisabled,
@@ -150,14 +164,16 @@ class TextField extends React.Component {
           {BeginningIcon && <BeginningIcon {...this.getIconProps()} />}
           {EndingIcon && <EndingIcon {...this.getIconProps()} />}
         </div>
-        {(helperText || validationMessage) &&
-          <div className={cssClasses.HELPER}>
+        {this.hasHelperText()
+          ? <div className={cssClasses.HELPER} id={helperId}>
             {
               !isInvalid || (isInvalid && !validationMessage)
                 ? <span>{helperText}</span>
                 : isInvalid && validationMessage ? validationMessage : false
             }
-        </div>}
+          </div>
+          : false
+        }
       </TextFieldContext.Provider>
     );
   }
