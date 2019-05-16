@@ -98,24 +98,27 @@
         "always",
         [
           "button",
+          "divider",
           "drawer",
           "focustrap",
           "helpers",
           "icon",
           "layout",
+          "list",
           "normalize",
+          "package",
+          "packages",
+          "root",
+          "scripts",
+          "src",
+          "stories",
           "state",
           "textfield",
           "theme",
           "topbar",
           "trend-components",
           "type",
-          "package",
-          "packages",
-          "scripts",
-          "src",
-          "stories",
-          "root"
+          "utils"
         ]
       ]
     }
