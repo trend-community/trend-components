@@ -1,0 +1,208 @@
+@import "~@trend/helpers/scss/variables";
+@import "~@trend/helpers/scss/mixins";
+@import "~@trend/helpers/scss/functions";
+@import "~@trend/state/styles";
+@import "~@trend/type/scss/variables";
+@import "~@trend/type/scss/mixins";
+@import "~@trend/theme/scss/mixins";
+@import "mixins";
+@import "variables";
+@import "functions";
+
+// Main list component.
+
+#{tc-list-clsx(root)} {
+  @include tc-type(subtitle1);
+  @include tc-list-color(text-primary-over-background);
+
+  margin: 0;
+  padding: map-get($tc-spacings, m) 0;
+
+  line-height: map-get(map-get($tc-type-styles, body1), line-height);
+  list-style-type: none;
+
+  // State: selected and active
+
+  #{tc-list-clsx(state-active)},
+  #{tc-list-clsx(state-selected)} {
+    @include tc-list-color(primary);
+    @include tc-list-text-media-color(primary);
+  }
+
+  // State: disabled list
+
+  #{tc-list-clsx(state-disabled)} {
+    @include tc-list-color(text-disabled-over-background);
+  }
+}
+
+// Child: a list item
+
+#{tc-list-clsx(child-item)} {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+
+  align-items: center;
+
+  height: 48px;
+  padding: 0 $tc-list-horizontal-padding;
+
+  // State
+  &:focus {
+    outline: none;
+  }
+}
+
+#{tc-list-clsx(root)}:not(#{tc-list-clsx(modifier-static)}) > {
+  #{tc-list-clsx(child-item)}:not(#{tc-list-clsx(state-disabled)}) {
+    @include tc-state(primary);
+  }
+}
+
+// As anchor tags.
+
+a#{tc-list-clsx(child-item)} {
+  color: inherit;
+  text-decoration: none;
+
+  // Turn filters off if items are anchor links.
+  &:focus,
+  &:hover {
+    filter: brightness(100%);
+  }
+}
+
+// Child: media element
+// For left aligned media.
+
+#{tc-list-clsx(child-item-media)} {
+  @include tc-list-color(text-icon-over-background);
+  @include tc-list-background-color(transparent);
+  @include _tc-list-media-size(map-get($tc-spacings, l));
+
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  fill: currentColor;
+}
+
+#{tc-list-clsx(child-item)} #{tc-list-clsx(child-item-media)} {
+  display: inline-flex;
+}
+
+// Child: meta content in an item
+// For right aligned information.
+
+#{tc-list-clsx(child-item-meta)} {
+  @include tc-rtl-flip-property(
+    margin,
+    auto,
+    0,
+    tc-list-clsx(child-item)
+  );
+}
+
+// Child: text
+
+#{tc-list-clsx(child-item-text)},
+#{tc-list-clsx(child-item-primary)},
+#{tc-list-clsx(child-item-ancillary)} {
+  @include tc-text-truncate(false);
+}
+
+// Child: text content in a `label` tag
+
+#{tc-list-clsx(child-item-text)}[for] {
+  pointer-events: none;
+}
+
+// Child: primary text
+
+#{tc-list-clsx(child-item-primary)} {
+  @include tc-type-leading-top($tc-list-item-text-primary-leading);
+  @include tc-type-leading-bottom($tc-list-item-text-ancillary-leading);
+}
+
+// Child: ancillary text
+
+#{tc-list-clsx(child-item-ancillary)} {
+  @include tc-type(body2);
+  @include tc-type-leading-top($tc-list-item-text-ancillary-leading);
+}
+
+// Modifier: two line items
+
+#{tc-list-clsx(modifier-extend)} {
+  #{tc-list-clsx(child-item)} {
+    height: 72px;
+  }
+
+  #{tc-list-clsx(child-item-text)} {
+    align-self: start;
+  }
+}
+
+// Modifier: condense lists
+
+#{tc-list-clsx(modifier-condense)} {
+  padding-top: map-get($tc-spacings, s);
+  padding-bottom: map-get($tc-spacings, s);
+
+  #{tc-list-clsx(child-item)} {
+    height: 40px;
+  }
+
+  #{tc-list-clsx(child-item-media)} {
+    @include _tc-list-media-size(map-get($tc-spacings, b) * 1.25);
+  }
+
+  #{tc-list-clsx(child-item-primary)} {
+    @include tc-type-leading-top($tc-list-condense-item-text-primary-leading);
+    @include tc-type-leading-bottom($tc-list-item-text-ancillary-leading);
+  }
+
+  #{tc-list-clsx(child-item-ancillary)} {
+    @include tc-type-leading-top($tc-list-item-text-ancillary-leading);
+
+    font-size: inherit;
+  }
+}
+
+// Modifier: lists with an avatar
+
+#{tc-list-clsx(modifier-avatar)} {
+  #{tc-list-clsx(child-item)} {
+    height: 56px;
+  }
+
+  #{tc-list-clsx(child-item-media)} {
+    @include _tc-list-media-size(40px);
+
+    border-radius: 50%;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+
+    // @todo need to reconfigure to remove !important declaration.
+    > svg {
+      width: 24px !important;
+    }
+  }
+}
+
+// Modifier: two line condense lists
+
+#{tc-list-clsx(modifier-avatar)}#{tc-list-clsx(modifer-condense)},
+#{tc-list-clsx(modifier-extend)}#{tc-list-clsx(modifier-condense)} {
+  #{tc-list-clsx(child-item)} {
+    height: 60px;
+  }
+}
+
+#{tc-list-clsx(modifier-avatar)}#{tc-list-clsx(modifier-condense)} {
+  #{tc-list-clsx(child-item-media)} {
+    @include _tc-list-media-size(36px);
+  }
+}

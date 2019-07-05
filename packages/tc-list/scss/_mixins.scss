@@ -1,0 +1,41 @@
+////
+/// List mixins
+/// @group list mixins
+/// @require @trend/theme/scss/variables
+/// @require @trend/theme/scss/mixins
+////
+
+@import "~@trend/helpers/scss/mixins/rtl";
+@import "~@trend/theme/scss/variables";
+@import "~@trend/theme/scss/mixins";
+@import "variables";
+@import "functions";
+
+@mixin tc-list-color($color) {
+  @include tc-theme-prop(color, $color);
+}
+
+@mixin tc-list-background-color($color) {
+  @include tc-theme-prop(background-color, $color);
+}
+
+@mixin tc-list-text-media-color($color) {
+  #{tc-list-clsx(child-item-media)} {
+    @include tc-list-color($color);
+  }
+}
+
+@mixin _tc-list-media-size($size) {
+  $margin: calc(
+    #{$tc-list-text-offset} - #{$tc-list-horizontal-padding} - #{$size}
+  );
+
+  @include tc-rtl-flip-box(
+    margin,
+    right,
+    $margin,
+    tc-list-clsx(child-item));
+
+  height: $size;
+  width: $size;
+}

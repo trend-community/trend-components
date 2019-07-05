@@ -49,6 +49,7 @@
     "raw-loader": "0.5.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-hooks-testing-library": "0.5.0",
     "react-router-dom": "4.3.1",
     "react-test-renderer": "16.8.6",
     "sass-loader": "7.1.0",
@@ -118,7 +119,8 @@
           "topbar",
           "trend-components",
           "type",
-          "utils"
+          "utils",
+          "visuallyhidden"
         ]
       ]
     }

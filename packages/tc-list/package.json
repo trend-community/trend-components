@@ -1,0 +1,34 @@
+{
+  "name": "@trend/list",
+  "version": "0.1.0",
+  "description": "List displays a series of text content and/or images.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "TREND Components",
+    "lists",
+    "react",
+    "react-dom",
+    "scss"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/divider": "^0.1.0",
+    "@trend/helpers": "^0.3.0",
+    "@trend/state": "^0.5.0",
+    "@trend/theme": "^0.5.0",
+    "@trend/type": "^0.4.0"
+  }
+}

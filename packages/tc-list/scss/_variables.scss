@@ -1,0 +1,27 @@
+@import "~@trend/helpers/scss/variables";
+
+$tc-list-classnames: (
+  root: ".tc-List",
+  modifier-condense: ".tc-List--condense",
+  modifier-avatar: ".tc-List--avatar",
+  modifier-extend: ".tc-List--extend",
+  modifier-static: ".tc-List--static",
+  child-item: ".tc-List-item",
+  child-item-media: ".tc-List-item-media",
+  child-item-text: ".tc-List-item-text",
+  child-item-meta: ".tc-List-item-meta",
+  child-item-primary: ".tc-List-item-text-primary",
+  child-item-ancillary: ".tc-List-item-text-ancillary",
+  state-disabled: ".is-disabled",
+  state-selected: ".is-selected",
+  state-active: ".is-active"
+) !default;
+
+// $tc-list-divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;
+// $tc-list-divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
+
+$tc-list-horizontal-padding: map-get($tc-spacings, b) !default;
+$tc-list-text-offset: map-get($tc-spacings, l) * 3 !default;
+$tc-list-item-text-primary-leading: map-get($tc-spacings, b) * 2;
+$tc-list-item-text-ancillary-leading: map-get($tc-spacings, b) * 1.25;
+$tc-list-condense-item-text-primary-leading: map-get($tc-spacings, l);
