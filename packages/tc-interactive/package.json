@@ -1,0 +1,28 @@
+{
+  "name": "@trend/interactive",
+  "version": "0.1.0",
+  "description": "Implements the accessibility features of a interactive element when not rendered as its native element.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "TREND Components",
+    "interactive",
+    "accessibility"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/utils": "^0.1.0"
+  }
+}
