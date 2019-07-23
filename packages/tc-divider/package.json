@@ -1,0 +1,36 @@
+{
+  "name": "@trend/divider",
+  "version": "0.1.0",
+  "description": "Cleary separate content into groups.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "TREND Components",
+    "divider"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/helpers": "^0.3.0",
+    "@trend/theme": "^0.5.0",
+    "@trend/utils": "^0.1.0",
+    "classnames": "^2.2.6"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  }
+}

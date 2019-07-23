@@ -1,0 +1,11 @@
+@import "~@trend/theme/scss/variables";
+@import "~@trend/theme/scss/functions/theme";
+
+$tc-divider-bg: if(
+  tc-theme-tone(tc-theme-fetch-option(background)) == "light",
+  rgba(0, 0, 0, 0.12),
+  rgba(255, 255, 255, 0.2)
+) !default;
+
+$tc-divider-indent: 72px !default;
+$tc-divider-border-width: 1px !default;

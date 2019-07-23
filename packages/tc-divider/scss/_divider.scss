@@ -1,0 +1,17 @@
+@import "~@trend/theme/scss/variables";
+@import "~@trend/theme/scss/mixins";
+@import "variables";
+@import "mixins";
+
+// Main component.
+
+.tc-Divider {
+  @include tc-divider-core($tc-divider-border-width);
+  @include tc-theme-prop(border-bottom-color, $tc-divider-bg);
+}
+
+// Modifier: indent divider
+
+.tc-Divider--indent {
+  @include tc-divider-indent($tc-divider-indent);
+}

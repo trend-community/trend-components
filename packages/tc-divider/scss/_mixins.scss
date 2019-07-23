@@ -1,0 +1,28 @@
+////
+/// Divider mixins
+/// @group divider mixins
+////
+
+@import "~@trend/helpers/scss/mixins";
+
+/// Base mixin to build out a divider.
+/// @param {String} $width - Unit based value.
+
+@mixin tc-divider-core($width) {
+  border: none;
+  border-bottom-width: $width;
+  border-bottom-style: solid;
+
+  min-height: 0;
+  margin: 0;
+}
+
+/// Indent a divider.
+/// @param {String} $indent - Unit based value to indent the divider.
+/// @require {Mixin} tc-rtl-flip
+
+@mixin tc-divider-indent($indent, $root: null) {
+  @include tc-rtl-flip-box(margin, left, $indent, $root);
+
+  width: calc(100% - #{$indent});
+}
