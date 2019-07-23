@@ -1,7 +1,6 @@
 'use strict';
 
-const BABEL_ENV = process.env.BABEL_ENV;
-const isBuilding = BABEL_ENV !== undefined && BABEL_ENV !== "cjs";
+const env = require('./scripts/env')();
 
 module.exports = {
   babelrcRoots: [
@@ -11,7 +10,7 @@ module.exports = {
   presets: [
     ['@babel/preset-env', {
       loose: true,
-      modules: isBuilding ? false : 'cjs'
+      modules: env.isBabelBuilding() ? false : 'cjs'
     }],
     '@babel/preset-react'
   ],
@@ -26,6 +25,14 @@ module.exports = {
     'transform-react-remove-prop-types',
     ['transform-inline-environment-variables', {
         include: ['COMPAT']
-    }]
-  ]
+    }],
+    !env.isProd() && [
+      'module-resolver',
+      {
+        alias: {
+          '^@trend([\/][a-zA-Z]+)([\/].*)?': '@trend\\1/src\\2'
+        }
+      }
+    ]
+  ].filter(Boolean)
 };
