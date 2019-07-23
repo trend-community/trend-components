@@ -73,7 +73,7 @@
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "build": "lerna run build --parallel",
     "build:dist:": "npm run clean && mkdir build && webpack --progress --colors",
-    "build:dist:min": "mkdirp build && cross-env TC_ENV=production webpack -p --progress --colors",
+    "build:dist:min": "mkdirp build && cross-env NODE_ENV=production webpack -p --progress --colors",
     "clean": "npm-run-all --parallel clean:*",
     "clean:build": "del-cli build/** build",
     "dist": "npm-run-all --parallel build:*",
