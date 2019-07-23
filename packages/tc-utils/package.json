@@ -1,0 +1,23 @@
+{
+  "name": "@trend/utils",
+  "version": "0.1.0",
+  "description": "TREND Components JavaScript and React utility library.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "utils",
+    "React",
+    "JavaScript"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "dependencies": {}
+}
