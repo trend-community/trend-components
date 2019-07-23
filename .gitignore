@@ -35,3 +35,8 @@ npm-debug.log
 /coverage
 packages/*/*.js
 packages/*/dist
+
+# tc-utils
+packages/tc-utils/hooks
+packages/tc-utils/internal
+packages/tc-utils/state
