@@ -10,8 +10,7 @@
 
 ```bash
 ## Has peer dependency with react and react-dom
-npm install react react-dom
-npm install @trend/visually-hidden
+npm i @trend/interactive
 ```
 
 ## <a name="usage"></a> Basic Usage
@@ -26,7 +25,15 @@ import ReactDom from 'react-dom';
 import Interactive from '@trend/interactive';
 
 function Demo() {
-  return <Interactive>Interactive.</Interactive>
+  const onClick = () => conosle.log('clicked.');
+
+  return (
+    <div>
+      <Interactive onClick={onClick}>Interactive.</Interactive>
+      <Interactive as="span" onClick={onClick}>Interactive.</Interactive>
+      <Interactive onClick={onClick}>Interactive.</Interactive>
+    </div>
+  );
 }
 
 ReactDom.render(<Demo />, document.getElementById('root'));
@@ -39,3 +46,15 @@ ReactDom.render(<Demo />, document.getElementById('root'));
 > `string || Component` | Optional. Defaults to `span`.
 
 Change the underlying element.
+
+### disabled
+
+> `boolean` | Optional.
+
+Indicates whether the element is disabled or not. [MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XUL/Attribute/disabled)
+
+### focusable
+
+> `boolean` | Optional.
+
+Allow an element to obtain `focus` while being disabled.
