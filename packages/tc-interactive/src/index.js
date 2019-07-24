@@ -23,14 +23,14 @@ const INTERACTIVE_ELEMENTS = [
 ];
 
 function isInteractive(node, elements = INTERACTIVE_ELEMENTS) {
-  elements.forEach(element => node instanceof element ? true : false);
+  return elements.some(element => node instanceof element);
 }
 
 function naiveIncludes(arr, item) {
   return arr.indexOf(item) !== -1;
 }
 
-const useTabbable = createUseHook({
+const useInteractive = createUseHook({
   name: 'Interactive',
   compose: useApp,
   keys: ['disabled', 'focusable', 'clickableKeys'],
@@ -117,8 +117,8 @@ const useTabbable = createUseHook({
 
 const Interactive = createComponent({
   as: 'button',
-  useHook: useTabbable
+  useHook: useInteractive
 });
 
-export { CLICKABLE_KEYS };
+export { useInteractive, CLICKABLE_KEYS };
 export default Interactive;
