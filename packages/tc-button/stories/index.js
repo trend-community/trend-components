@@ -23,7 +23,8 @@ storiesOf('Button', module)
     const disabled = boolean('Disabled', false);
     const size = select(
       'Size',
-      ['', 'compact']
+      ['', 'compact'],
+      ''
     );
     const variants = select(
       'Variants',
@@ -41,7 +42,7 @@ storiesOf('Button', module)
       accent={accent}
       disabled={disabled}
       label={label}
-      size={size}
+      size={size.length ? size : undefined}
       type={type}
       variants={variants}
       withIcon={withIcon} />;

@@ -1,53 +1,128 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { mount } from 'enzyme';
 
 import Button from '../';
+import { cssClasses } from '../constants';
+
+const TEXT = 'button';
 
 describe('tc-button', () => {
   it('should render a button element.', () => {
-    const wrapper = shallow(<Button>button</Button>);
-    expect(wrapper.type()).toEqual('button');
+    const { getByText } = buildComponent();
+    const expected = `
+      <button
+        class="${cssClasses.BASE}"
+        tabindex="0"
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
+
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
-  it('should have correct default className.', () => {
-    const wrapper = shallow(<Button>button</Button>);
-    expect(wrapper.prop('className')).toMatchSnapshot();
+  it('should set a `disabled` button.', () => {
+    const { getByText, debug } = buildComponent({ disabled: true });
+    const expected = `
+      <button
+        aria-disabled="true"
+        class="${cssClasses.BASE}"
+        disabled=""
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
+
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
-  it('should set a default "type" prop.', () => {
-    const wrapper = shallow(<Button>button</Button>);
-    expect(wrapper.prop('type')).toEqual('button');
-  });
+  it('should render `as` an anchor.', () => {
+    const { getByText, debug } = buildComponent({ as: 'a', href: '/test' });
+    const expected = `
+      <a
+        class="${cssClasses.BASE}"
+        href="/test"
+        role="button"
+        tabindex="0"
+      >
+        ${TEXT}
+      </a>
+    `;
 
-  it('should disable the button when `disabled`.', () => {
-    const wrapper = shallow(<Button disabled>button</Button>);
-    expect(wrapper.prop('disabled')).toBeTruthy();
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
   it('should render a flat accent button.', () => {
-    const wrapper = shallow(<Button variant="flat" accent>button</Button>);
-    expect(wrapper.prop('className')).toMatchSnapshot();
+    const wrapper = mount(<Button variant="flat" accent>button</Button>);
+    const { getByText } = buildComponent({ variant: 'flat', accent: true });
+    const expected = `
+      <button
+        class="${cssClasses.BASE} ${cssClasses.ACCENT} ${cssClasses.FLAT}"
+        tabindex="0"
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
+
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
   it('should render a compact ghost button.', () => {
-    const wrapper = shallow(<Button variant="ghost" size="compact" />);
-    expect(wrapper.prop('className')).toMatchSnapshot();
+    const { getByText } = buildComponent({
+      variant: 'ghost',
+      size: 'compact'
+    });
+    const expected = `
+      <button
+        class="${cssClasses.BASE} ${cssClasses.COMPACT} ${cssClasses.GHOST}"
+        tabindex="0"
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
+
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
-  it('should render a disabled ctab accent button.', () => {
-    const wrapper = shallow(<Button variant="ctab" accent disabled />);
-    expect(wrapper.props()).toMatchSnapshot();
+  it('should render a ctab accent button.', () => {
+    const { getByText } = buildComponent({
+      accent: true,
+      variant: 'ctab'
+    });
+    const expected = `
+      <button
+        class="${cssClasses.BASE} ${cssClasses.ACCENT} ${cssClasses.CTAB}"
+        tabindex="0"
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
+
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
   it('should pass through additional props to button.', () => {
-    const wrapper = shallow(<Button id="test" aria-label="test-button" />);
-    expect(wrapper.props()).toMatchSnapshot();
-  });
+    const { getByText } = buildComponent({
+      'aria-label': 'test',
+    });
+    const expected = `
+      <button
+        aria-label="test"
+        class="${cssClasses.BASE}"
+        tabindex="0"
+        type="button"
+      >
+        ${TEXT}
+      </button>
+    `;
 
-  it('should render children.', () => {
-    const testCase = 'test';
-    const wrapper = shallow(<Button children={testCase} />);
-    expect(wrapper.text()).toEqual(testCase);
+    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
   });
 
   it('should expose a static prop getter for icons.', () => {
@@ -56,3 +131,7 @@ describe('tc-button', () => {
     expect(Button.getIconProps({ id: 'test' })).toMatchSnapshot();
   });
 });
+
+function buildComponent(props = {}) {
+  return render(<Button {...props}>{TEXT}</Button>);
+}

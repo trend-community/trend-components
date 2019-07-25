@@ -14,26 +14,3 @@ Object {
   "id": "test",
 }
 `;
-
-exports[`tc-button should have correct default className. 1`] = `"tc-Button"`;
-
-exports[`tc-button should pass through additional props to button. 1`] = `
-Object {
-  "aria-label": "test-button",
-  "className": "tc-Button",
-  "id": "test",
-  "type": "button",
-}
-`;
-
-exports[`tc-button should render a compact ghost button. 1`] = `"tc-Button tc-Button--compact tc-Button--ghost"`;
-
-exports[`tc-button should render a disabled ctab accent button. 1`] = `
-Object {
-  "className": "tc-Button tc-Button--accent tc-Button--ctab",
-  "disabled": true,
-  "type": "button",
-}
-`;
-
-exports[`tc-button should render a flat accent button. 1`] = `"tc-Button tc-Button--accent tc-Button--flat"`;
