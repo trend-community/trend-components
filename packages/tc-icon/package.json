@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node ../../scripts/build-js",
-    "build:icons": "npx @svgr/cli --svg-props role=img --template ./bin/template.js --icon --expand-props end --out-dir ./src svgs && node ./bin/generateIndex"
+    "build:icons": "npx @svgr/cli --template ./bin/template.js --icon --expand-props end --out-dir ./src svgs && node ./bin/generateIndex"
   },
   "keywords": [
     "trend-components",
@@ -32,6 +32,7 @@
     "@svgr/cli": "^4.0.0"
   },
   "dependencies": {
+    "@trend/utils": "^0.1.0",
     "prop-types": "^15.6.2"
   },
   "publishConfig": {

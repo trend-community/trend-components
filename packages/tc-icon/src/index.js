@@ -1,4 +1,4 @@
-export default from './withIcon';
+export default from './Icon';
 export { default as Add } from './Add.js'
 export { default as App } from './App.js'
 export { default as Bell } from './Bell.js'
@@ -16,6 +16,7 @@ export { default as Edit } from './Edit.js'
 export { default as Ellipsis } from './Ellipsis.js'
 export { default as Exclamation } from './Exclamation.js'
 export { default as Filter } from './Filter.js'
+export { default as Icon } from './Icon.js'
 export { default as Location } from './Location.js'
 export { default as Lock } from './Lock.js'
 export { default as Menu } from './Menu.js'

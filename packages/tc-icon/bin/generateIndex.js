@@ -9,7 +9,7 @@ const glob = require('glob');
 glob('./src/!(index)*.js', {}, (err, files) => {
   const stream = fs.createWriteStream('src/index.js');
 
-  stream.write(`export default from './withIcon';\n`);
+  stream.write(`export default from './Icon';\n`);
 
   files.forEach(file => {
     const name = path.basename(file, '.js');

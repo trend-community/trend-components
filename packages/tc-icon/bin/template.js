@@ -10,15 +10,14 @@ function template(
 ) {
   const name = componentName.name.replace('Svg', '');
 
-  jsx
-    .openingElement
-    .attributes = [
-      t.jsxAttribute(
-        t.jsxIdentifier('aria-label'),
-        t.stringLiteral(`icon_${name}`)
-      ),
-      ...jsx.openingElement.attributes
-    ];
+  // Grab the viewBox before we overwrite the openingElement below.
+  const viewBox = jsx.openingElement.attributes.find(element => {
+    return element.name.name === 'viewBox';
+  });
+
+  // Reset to a fragment so we can pass in as children.
+  jsx.openingElement = t.jsxOpeningFragment();
+  jsx.closingElement = t.jsxClosingFragment();
 
   const titleElement = t.jsxElement(
     t.jsxOpeningElement(t.jsxIdentifier('title'), []),
@@ -28,12 +27,35 @@ function template(
 
   jsx.children = [titleElement, ...jsx.children];
 
+  const useHook = `use${name}`;
+  const useName = `${name}`;
+  const label = `icon_${name}`;
+
   return template.ast`
     ${imports}
-    import withIcon from './withIcon';
-    const ${name} = (${props}) => ${jsx}
-    export default withIcon(${name});
-  `
+    import createComponent from '@trend/utils/createComponent';
+    import createUseHook from '@trend/utils/createUseHook';
+    import useCreateElement from '@trend/utils/hooks/useCreateElement';
+    import { useIcon } from './Icon';
+
+    export const ${useHook} = createUseHook({
+      name: '${useName}',
+      compose: useIcon,
+      useProps: (options, htmlProps) => ({
+        'aria-label': '${label}',
+        viewBox: '${viewBox.value.value}',
+        ...htmlProps,
+        children: useCreateElement(null, null, () => ${jsx})
+      })
+    });
+
+    const ${name} = createComponent({
+      as: 'svg',
+      useHook: ${useHook}
+    });
+
+    export default ${name};
+  `;
 }
 
 module.exports = template;
