@@ -20,9 +20,8 @@ function createUseHook(options) {
       : useProps(options.name, hookOptions, htmlProps);
 
     if (options.useCompose && isFunction(options.useCompose)) {
-      htmlProps = options.useCompose(hookOptions, htmlProps)
-    }
-    else if (options.compose) {
+      htmlProps = options.useCompose(hookOptions, htmlProps);
+    } else if (options.compose) {
       composedHooks.forEach(hook => {
         htmlProps = isFunction(hook) && hook(hookOptions, htmlProps);
       });
@@ -39,19 +38,20 @@ function createUseHook(options) {
 
   useHook.__keys = [
     ...composedHooks.reduce(
-      (allKeys, hook) => [...allKeys, ...(hook.__keys || [])], []
+      (allKeys, hook) => [...allKeys, ...(hook.__keys || [])],
+      []
     ),
     ...(options.useState ? options.useState.__keys : []),
     ...(options.keys || [])
   ];
 
-  const hasPropsAreEqual = !!(options.propsAreEqual ||
-    composedHooks.find(hook => !!hook.__propsAreEqual));
+  const hasPropsAreEqual = !!(
+    options.propsAreEqual || composedHooks.find(hook => !!hook.__propsAreEqual)
+  );
 
   if (hasPropsAreEqual) {
     useHook.__propsAreEqual = (prev, next) => {
-      const result = options.propsAreEqual &&
-        options.propsAreEqual(prev, next);
+      const result = options.propsAreEqual && options.propsAreEqual(prev, next);
 
       if (not(isNil)(result)) {
         return result;

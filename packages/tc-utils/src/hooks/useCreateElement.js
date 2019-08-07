@@ -9,8 +9,8 @@ function useCreateElement(type, props, children = props.children) {
   return ctx.useCreateElement
     ? ctx.useCreateElement(type, props, children)
     : isFunction(children)
-      ? children(props)
-      : React.createElement(type, props, children);
+    ? children(props)
+    : React.createElement(type, props, children);
 }
 
 export default useCreateElement;
