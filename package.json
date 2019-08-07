@@ -104,6 +104,7 @@
         "always",
         [
           "button",
+          "disclosure",
           "divider",
           "drawer",
           "focustrap",

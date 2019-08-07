@@ -1,0 +1,33 @@
+{
+  "name": "@trend/disclosure",
+  "version": "0.1.0",
+  "description": "Implements the WAI-ARIA Disclosure Pattern.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trend-community/trend-components.git"
+  },
+  "keywords": [
+    "TREND Components",
+    "disclosure",
+    "accessibility",
+    "WAI-ARIA",
+    "React",
+    "JavaScript"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trend-community/trend-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/button": "^0.6.0",
+    "@trend/utils": "^0.1.0",
+    "classnames": "^2.2.6"
+  }
+}
