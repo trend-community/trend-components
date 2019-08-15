@@ -3,71 +3,81 @@ import isFunction from './internal/isFunction';
 import { isNotEnv } from './internal/env';
 import isNil from './internal/isNil';
 import not from './internal/not';
+import setOptions from './internal/setOptions';
 import toArray from './internal/toArray';
 
 import useOptions from './hooks/useOptions';
 import useProps from './hooks/useProps';
 
-function createUseHook(options) {
-  const composedHooks = toArray(options.compose);
-  const useHook = (hookOptions = {}, htmlProps = {}) => {
-    hookOptions = options.useOptions
-      ? options.useOptions(hookOptions, htmlProps)
-      : useOptions(options.name, hookOptions, htmlProps);
+function createUseHook(config) {
+  const composedHooks = toArray(config.compose);
+  const useHook = (options = {}, elementProps = {}) => {
+    options = config.useOptions
+      ? config.useOptions(options, elementProps)
+      : useOptions(config.name, options, elementProps);
 
-    htmlProps = options.useProps
-      ? options.useProps(hookOptions, htmlProps)
-      : useProps(options.name, hookOptions, htmlProps);
+    elementProps = config.useProps
+      ? config.useProps(options, elementProps)
+      : useProps(config.name, options, elementProps);
 
-    if (options.useCompose && isFunction(options.useCompose)) {
-      htmlProps = options.useCompose(hookOptions, htmlProps);
-    } else if (options.compose) {
+    if (config.useCompose && isFunction(config.useCompose)) {
+      elementProps = config.useCompose(options, elementProps);
+    } else if (config.compose) {
       composedHooks.forEach(hook => {
-        htmlProps = isFunction(hook) && hook(hookOptions, htmlProps);
+        elementProps = isFunction(hook) && hook(options, elementProps);
       });
     }
 
-    return htmlProps;
+    return elementProps;
   };
 
   if (isNotEnv('production')) {
     Object.defineProperty(useHook, 'name', {
-      value: options.name
+      value: config.name,
+      writable: false
     });
   }
 
-  useHook.__keys = [
-    ...composedHooks.reduce(
-      (allKeys, hook) => [...allKeys, ...(hook.__keys || [])],
-      []
-    ),
-    ...(options.useState ? options.useState.__keys : []),
-    ...(options.keys || [])
-  ];
+  setOptions(
+    useHook,
+    [
+      ...composedHooks.reduce(
+        (allOptions, hook) => [...allOptions, ...(hook.optionProps || [])],
+        []
+      ),
+      ...(config.useState ? config.useState.optionProps : []),
+      ...(config.optionProps || [])
+    ]
+  );
 
   const hasPropsAreEqual = !!(
-    options.propsAreEqual || composedHooks.find(hook => !!hook.__propsAreEqual)
+    config.propsAreEqual || composedHooks.find(hook => !!hook.propsAreEqual)
   );
 
   if (hasPropsAreEqual) {
-    useHook.__propsAreEqual = (prev, next) => {
-      const result = options.propsAreEqual && options.propsAreEqual(prev, next);
+    Object.defineProperty(useHook, 'propsAreEqual', {
+      value: (prevProps, nextProps) => {
+        const result = config.propsAreEqual &&
+          config.propsAreEqual(prevProps, nextProps);
 
-      if (not(isNil)(result)) {
-        return result;
-      }
-
-      composedHooks.forEach(hook => {
-        const propsAreEqual = hook.__propsAreEqual;
-        const hookResult = propsAreEqual && propsAreEqual(prev, next);
-
-        if (not(isNil)(hookResult)) {
-          return hookResult;
+        if (not(isNil)(result)) {
+          return result;
         }
-      });
 
-      return deepEqual(prev, next);
-    };
+        composedHooks.forEach(hook => {
+          const hookResult = hook.propsAreEqual &&
+            hook.propsAreEqual(prevProps, nextProps);
+
+          if (not(isNil)(hookResult)) {
+            return hookResult;
+          }
+        });
+
+        return deepEqual(prevProps, nextProps);
+      },
+      enumeration: true,
+      writable: false
+    });
   }
 
   return useHook;

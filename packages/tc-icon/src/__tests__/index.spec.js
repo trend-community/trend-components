@@ -10,25 +10,25 @@ const icons = [];
 (function importIcons(r) {
   const resolver = pathResolver();
   const src = resolver.getAbsPath('packages/tc-icon/src');
-  const paths = Object.values(getChunks({
-    inputDirectory: src,
-    filePathPattern: '[!index|!withIcon|!Icon]*.js'
-  }));
+  const paths = Object.values(
+    getChunks({
+      inputDirectory: src,
+      filePathPattern: '[!index|!withIcon|!Icon]*.js'
+    })
+  );
 
   paths.forEach(path => {
     icons.push(require(path));
   });
-}());
+})();
 
 function stringifyStyles(style = defaultStyle) {
-  const camelCaseToDash = str => (
-    str.replace(/([A-Z])/g, arr => `-${arr[0].toLowerCase()}`)
-  );
+  const camelCaseToDash = str =>
+    str.replace(/([A-Z])/g, arr => `-${arr[0].toLowerCase()}`);
 
-  return Object
-    .keys(style)
-    .reduce((acc, curr) =>
-      `${acc} ${camelCaseToDash(curr)}: ${style[curr]};`,
+  return Object.keys(style)
+    .reduce(
+      (acc, curr) => `${acc} ${camelCaseToDash(curr)}: ${style[curr]};`,
       ''
     )
     .replace(/^[' ']/, '');
@@ -38,36 +38,36 @@ describe('[tc-icon - Icon]', () => {
   it('should render a generic Icon.', () => {
     const label = 'test';
     const { getByLabelText } = render(<Icon aria-label={label} />);
-    const expected = `
+
+    expect(getByLabelText(label)).toMatchInlineSnapshot(`
       <svg
         aria-label="test"
         height="1em"
         role="img"
-        style="${stringifyStyles()}"
+        style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
         width="1em"
       />
-    `;
-
-    expect(getByLabelText(label)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should be extensible for custom icons.', () => {
     const label = 'test';
-    const as = React.forwardRef((props, ref) => <svg {...props}>
-      <title>Custom</title>
-      <path />
-    </svg>);
+    const as = React.forwardRef((props, ref) => (
+      <svg {...props}>
+        <title>Custom</title>
+        <path />
+      </svg>
+    ));
     const { getByLabelText, debug } = render(
-      <Icon
-        as={as}
-        aria-label={label} />
+      <Icon as={as} aria-label={label} />
     );
-    const expected = `
+
+    expect(getByLabelText(label)).toMatchInlineSnapshot(`
       <svg
         aria-label="test"
         height="1em"
         role="img"
-        style="${stringifyStyles()}"
+        style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
         width="1em"
       >
         <title>
@@ -75,15 +75,13 @@ describe('[tc-icon - Icon]', () => {
         </title>
         <path />
       </svg>
-    `;
-
-    expect(getByLabelText(label)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should allow the size to be updated.', () => {
     const size = 2;
     const { container, debug } = render(<Icon size={size} />);
-    const svg = container.querySelector('svg')
+    const svg = container.querySelector('svg');
     const width = svg.getAttribute('width');
     const height = svg.getAttribute('height');
     const expected = `${size}em`;

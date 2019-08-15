@@ -16,13 +16,13 @@ const defaultStyle = {
 const useIcon = createUseHook({
   name: 'Icon',
   compose: useApp,
-  keys: ['size', 'unit'],
+  optionProps: ['size', 'unit'],
   useOptions: ({ size = 1, unit = 'em', ...options }, htmlProps) => ({
     size,
     unit,
     ...options
   }),
-  useProps: ({ size, unit, ...options}, { ref, ...htmlProps }) => {
+  useProps: ({ size, unit, ...options }, { ref, ...htmlProps }) => {
     const freshRef = React.useRef(null);
     const style = {
       ...defaultStyle,

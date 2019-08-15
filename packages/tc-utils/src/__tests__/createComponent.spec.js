@@ -1,78 +1,112 @@
-import React from "react";
-import { mount, shallow } from "enzyme";
+import React from 'react';
+import { render } from '@testing-library/react';
 
-import createComponent from "../createComponent";
+import createComponent from '../createComponent';
+
+const QUERY = 'query';
 
 describe('[utils - createComponent]', () => {
-  it("should render as a generic component", () => {
+  it('should render as a generic component', () => {
     const useHook = ({ text }, htmlProps) => ({
       children: text,
       ...htmlProps
     });
 
-    useHook.__keys = ['text'];
-
-    const Generic = createComponent({ as: 'span', useHook });
+    const Generic = createComponent({
+      as: 'span',
+      optionProps: ['text'],
+      useHook
+    });
 
     function As({ testProp, ...props }) {
       return <div id={testProp} {...props} />;
     }
 
-    const wrapper = mount(
-      <Generic as={As} text="text..." testProp="generic" />
+    const { getByText } = render(
+      <Generic as={As} text={QUERY} testProp="generic" />
     );
 
-    expect(
-      wrapper
-        .find("As")
-        .find("div")
-        .html()
-    ).toEqual('<div id="generic">text...</div>');
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
+      <div
+        id="generic"
+      >
+        query
+      </div>
+    `);
   });
 
-  it('should use keys as options.', () => {
-    const keyTest1 = 'key 1 text...';
-    const keyTest2 = 'keyID';
-    const useHook = ({ key1, key2 }) => ({ children: key1, id: key2 });
-    useHook.__keys = ['key1', 'key2' ];
+  it('should set optionProps as options.', () => {
+    const optionTest1 = 'option 1 text...';
+    const optionTest2 = 'optionID';
+    const useHook = ({ option1, option2 }) => ({
+      children: optionTest1,
+      id: optionTest2
+    });
 
-    const Component = createComponent({ as: 'span', useHook });
-    const wrapper = shallow(<Component key1={keyTest1} key2={keyTest2} />);
+    const Component = createComponent({
+      as: 'span',
+      optionProps: ['option1', 'option2'],
+      useHook
+    });
+    const { getByText } = render(
+      <Component option1={optionTest1} option2={optionTest2} />
+    );
 
-    expect(wrapper.text()).toEqual(keyTest1);
-    expect(wrapper.props().id).toEqual(keyTest2);
+    expect(getByText(optionTest1)).toMatchInlineSnapshot(`
+      <span
+        id="optionID"
+      >
+        option 1 text...
+      </span>
+    `);
   });
 
   it('should render when "as" created with createComponent.', () => {
-    const text = 'test successful!';
-    const expected = `<section>${text}</section>`;
-    const useHookA = ({ a }, htmlProps) => ({ children: a, ...htmlProps });
-    useHookA.__keys = ['a'];
-    const CompA = createComponent({ as: 'div', useHook: useHookA });
+    const useHookA = ({ a }, props) => ({ children: a, ...props });
+    const CompA = createComponent({
+      as: 'div',
+      optionProps: ['a'],
+      useHook: useHookA
+    });
 
-    const useHookB = ({ b }, htmlProps) => ({ children: b, ...htmlProps });
-    useHookB.__keys = ['b'];
-    const CompB = createComponent({ as: 'section', useHook: useHookB });
+    const CompB = createComponent({
+      as: 'section',
+      optionProps: ['b'],
+      useHook: function useHookB({ b }, props) {
+        return {
+          children: b,
+          ...props
+        }
+      }
+    });
 
-    const result = mount(<CompA as={CompB} a={text} b="b" />)
-      .find('section')
-      .html();
+    const { getByText } = render(<CompA as={CompB} a={QUERY} b="b" />);
 
-    expect(result).toEqual(expected);
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
+      <section>
+        query
+      </section>
+    `);
   });
 
   it('should render the component wrapped.', () => {
-    const id = 'wrapper';
     const useHook = (k, h) => ({
-      wrap: children => <div id={id}>{children}</div>,
+      wrap: children => <div id="wrapper">{children}</div>,
       ...h
     });
     const Component = createComponent({ as: 'span', useHook });
-    const wrapper = mount(<Component id="a">a</Component>);
+    const { getByText } = render(<Component id="a">{QUERY}</Component>);
 
-    const result = wrapper.find(`#${id}`).html();
-    const expected = '<div id="wrapper"><span id="a">a</span></div>';
-
-    expect(result).toEqual(expected);
+    expect(getByText(QUERY).parentElement).toMatchInlineSnapshot(`
+      <div
+        id="wrapper"
+      >
+        <span
+          id="a"
+        >
+          query
+        </span>
+      </div>
+    `);
   });
 });

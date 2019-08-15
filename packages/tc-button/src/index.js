@@ -26,7 +26,7 @@ const propTypes = {
 const useButton = createUseHook({
   name: 'Button',
   compose: useInteractive,
-  keys: ['accent', 'variant', 'size'],
+  optionProps: ['accent', 'variant', 'size'],
   useProps: ({ accent, size, variant, ...options }, { ref, ...htmlProps }) => {
     const freshRef = React.useRef(null);
     const [role, setRole] = React.useState(undefined);
@@ -49,16 +49,13 @@ const useButton = createUseHook({
       ref: useAllRefs(freshRef, ref),
       type,
       ...htmlProps,
-      className: cn(
-        cssClasses.BASE,
-        htmlProps.className, {
-          [cssClasses.ACCENT]: accent,
-          [cssClasses.COMPACT]: size === modifier(cssClasses.COMPACT),
-          [cssClasses.CTAB]: variant === modifier(cssClasses.CTAB),
-          [cssClasses.FLAT]: variant === modifier(cssClasses.FLAT),
-          [cssClasses.GHOST]: variant === modifier(cssClasses.GHOST),
-        }
-      ),
+      className: cn(cssClasses.BASE, htmlProps.className, {
+        [cssClasses.ACCENT]: accent,
+        [cssClasses.COMPACT]: size === modifier(cssClasses.COMPACT),
+        [cssClasses.CTAB]: variant === modifier(cssClasses.CTAB),
+        [cssClasses.FLAT]: variant === modifier(cssClasses.FLAT),
+        [cssClasses.GHOST]: variant === modifier(cssClasses.GHOST)
+      }),
       role
     };
   }

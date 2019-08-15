@@ -7,32 +7,35 @@ import defaultUseCreateElement from './hooks/useCreateElement';
 function createComponent({
   as: type,
   useHook,
-  keys = (useHook && useHook.__keys) || [],
-  propsAreEqual: areEqual = useHook && useHook.__propsAreEqual,
+  optionProps = (useHook && useHook.optionProps) || [],
+  propsAreEqual: areEqual = useHook && useHook.propsAreEqual,
   useCreateElement = defaultUseCreateElement
 }) {
   const Component = ({ as = type, ...props }, ref) => {
-    if (useHook) {
-      const [options, htmlProps] = splitProps(props, keys);
+    function componentUseHook() {
+      const [options, attrProps] = splitProps(props, optionProps);
       const { wrap, ...elementProps } = useHook(options, {
         ref,
-        ...htmlProps
+        ...attrProps
       });
 
-      const asKeys = as.render ? as.render.__keys : as.__keys;
-      const asOptions = asKeys ? splitProps(props, asKeys)[0] : {};
-      const element = useCreateElement(
-        as,
-        { ...elementProps, ...asOptions }
-      );
+      const asOptionProps = as.optionProps;
+      const asOptions = asOptionProps
+        ? splitProps(props, asOptionProps)[0]
+        : {};
+      const element = useCreateElement(as, { ...elementProps, ...asOptions });
 
       return wrap ? wrap(element) : element;
     }
 
-    return useCreateElement(as, props);
+    return useHook ? componentUseHook() : useCreateElement(as, props);
   };
 
-  Component.__keys = keys;
+  Object.defineProperty(Component, 'optionProps', {
+    value: optionProps,
+    enumerable: true,
+    writable: false
+  });
 
   if (isNotEnv('production') && useHook) {
     Component.displayName = useHook.name.replace(/^use/, '');

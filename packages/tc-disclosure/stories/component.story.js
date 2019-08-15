@@ -6,12 +6,6 @@ import Disclosure, { DisclosureButton, useDisclosureState } from '../src';
 import basic from './basic.md';
 import renderProps from './renderProps.md';
 
-class Comp extends React.Component {
-  render() {
-    return false;
-  }
-}
-
 function ComponentStory({ as }) {
   const disclosure = useDisclosureState();
   const conditionalDisclosure = useDisclosureState({ visible: true });

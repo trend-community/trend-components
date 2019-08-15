@@ -1,22 +1,21 @@
 /**
  * @param {object} props
- * @param {array} keys
- * @return {Array<object, object} - An array of two objects (picked, omitted).
+ * @param {array} optionProps
+ * @return {Array<object, object} - An array of two objects (options, attrProps).
  */
 
-export default function splitProps(props, keys) {
+export default function splitProps(props, optionProps) {
   const propsKeys = Object.keys(props);
-  const picked = {};
-  const omitted = {};
+  const options = {};
+  const attrProps = {};
 
   propsKeys.forEach(key => {
-    if (keys.indexOf(key) >= 0) {
-      picked[key] = props[key];
-    }
-    else {
-      omitted[key] = props[key];
+    if (optionProps.indexOf(key) >= 0) {
+      options[key] = props[key];
+    } else {
+      attrProps[key] = props[key];
     }
   });
 
-  return [picked, omitted];
+  return [options, attrProps];
 }

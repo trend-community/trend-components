@@ -1,10 +1,13 @@
 import React from 'react';
 
+import setOptions from '@trend/utils/internal/setOptions';
 import useClosedState from '@trend/utils/hooks/useClosedState';
 import useId from '@trend/utils/hooks/useId';
 import useToggle from '@trend/utils/hooks/useToggle';
 
-function useState(initialState = {}) {
+const optionProps = ['disclosureId', 'hide', 'show', 'visible', 'toggle'];
+
+function useDisclosureState(initialState = {}) {
   const defaultId = useId('tc-disclosure-');
   const {
     disclosureId = defaultId,
@@ -21,6 +24,4 @@ function useState(initialState = {}) {
   };
 }
 
-useState.__keys = ['disclosureId', 'hide', 'show', 'visible', 'toggle'];
-
-export default useState;
+export default setOptions(useDisclosureState, optionProps);

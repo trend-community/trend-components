@@ -33,7 +33,7 @@ function naiveIncludes(arr, item) {
 const useInteractive = createUseHook({
   name: 'Interactive',
   compose: useApp,
-  keys: ['disabled', 'focusable', 'clickableKeys'],
+  optionProps: ['disabled', 'focusable', 'clickableKeys'],
   useOptions: ({ clickableKeys = CLICKABLE_KEYS, ...options }, htmlProps) => ({
     clickableKeys,
     disabled: htmlProps.disabled,
@@ -60,56 +60,74 @@ const useInteractive = createUseHook({
       disabled: isDisabled,
       tabIndex: isDisabled ? undefined : tabIndex,
       'aria-disabled': options.disabled,
-      onClick: React.useCallback(event => {
-        if (options.disabled) {
-          event.stopPropagation();
+      onClick: React.useCallback(
+        event => {
+          if (options.disabled) {
+            event.stopPropagation();
+            event.preventDefault();
+          } else {
+            onClick(event);
+          }
+        },
+        [options.disabled, onClick]
+      ),
+      onKeyDown: useAllCallbacks(
+        React.useCallback(
+          event => {
+            const isNotClickKey = not(
+              () =>
+                clickableKeysRef.current &&
+                naiveIncludes(clickableKeysRef.current, event.key)
+            );
+            const isNativeClick = () =>
+              naiveIncludes(CLICKABLE_KEYS, event.key) &&
+              isInteractive(event.target);
+
+            if (options.disabled || isNotClickKey() || isNativeClick()) {
+              return;
+            }
+
+            event.preventDefault();
+            event.target.dispatchEvent(
+              new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: false
+              })
+            );
+          },
+          [clickableKeysRef, options.disabled]
+        ),
+        onKeyDown
+      ),
+      onMouseDown: React.useCallback(
+        event => {
+          if (isInteractive(event.target, [HTMLInputElement])) {
+            return onMouseDown(event);
+          }
+
           event.preventDefault();
-        }
-        else {
-          onClick(event);
-        }
-      }, [options.disabled, onClick]),
-      onKeyDown: useAllCallbacks(React.useCallback(event => {
-        const isNotClickKey = not(() => clickableKeysRef.current &&
-          naiveIncludes(clickableKeysRef.current, event.key));
-         const isNativeClick = () => naiveIncludes(CLICKABLE_KEYS, event.key)
-           && isInteractive(event.target);
 
-        if (options.disabled || isNotClickKey() || isNativeClick()) {
-          return;
-        }
-
-        event.preventDefault();
-        event.target.dispatchEvent(new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: false
-        }));
-      }, [clickableKeysRef, options.disabled]), onKeyDown),
-      onMouseDown: React.useCallback(event => {
-        if (isInteractive(event.target, [HTMLInputElement])) {
-          return onMouseDown(event);
-        }
-
-        event.preventDefault();
-
-        if (options.disabled) {
-          event.stopPropagation();
-        }
-        else {
-          (freshRef.current || event.target).focus();
-          onMouseDown(event);
-        }
-      }, [options.disabled, onMouseDown]),
-      onMouseOver: React.useCallback(event => {
-        if (options.disabled) {
-          event.stopPropagation();
-          event.preventDefault();
-        }
-        else {
-          onMouseOver(event);
-        }
-      }, [options.disabled, onMouseOver]),
+          if (options.disabled) {
+            event.stopPropagation();
+          } else {
+            (freshRef.current || event.target).focus();
+            onMouseDown(event);
+          }
+        },
+        [options.disabled, onMouseDown]
+      ),
+      onMouseOver: React.useCallback(
+        event => {
+          if (options.disabled) {
+            event.stopPropagation();
+            event.preventDefault();
+          } else {
+            onMouseOver(event);
+          }
+        },
+        [options.disabled, onMouseOver]
+      ),
       ...htmlProps
     };
   }

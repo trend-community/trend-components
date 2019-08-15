@@ -1,74 +1,68 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { mount } from 'enzyme';
 
 import Button from '../';
 import { cssClasses } from '../constants';
 
-const TEXT = 'button';
+const QUERY = 'button';
 
 describe('tc-button', () => {
   it('should render a button element.', () => {
     const { getByText } = buildComponent();
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
-        class="${cssClasses.BASE}"
+        class="tc-Button"
         tabindex="0"
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should set a `disabled` button.', () => {
     const { getByText, debug } = buildComponent({ disabled: true });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
         aria-disabled="true"
-        class="${cssClasses.BASE}"
+        class="tc-Button"
         disabled=""
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render `as` an anchor.', () => {
-    const { getByText, debug } = buildComponent({ as: 'a', href: '/test' });
-    const expected = `
+    const { getByText } = buildComponent({ as: 'a', href: '/test' });
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <a
-        class="${cssClasses.BASE}"
+        class="tc-Button"
         href="/test"
         role="button"
         tabindex="0"
       >
-        ${TEXT}
+        button
       </a>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render a flat accent button.', () => {
-    const wrapper = mount(<Button variant="flat" accent>button</Button>);
     const { getByText } = buildComponent({ variant: 'flat', accent: true });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
-        class="${cssClasses.BASE} ${cssClasses.ACCENT} ${cssClasses.FLAT}"
+        class="tc-Button tc-Button--accent tc-Button--flat"
         tabindex="0"
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render a compact ghost button.', () => {
@@ -76,17 +70,16 @@ describe('tc-button', () => {
       variant: 'ghost',
       size: 'compact'
     });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
-        class="${cssClasses.BASE} ${cssClasses.COMPACT} ${cssClasses.GHOST}"
+        class="tc-Button tc-Button--compact tc-Button--ghost"
         tabindex="0"
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render a ctab accent button.', () => {
@@ -94,35 +87,33 @@ describe('tc-button', () => {
       accent: true,
       variant: 'ctab'
     });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
-        class="${cssClasses.BASE} ${cssClasses.ACCENT} ${cssClasses.CTAB}"
+        class="tc-Button tc-Button--accent tc-Button--ctab"
         tabindex="0"
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should pass through additional props to button.', () => {
     const { getByText } = buildComponent({
-      'aria-label': 'test',
+      'aria-label': 'test'
     });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
         aria-label="test"
-        class="${cssClasses.BASE}"
+        class="tc-Button"
         tabindex="0"
         type="button"
       >
-        ${TEXT}
+        button
       </button>
-    `;
-
-    expect(getByText(TEXT)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should expose a static prop getter for icons.', () => {
@@ -133,5 +124,5 @@ describe('tc-button', () => {
 });
 
 function buildComponent(props = {}) {
-  return render(<Button {...props}>{TEXT}</Button>);
+  return render(<Button {...props}>{QUERY}</Button>);
 }

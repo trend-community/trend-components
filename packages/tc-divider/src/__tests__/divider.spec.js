@@ -1,29 +1,49 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
-import { cssClasses } from '../constants';
 import Divider from '../';
 
-function expected({ cn = cssClasses.root, o = 'horizontal' } = {}) {
-  return `<hr class="${cn}" role="separator" aria-orientation="${o}">`;
-}
+const build = props => (
+  <div data-testid={QUERY}>
+    <Divider {...props} />
+  </div>
+);
+const QUERY = 'query';
 
 describe('tc-divider', () => {
   it('should render a divider.', () => {
-    const wrapper = mount(<Divider />);
-    const result = wrapper.html();
+    const { getByTestId } = render(build());
 
-    expect(result).toEqual(expected());
+    expect(getByTestId(QUERY).firstChild).toMatchInlineSnapshot(`
+      <hr
+        aria-orientation="horizontal"
+        class="tc-Divider"
+        role="separator"
+      />
+    `);
   });
 
   it('should render with a vertical orientation.', () => {
-    const result = mount(<Divider orientation="vertical" />).html();
-    expect(result).toEqual(expected({ o: 'vertical' }))
+    const { getByTestId } = render(build({ orientation: 'vertical' }));
+
+    expect(getByTestId(QUERY).firstChild).toMatchInlineSnapshot(`
+      <hr
+        aria-orientation="vertical"
+        class="tc-Divider"
+        role="separator"
+      />
+    `);
   });
 
   it('should render with the "indent" variant.', () => {
-    const result = mount(<Divider variant="indent" />).html();
-    const { root, indent } = cssClasses;
-    expect(result).toEqual(expected({ cn: `${root} ${indent}`}));
+    const { getByTestId } = render(build({ variant: 'indent' }));
+
+    expect(getByTestId(QUERY).firstChild).toMatchInlineSnapshot(`
+      <hr
+        aria-orientation="horizontal"
+        class="tc-Divider tc-Divider--indent"
+        role="separator"
+      />
+    `);
   });
 });

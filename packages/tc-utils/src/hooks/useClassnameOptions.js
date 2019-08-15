@@ -1,7 +1,7 @@
 import createUseHook from '../createUseHook';
 
 const useClassnameOptions = createUseHook({
-  keys: ['classnameOptions']
+  optionProps: ['classnameOptions']
 });
 
 export default useClassnameOptions;

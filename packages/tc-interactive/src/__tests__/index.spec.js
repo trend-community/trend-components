@@ -1,64 +1,59 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from '@testing-library/react';
 
 import Interactive, { CLICKABLE_KEYS } from '../';
 
-const text = 'btn';
+const QUERY = 'btn';
 
 describe('tc-interactive', () => {
   it('should render a Interactive.', () => {
     const { getByText } = buildComponent();
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
         tabindex="0"
       >
-        ${text}
+        btn
       </button>
-    `;
-
-    expect(getByText(text)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render a `disabled` Interactive.', () => {
-    const expected = `
+    const { getByText } = buildComponent({ disabled: true });
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
         aria-disabled="true"
         disabled=""
       >
-        ${text}
+        btn
       </button>
-    `;
-    const { getByText } = buildComponent({ disabled: true });
-
-    expect(getByText(text)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render a `focusable` `disabled` Interactive.', () => {
-    const expected = `
+    const { getByText } = buildComponent({ disabled: true, focusable: true });
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <button
         aria-disabled="true"
         tabindex="0"
       >
-        ${text}
+        btn
       </button>
-    `;
-    const { getByText } = buildComponent({ disabled: true, focusable: true });
-
-    expect(getByText(text)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should render `as` a span.', () => {
     const { getByText } = buildComponent({ as: 'span' });
-    const expected = `
+
+    expect(getByText(QUERY)).toMatchInlineSnapshot(`
       <span
         tabindex="0"
       >
-        ${text}
+        btn
       </span>
-    `;
-
-    expect(getByText(text)).toMatchInlineSnapshot(expected);
+    `);
   });
 
   it('should fire a click event.', () => {
@@ -66,7 +61,7 @@ describe('tc-interactive', () => {
     const { getByText } = buildComponent({ onClick });
 
     [1, 2, 3].forEach((_, idx) => {
-      fireEvent.click(getByText(text));
+      fireEvent.click(getByText(QUERY));
       expect(onClick).toHaveBeenCalledTimes(idx + 1);
     });
   });
@@ -76,7 +71,7 @@ describe('tc-interactive', () => {
     const { getByText } = buildComponent({ disabled: true, onClick });
 
     [1, 2, 3].forEach(() => {
-      fireEvent.click(getByText(text));
+      fireEvent.click(getByText(QUERY));
       expect(onClick).toHaveBeenCalledTimes(0);
     });
   });
@@ -90,14 +85,14 @@ describe('tc-interactive', () => {
     });
 
     [1, 2, 3].forEach(() => {
-      fireEvent.click(getByText(text));
+      fireEvent.click(getByText(QUERY));
       expect(onClick).toHaveBeenCalledTimes(0);
     });
   });
 
   it('should be able to obtain focus.', () => {
     const { getByText } = buildComponent();
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     expect(element).not.toHaveFocus();
     element.focus();
@@ -106,7 +101,7 @@ describe('tc-interactive', () => {
 
   it('should not be able to obtain focus.', () => {
     const { getByText } = buildComponent({ disabled: true });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     element.focus();
     expect(element).not.toHaveFocus();
@@ -114,7 +109,7 @@ describe('tc-interactive', () => {
 
   it('should be focusable when disabled and focusable.', () => {
     const { getByText } = buildComponent({ disabled: true, focusable: true });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     element.focus();
     expect(element).toHaveFocus();
@@ -123,7 +118,7 @@ describe('tc-interactive', () => {
   it('should adjust clickable keys.', () => {
     const onClick = jest.fn();
     const { getByText } = buildComponent({ clickableKeys: ['q'], onClick });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     fireEvent.keyDown(element, { key: 'q' });
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -131,7 +126,7 @@ describe('tc-interactive', () => {
 
   it('should focus on mouse down', () => {
     const { getByText } = buildComponent();
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     expect(element).not.toHaveFocus();
     fireEvent.mouseDown(element);
@@ -142,7 +137,7 @@ describe('tc-interactive', () => {
     const onClick = jest.fn();
     const { getByText } = buildComponent({ as: 'span', onClick });
 
-    fireEvent.click(getByText(text));
+    fireEvent.click(getByText(QUERY));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -154,7 +149,7 @@ describe('tc-interactive', () => {
       onClick
     });
 
-    fireEvent.click(getByText(text));
+    fireEvent.click(getByText(QUERY));
     expect(onClick).not.toHaveBeenCalled();
   });
 
@@ -167,13 +162,13 @@ describe('tc-interactive', () => {
       onClick
     });
 
-    fireEvent.click(getByText(text));
+    fireEvent.click(getByText(QUERY));
     expect(onClick).not.toHaveBeenCalled();
   });
 
   it('should allow focus for non-interactives.', () => {
     const { getByText } = buildComponent({ as: 'span' });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     expect(element).not.toHaveFocus();
     element.focus();
@@ -182,7 +177,7 @@ describe('tc-interactive', () => {
 
   it('should kill focus for non-interactives.', () => {
     const { getByText } = buildComponent({ as: 'span', disabled: true });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     expect(element).not.toHaveFocus();
     element.focus();
@@ -195,7 +190,7 @@ describe('tc-interactive', () => {
       disabled: true,
       focusable: true
     });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     expect(element).not.toHaveFocus();
     element.focus();
@@ -205,7 +200,7 @@ describe('tc-interactive', () => {
   it(`should trigger click on ${CLICKABLE_KEYS} for non-interactives.`, () => {
     const onClick = jest.fn();
     const { getByText } = buildComponent({ as: 'div', onClick });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     CLICKABLE_KEYS.forEach((key, idx) => {
       fireEvent.keyDown(element, { key });
@@ -213,11 +208,14 @@ describe('tc-interactive', () => {
     });
   });
 
-  it(`should not trigger click on ${CLICKABLE_KEYS} for disabled non-interactives.`,
-    () => {
+  it(`should not trigger click on ${CLICKABLE_KEYS} for disabled non-interactives.`, () => {
     const onClick = jest.fn();
-    const { getByText } = buildComponent({ as: 'div', onClick, disabled: true });
-    const element = getByText(text);
+    const { getByText } = buildComponent({
+      as: 'div',
+      onClick,
+      disabled: true
+    });
+    const element = getByText(QUERY);
 
     CLICKABLE_KEYS.forEach((key, idx) => {
       fireEvent.keyDown(element, { key });
@@ -225,8 +223,7 @@ describe('tc-interactive', () => {
     });
   });
 
-  it(`should not trigger click on ${CLICKABLE_KEYS} for disabled focusable non-interactives.`,
-    () => {
+  it(`should not trigger click on ${CLICKABLE_KEYS} for disabled focusable non-interactives.`, () => {
     const onClick = jest.fn();
     const { getByText } = buildComponent({
       as: 'div',
@@ -234,7 +231,7 @@ describe('tc-interactive', () => {
       disabled: true,
       focusable: true
     });
-    const element = getByText(text);
+    const element = getByText(QUERY);
 
     CLICKABLE_KEYS.forEach((key, idx) => {
       fireEvent.keyDown(element, { key });
@@ -244,5 +241,5 @@ describe('tc-interactive', () => {
 });
 
 function buildComponent(props = {}) {
-  return render(<Interactive {...props}>{text}</Interactive>);
+  return render(<Interactive {...props}>{QUERY}</Interactive>);
 }

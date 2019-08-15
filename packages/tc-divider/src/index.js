@@ -12,21 +12,19 @@ import { cssClasses } from './constants';
 
 const propTypes = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical', undefined]),
-  variant: PropTypes.oneOf([
-    getVariantName(cssClasses.indent)
-  ])
+  variant: PropTypes.oneOf([getVariantName(cssClasses.indent)])
 };
 
 const useDivider = createUseHook({
   name: 'Divider',
   compose: useApp,
-  keys: ['orientation', 'variant'],
+  optionProps: ['orientation', 'variant'],
   useOptions: ({ orientation = 'horizontal', variant = '', ...options }) => ({
     orientation,
     variant,
     ...options
   }),
-  useProps: ({ variant: variants, ...options }, { className, ...props}) => {
+  useProps: ({ variant: variants, ...options }, { className, ...props }) => {
     const { root, ...classVariants } = cssClasses;
 
     return {

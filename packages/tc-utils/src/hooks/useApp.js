@@ -1,7 +1,7 @@
 import createUseHook from '../createUseHook';
 
 const useApp = createUseHook({
-  keys: ['app']
+  optionProps: ['app']
 });
 
 export default useApp;
