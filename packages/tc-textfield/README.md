@@ -5,7 +5,6 @@
 * [Installation](#installation)
 * [Basic Usage](#usage)
 * [TextField](#textfield)
-* [Methods](#methods)
 * [Props API](#props)
 
 
@@ -23,74 +22,94 @@ With a module bundler like [webpack](https://webpack.js.org/), use as you would 
 
 ## <a name="textfield"></a> TextField
 
-### Default TextField
+Exports five modules:
+
+- `TextField`: Main component that wraps the lable and input.
+- `TextFieldLabel`: Creates a label element.
+- `TextFieldInput`: Creates a input element.
+- `TextFieldHelper`: Helper and validation message inside a div element.  Only component that is not wrapped by `TextField`.
+- `useTextFieldState`: Returns a state object to spread in each component.
 
 ```javascript
 // Using ES6 modules.
 import React from 'react';
-import TextField from '@trend/textfield';
+import TextField, {
+  useTextFieldState,
+  TextFieldLabel,
+  TextFieldInput,
+  TextFieldHelper
+} from '@trend/textfield';
 
 function DefaultTextField() {
+  const props = useTextFieldState();
+
   return <div>
-    <TextField>
-      <TextField.Input />
-      <TextField.Label children="Label" />
+    <TextField {...props}>
+      <TextFieldInput {...props} />
+      <TextFieldLabel {...props} children="Label" />
     </TextField>
   </div>;
 }
 
 function WithHelperText() {
+  const props = useTextFieldState({
+    helperMessage: 'Here is some helper text.'
+  });
+
   return <div>
-    <TextField helperText="Here is some helper text.">
-      <TextField.Input />
-      <TextField.Label children="Label" />
+    <TextField {...props}>
+      <TextField.Input {...props} />
+      <TextField.Label {...props} children="Label" />
     </TextField>
+    <TextFieldHelper {...props} />
   </div>;
 }
 
 // Interact with label and input like normal react components.
-function RandomTextField() {
+function ValidateTextField() {
+  const props = useTextFieldState();
+
   return <div>
-    <TextField>
-      <TextField.Input required onChange={() => {}} minLength={3} />
-      <TextField.Label children="Label" />
+    <TextField {...props}>
+      <TextFieldInput {...props} required onChange={() => {}} minLength={3} />
+      <TextFieldLabel {...props} children="Label" />
     </TextField>
+    <TextFieldHelper {...props} />
   </div>;
 }
-```
-## <a name="methods"></a> Methods
 
-### Input (static)
+function AsTextarea() {
+  const props = useTextFieldState();
 
-Add an input to a textfield.  Should only ever be a single input per textfield.  Inherits state from parent textfield through the **React** [Context API](https://reactjs.org/docs/context.html).  Interact with the input like any other **React** component.
-
-```javascript
-import TextField from '@trend/textfield';
-
-function MyInput() {
   return <div>
-    <TextField><TextField.Input {...props} /></TextField>
+    <TextField {...props} variant="textarea">
+      <TextFieldInput {...props} as="textarea" />
+      <TextFieldLabel {...props} children="Label" />
+    </TextField>
+    <TextFieldHelper {...props} />
   </div>;
 }
-```
 
-### Label (static)
+function AddIcons() {
+  const props = useTextFieldState();
 
-Add a label to a textfield.  Should only ever be a single label per textfield.  Inherits state from parent textfield through the **React** [Context API](https://reactjs.org/docs/context.html).  Interact with the label like any other **React** component.
-
-```javascript
-import TextField from '@trend/textfield';
-
-function MyInput() {
   return <div>
-    <TextField><TextField.Label {...props} /></TextField>
+    <TextField
+      {...props}
+      BeginningIcon={IconComponent}
+      EndingIcon={() => IconComponent}>
+      <TextFieldInput {...props} />
+      <TextFieldLabel {...props} children="Label" />
+    </TextField>
+    <TextFieldHelper {...props} />
   </div>;
 }
 ```
-
 ## <a name="props"></a> Props API
 
-### BeginningIcon
+### TextField
+
+**BeginningIcon**
 
 > `function` | optional
 
@@ -109,7 +128,7 @@ function BeginningIconTextField() {
 }
 ```
 
-### EndingIcon
+**EndingIcon**
 
 > `function` | optional
 
@@ -128,7 +147,21 @@ function EndingIconTextField() {
 }
 ```
 
-### cssClasses
+**stretch**
+
+> `bool` | Optional.
+
+Apply the stretch variant to a TextField.
+
+### variant
+
+> `string` | Optional. Needs to be one of: rim or textarea.
+
+Adjust the appearance of a TextField.
+
+### useTextFieldState
+
+**classnameOptions**
 
 > `object` | Optional. See below example for defaults and object shape.
 
@@ -139,7 +172,7 @@ Customize the classnames for component.
 // NOTE: customizing the RIM and/or TEXTAREA classnames will still be matched
 // to the rim or textarea value that is matched when using the variant prop.
 
-const cssClass = {
+const classnameOptions = {
   ROOT: 'tc-TextField',
   BEGINNING_ICON: 'tc-TextField--beginningIcon',
   ENDING_ICON: 'tc-TextField--endingIcon',
@@ -157,33 +190,27 @@ const cssClass = {
 }
 ```
 
-### disabled
+**isDisabled**
 
 > `boolean` | Optional, `false`
 
 Render the textfield in a disabled state.
 
-### helperText
+**helperMessage**
 
 > `string` | Optional
 
 Add text below form control.  **NOTE**, the element rendered is a sibling to the actual textfield component and not a direct child.
 
-### id
+**textFieldId**
 
 > `string` | Optional.  Defaults to `tc-textfield-<uniqueID>`
 
 Syncs `input.id` with the `label.for` attributes.
 
-### stretch
+**validators**
 
-> `bool` | Optional.
-
-Apply the stretch variant to a TextField.
-
-### validators
-
-> `array` | Optional.
+> `array || null` | Optional. Defaults to null.
 
 Add custom validations or edit default validation messages.  The TextField component currenlty applies reasonable defaults for: `required`, `minLength`, and `pattern` attributes on the `TextField.Input`.
 
@@ -212,31 +239,33 @@ const validators = [
 
 // Use default validations.
 function DefaultValidations() {
+  const props = useTextFieldState();
+
   return <div>
-    <TextField>
-      <TextField.Input required minLength={3} pattern={...} />
+    <TextField {...props}>
+      <TextFieldInput {...props} required minLength={3} pattern={...} />
     </TextField>
   </div>;
 }
 
 function CustomMessages() {
-   return <div>
-    <TextField validators=[{
+  const props = useTextFieldState({
+    validators: [{
       type: 'required',
       message: 'Please provide a value for this Textield.'
-    }]>
-      <TextField.Input required minLength={3} pattern={...} />
+    }]
+  });
+
+  return <div>
+    <TextField {...props}>
+      <TextFieldInput {...props} required minLength={3} pattern={...} />
     </TextField>
   </div>;
 }
 ```
-### variant
 
-> `string` | Optional. Needs to be one of: rim or textarea.
+**value**
 
-Adjust the appearance of a TextField.
+> `string` | Optional.  Defaults to ''
 
-
-
-
-
+The value to assign to the textfield.

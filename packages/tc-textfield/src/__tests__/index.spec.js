@@ -1,266 +1,420 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 
 import Data from '../../../tc-icon/src/Data';
 import { cssClasses, validityMap } from '../constants';
-import TextField from '../';
+import TextField, {
+  useTextFieldState,
+  TextFieldLabel,
+  TextFieldInput,
+  TextFieldHelper
+} from '../';
 
-describe('tc-textfield', () => {
-  let props;
+const QUERY = 'label';
 
-  beforeEach(() => {
-    props = {
-      helperText: 'Helper text',
-      BeginningIcon: Data
-    }
-  });
+function Component(props = {}) {
+  const { textfieldProps, inputProps, ...rest } = props;
+  const state = useTextFieldState(rest);
 
-  // Test main component.
-  it('should render a div with the component className.', () => {
-    const wrapper = shallow(<TextField />);
-    const elem = wrapper.find(`div.${cssClasses.ROOT}`);
+  return (
+    <>
+      <TextField {...state} {...textfieldProps}>
+        <TextFieldLabel {...state}>{QUERY}</TextFieldLabel>
+        <TextFieldInput {...state} {...inputProps} />
+      </TextField>
+      <TextFieldHelper {...state} />
+    </>
+  );
+}
 
-    expect(elem).toHaveLength(1);
-  });
+describe('[tc-textfield]', () => {
+  it('should render a complete component.', () => {
+    const { getByLabelText } = render(<Component />);
 
-  // Test icon.
-  it('should be able to render an input correctly.', () => {
-    const wrapper = mount(<TextField><TextField.Input /></TextField>);
-    const input = wrapper.find(`input.${cssClasses.INPUT}`);
-
-    expect(input).toHaveLength(1);
-    expect(input.prop('id')).toBeTruthy();
-    wrapper.unmount();
+    expect(getByLabelText(QUERY).parentNode).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField"
+      >
+        <label
+          class="tc-TextField-label"
+          for="tc-textfield-1"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-1"
+          type="text"
+          value=""
+        />
+      </div>
+    `);
   });
 
   // Test icons.
-  it('should render the TextField with the beginning icon correctly.', () => {
-    const wrapper = mount(<TextField {...props} />);
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.BEGINNING_ICON}`
+  it('should render with a beginning icon.', () => {
+    const { getByLabelText } = render(
+      <Component textfieldProps={{ BeginningIcon: Data }} />
     );
-    const icon = wrapper.find(`svg.${cssClasses.ICON}`);
 
-    expect(elem).toHaveLength(1);
-    expect(icon).toHaveLength(1);
-    wrapper.unmount();
+    expect(getByLabelText(QUERY).parentNode).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField tc-TextField--beginningIcon"
+      >
+        <label
+          class="tc-TextField-label"
+          for="tc-textfield-2"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-2"
+          type="text"
+          value=""
+        />
+        <svg
+          aria-label="icon_Data"
+          class="tc-TextField-icon"
+          height="1.25em"
+          role="img"
+          style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
+          viewBox="0 0 160 160"
+          width="1.25em"
+        >
+          <title>
+            Data
+          </title>
+          <path
+            d="M156.147 155.792a12.9 12.9 0 01-9.5 4.208H13.344C5.986 160 0 153.667 0 145.882V52.106L48.86 2.694v-.341h.34L51.524 0h93.061c7.854 0 14.338 6.76 14.453 15.069l.947 130.6a14.462 14.462 0 01-3.838 10.123zM48.86 15.714l-33.321 33.7H48.86v-33.7zm101.285-.5a5.747 5.747 0 00-5.559-5.8h-86.83v28.233h80.059v9.412h-80.06v11.765H8.9v87.058a4.587 4.587 0 004.448 4.706h133.3a4.3 4.3 0 003.168-1.4 4.819 4.819 0 001.279-3.372zM22.173 112.941h115.641v9.412H22.173v-9.412zm0-37.647h115.641v9.412H22.173v-9.412z"
+          />
+        </svg>
+      </div>
+    `);
   });
 
-  it('should render the TextField with the ending icon correctly.', () => {
-    props.BeginningIcon = false;
-    props.EndingIcon = Data
-    const wrapper = mount(<TextField {...props} />);
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.ENDING_ICON}`
+  it('should render with a ending icon.', () => {
+    const { getByLabelText } = render(
+      <Component textfieldProps={{ EndingIcon: Data }} />
     );
-    const icon = wrapper.find(`svg.${cssClasses.ICON}`);
 
-    expect(elem).toHaveLength(1);
-    expect(icon).toHaveLength(1);
-    wrapper.unmount();
+    expect(getByLabelText(QUERY).parentNode).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField tc-TextField--endingIcon"
+      >
+        <label
+          class="tc-TextField-label"
+          for="tc-textfield-3"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-3"
+          type="text"
+          value=""
+        />
+        <svg
+          aria-label="icon_Data"
+          class="tc-TextField-icon"
+          height="1.25em"
+          role="img"
+          style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
+          viewBox="0 0 160 160"
+          width="1.25em"
+        >
+          <title>
+            Data
+          </title>
+          <path
+            d="M156.147 155.792a12.9 12.9 0 01-9.5 4.208H13.344C5.986 160 0 153.667 0 145.882V52.106L48.86 2.694v-.341h.34L51.524 0h93.061c7.854 0 14.338 6.76 14.453 15.069l.947 130.6a14.462 14.462 0 01-3.838 10.123zM48.86 15.714l-33.321 33.7H48.86v-33.7zm101.285-.5a5.747 5.747 0 00-5.559-5.8h-86.83v28.233h80.059v9.412h-80.06v11.765H8.9v87.058a4.587 4.587 0 004.448 4.706h133.3a4.3 4.3 0 003.168-1.4 4.819 4.819 0 001.279-3.372zM22.173 112.941h115.641v9.412H22.173v-9.412zm0-37.647h115.641v9.412H22.173v-9.412z"
+          />
+        </svg>
+      </div>
+    `);
   });
 
-  it('should render the TextField with both beginning and ending.', () => {
-    props.EndingIcon = Data
-    const wrapper = mount(<TextField {...props} />);
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.BEGINNING_ICON}.${cssClasses.ENDING_ICON}`
+  it('should render both beginning and ending icons.', () => {
+    const { getByLabelText } = render(
+      <Component textfieldProps={{ BeginningIcon: Data, EndingIcon: Data }} />
     );
-    const icon = wrapper.find(`svg.${cssClasses.ICON}`);
 
-    expect(elem).toHaveLength(1);
-    expect(icon).toHaveLength(2);
-    wrapper.unmount();
+    expect(getByLabelText(QUERY).parentNode).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField tc-TextField--beginningIcon tc-TextField--endingIcon"
+      >
+        <label
+          class="tc-TextField-label"
+          for="tc-textfield-4"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-4"
+          type="text"
+          value=""
+        />
+        <svg
+          aria-label="icon_Data"
+          class="tc-TextField-icon"
+          height="1.25em"
+          role="img"
+          style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
+          viewBox="0 0 160 160"
+          width="1.25em"
+        >
+          <title>
+            Data
+          </title>
+          <path
+            d="M156.147 155.792a12.9 12.9 0 01-9.5 4.208H13.344C5.986 160 0 153.667 0 145.882V52.106L48.86 2.694v-.341h.34L51.524 0h93.061c7.854 0 14.338 6.76 14.453 15.069l.947 130.6a14.462 14.462 0 01-3.838 10.123zM48.86 15.714l-33.321 33.7H48.86v-33.7zm101.285-.5a5.747 5.747 0 00-5.559-5.8h-86.83v28.233h80.059v9.412h-80.06v11.765H8.9v87.058a4.587 4.587 0 004.448 4.706h133.3a4.3 4.3 0 003.168-1.4 4.819 4.819 0 001.279-3.372zM22.173 112.941h115.641v9.412H22.173v-9.412zm0-37.647h115.641v9.412H22.173v-9.412z"
+          />
+        </svg>
+        <svg
+          aria-label="icon_Data"
+          class="tc-TextField-icon"
+          height="1.25em"
+          role="img"
+          style="display: inline-block; fill: currentColor; vertical-align: middle; height: auto; width: inherit;"
+          viewBox="0 0 160 160"
+          width="1.25em"
+        >
+          <title>
+            Data
+          </title>
+          <path
+            d="M156.147 155.792a12.9 12.9 0 01-9.5 4.208H13.344C5.986 160 0 153.667 0 145.882V52.106L48.86 2.694v-.341h.34L51.524 0h93.061c7.854 0 14.338 6.76 14.453 15.069l.947 130.6a14.462 14.462 0 01-3.838 10.123zM48.86 15.714l-33.321 33.7H48.86v-33.7zm101.285-.5a5.747 5.747 0 00-5.559-5.8h-86.83v28.233h80.059v9.412h-80.06v11.765H8.9v87.058a4.587 4.587 0 004.448 4.706h133.3a4.3 4.3 0 003.168-1.4 4.819 4.819 0 001.279-3.372zM22.173 112.941h115.641v9.412H22.173v-9.412zm0-37.647h115.641v9.412H22.173v-9.412z"
+          />
+        </svg>
+      </div>
+    `);
   });
 
   // Test visual state.
   it('should disable the TextField correctly.', () => {
-    props.disabled = true;
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input />
-    </TextField>);
-    const elem = wrapper.find('div').first();
+    const { getByLabelText } = render(<Component isDisabled={true} />);
 
-    expect(elem.hasClass(cssClasses.DISABLED)).toBeTruthy();
-    expect(wrapper.find('input').prop('disabled')).toBeTruthy();
-    wrapper.unmount();
+    expect(getByLabelText(QUERY).parentNode).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField is-disabled"
+      >
+        <label
+          class="tc-TextField-label"
+          for="tc-textfield-5"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          disabled=""
+          id="tc-textfield-5"
+          type="text"
+          value=""
+        />
+      </div>
+    `);
   });
 
   it('should adjust the state on focus.', () => {
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input />
-    </TextField>);
-    wrapper.find('input').simulate('focus');
-    const elem = wrapper.find('div').first();
+    const PLACEHOLDER = 'text';
+    const { getByPlaceholderText, container } = render(
+      <Component inputProps={{ placeholder: PLACEHOLDER }} />
+    );
+    const element = getByPlaceholderText(PLACEHOLDER);
+    element.focus();
 
-    expect(elem.hasClass(cssClasses.FOCUSED)).toBeTruthy();
-    wrapper.unmount();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField is-focused"
+      >
+        <label
+          class="tc-TextField-label is-active"
+          for="tc-textfield-6"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-6"
+          placeholder="text"
+          type="text"
+          value=""
+        />
+      </div>
+    `);
   });
 
-  // Test label.
-  it('should render a label correctly.', () => {
-    const text = 'label';
-    const wrapper = mount(<TextField>
-      <TextField.Label children={text} />
-    </TextField>);
-    const label = wrapper.find(`label.${cssClasses.LABEL}`);
+  it('should adjust the state on blur.', () => {
+    const PLACEHOLDER = 'text';
+    const { getByPlaceholderText, container } = render(
+      <Component inputProps={{ placeholder: PLACEHOLDER }} />
+    );
+    const element = getByPlaceholderText(PLACEHOLDER);
+    fireEvent.blur(element, { target: { value: 'foobar' } });
 
-    expect(label).toHaveLength(1);
-    expect(label.prop('htmlFor')).toBeTruthy();
-    expect(label.prop('children')).toEqual(text);
-    wrapper.unmount();
-  });
-
-  it('should have a active label with a value on mount.', () => {
-    props.BeginningIcon = false;
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input defaultValue="foobar" />
-      <TextField.Label children="label" />
-    </TextField>);
-    wrapper.find('input').simulate('blur');
-    const label = wrapper.find('label');
-
-    expect(label.hasClass(cssClasses.ACTIVE)).toBeTruthy();
-    wrapper.unmount();
-  });
-
-  it('should activate the label on change with a value.', () => {
-    props.BeginningIcon = false;
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input />
-      <TextField.Label children="label" />
-    </TextField>);
-    wrapper.find('input').simulate('change', {
-      target: {
-        value: 'foo',
-        validity: { valid: true }
-      }
-    });
-    wrapper.find('input').simulate('blur');
-
-    const label = wrapper.find('label');
-    expect(label.hasClass(cssClasses.ACTIVE)).toBeTruthy();
-    wrapper.unmount();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="tc-TextField"
+      >
+        <label
+          class="tc-TextField-label is-active"
+          for="tc-textfield-7"
+        >
+          label
+        </label>
+        <input
+          aria-invalid="false"
+          class="tc-TextField-input"
+          id="tc-textfield-7"
+          placeholder="text"
+          type="text"
+          value=""
+        />
+      </div>
+    `);
   });
 
   // Test Helper text.
   it('should display a helper text element.', () => {
-    const wrapper = mount(<TextField {...props} />);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
+    const { container } = render(<Component helperMessage="Help me." />);
 
-    expect(helperElem.text()).toEqual(props.helperText);
-    expect(helperElem).toHaveLength(1);
-    wrapper.unmount();
-  });
-
-  it('should not display a helper text element.', () => {
-    props.helperText = false;
-    const wrapper = mount(<TextField {...props} />);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
-
-    expect(helperElem).toHaveLength(0);
-    wrapper.unmount();
-  });
-
-  // Test that correct modifier class is applied when a variant is selected.
-  ['rim', 'textarea'].forEach(variant => {
-    it(`should apply the ${variant} variant modifier class.`, () => {
-      props.variant = variant;
-      const wrapper = mount(<TextField {...props} />);
-      const elem = wrapper
-        .find(`div.${cssClasses.ROOT}.${cssClasses[variant.toUpperCase()]}`);
-
-      expect(elem).toHaveLength(1);
-      wrapper.unmount();
-    });
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="tc-TextField"
+        >
+          <label
+            class="tc-TextField-label"
+            for="tc-textfield-8"
+          >
+            label
+          </label>
+          <input
+            aria-describedby="tc-textfield-8-helper-text"
+            aria-invalid="false"
+            class="tc-TextField-input"
+            id="tc-textfield-8"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="tc-TextField-helper"
+          id="tc-textfield-8-helper-text"
+          value=""
+        >
+          <span>
+            Help me.
+          </span>
+        </div>
+      </div>
+    `);
   });
 
   // Validations
   it('should handle validation when input is required.', () => {
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input required />
-    </TextField>);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
-
-    wrapper.find('input').simulate('change');
-
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.INVALID}`
+    const PLACEHOLDER = 'input';
+    const { getByPlaceholderText, container } = render(
+      <Component inputProps={{ required: true, placeholder: PLACEHOLDER }} />
     );
+    const element = getByPlaceholderText(PLACEHOLDER);
 
-    expect(helperElem.text()).toEqual('This field is required.');
-    expect(elem).toHaveLength(1);
-    wrapper.unmount();
-  });
+    fireEvent.change(element, { target: { value: '' } });
+    fireEvent.blur(element);
 
-  it('should handle validation when input has a minLength.', () => {
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input minLength={3} />
-    </TextField>);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
-
-    wrapper.find('input').simulate('change', {
-      target: {
-        getAttribute: () => 3,
-        nodeName: 'INPUT',
-        validity: { valid: false, tooShort: true, }
-      }
-    });
-
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.INVALID}`
-    );
-
-    expect(helperElem.text())
-      .toEqual('Mininum number of characters (3) has not been met.');
-    expect(elem).toHaveLength(1);
-    wrapper.unmount();
-  });
-
-   it('should handle validation when input has incorrect pattern.', () => {
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input />
-    </TextField>);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
-
-    wrapper.find('input').simulate('change', {
-      target: {
-        getAttribute: () => {},
-        nodeName: 'INPUT',
-        validity: { valid: false, patternMissing: true, }
-      }
-    });
-
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.INVALID}`
-    );
-
-    expect(helperElem.text())
-      .toEqual('Incorrect format for inputted value.');
-    expect(elem).toHaveLength(1);
-    wrapper.unmount();
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="tc-TextField is-invalid"
+        >
+          <label
+            class="tc-TextField-label"
+            for="tc-textfield-9"
+          >
+            label
+          </label>
+          <input
+            aria-controls="tc-textfield-9-helper-text"
+            aria-describedby="tc-textfield-9-helper-text"
+            aria-invalid="true"
+            class="tc-TextField-input"
+            id="tc-textfield-9"
+            placeholder="input"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="tc-TextField-helper"
+          id="tc-textfield-9-helper-text"
+          value=""
+        >
+          <span>
+            This field is required.
+          </span>
+        </div>
+      </div>
+    `);
   });
 
   it('should handle custom validation messages.', () => {
-    const message = 'Required field.';
-    props.validators= [{
-      type: 'invalid',
-      message
-    }];
-    const wrapper = mount(<TextField {...props}>
-      <TextField.Input required />
-    </TextField>);
-    const helperElem = wrapper.find(`div.${cssClasses.HELPER}`);
-
-    wrapper.find('input').simulate('change');
-
-    const elem = wrapper.find(
-      `div.${cssClasses.ROOT}.${cssClasses.INVALID}`
+    const PLACEHOLDER = 'input';
+    const { getByPlaceholderText, container } = render(
+      <Component
+        validators={[
+          {
+            type: 'invalid',
+            message: 'Required field.'
+          }
+        ]}
+        inputProps={{ required: true, placeholder: PLACEHOLDER }}
+      />
     );
+    const element = getByPlaceholderText(PLACEHOLDER);
 
-    expect(helperElem.text())
-      .toEqual(message);
-    expect(elem).toHaveLength(1);
-    wrapper.unmount();
+    fireEvent.blur(element);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="tc-TextField is-invalid"
+        >
+          <label
+            class="tc-TextField-label"
+            for="tc-textfield-10"
+          >
+            label
+          </label>
+          <input
+            aria-controls="tc-textfield-10-helper-text"
+            aria-describedby="tc-textfield-10-helper-text"
+            aria-invalid="true"
+            class="tc-TextField-input"
+            id="tc-textfield-10"
+            placeholder="input"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="tc-TextField-helper"
+          id="tc-textfield-10-helper-text"
+          value=""
+        >
+          <span>
+            Required field.
+          </span>
+        </div>
+      </div>
+    `);
   });
 });
