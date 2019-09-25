@@ -46,4 +46,25 @@ function checkForVariants({ variants = '', ...classNameVariants }) {
     : {};
 }
 
-export { checkForVariants, getVariantName };
+/**
+ * Does a simple substring match on a single variant.
+ *
+ * @param {string} variant - The variant to check against.
+ * @param {string} value - The substring to dectect in the variant.
+ * @returns {boolean} - True if value is a substring of variant, otherwise
+ * false.
+ *
+ * @example
+ * checkForVariant('tc-component--variant', 'variant');
+ * // true
+ * checkForVariant('tc-component', 'component')
+ * // false
+ * checkForVariant('tc-component-foo', 'bar')
+ * // false
+ */
+
+function checkForVariant(variant, value) {
+  return getVariantName(variant) === value;
+}
+
+export { checkForVariant, checkForVariants, getVariantName };

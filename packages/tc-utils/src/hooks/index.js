@@ -9,5 +9,6 @@ export { default as useToken } from './useToken';
 export { default as useOptions } from './useOptions';
 export { default as useProps } from './useProps';
 export { default as useRefEffect } from './useRefEffect';
+export { default as useScrolling } from './useScrolling';
 export { default as useToggle } from './useToggle';
 export { default as useUpdateEffect } from './useUpdateEffect';

@@ -1,5 +1,5 @@
 import isObject from '../internal/isObject';
-import { checkForVariants, getVariantName } from '../variant';
+import { checkForVariant, checkForVariants, getVariantName } from '../variant';
 
 describe('[utils - variants]', () => {
   describe('getVariantName', () => {
@@ -37,6 +37,15 @@ describe('[utils - variants]', () => {
       };
 
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('checkForVariant', () => {
+    it('should detect if variant exists in a className modifier.', () => {
+      expect(checkForVariant('tc-component--variant', 'variant')).toBeTruthy();
+      expect(checkForVariant('tc-component--foo', 'foo')).toBeTruthy();
+      expect(checkForVariant('tc-component--foo', 'bar')).toBeFalsy();
+      expect(checkForVariant('tc-component', 'component')).toBeFalsy();
     });
   });
 });
