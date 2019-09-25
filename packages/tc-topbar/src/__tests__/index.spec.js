@@ -1,46 +1,47 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
-import Topbar from '../';
+import Topbar from '../Topbar';
+import TopbarInner from '../TopbarInner';
+import TopbarSection from '../TopbarSection';
+import TopbarTitle from '../TopbarTitle';
+import TopbarIcon from '../TopbarIcon';
 
-describe('tc-topbar', () => {
-  [
-    'getElementProps',
-    'getInnerProps',
-    'getSectionProps',
-    'getIconProps',
-    'getTitleProps'
-  ].forEach(propGetter => {
-    it(`should expose ${propGetter}.`, () => {
-      expect(setUp()[propGetter]()).toMatchSnapshot();
-    });
-  });
+describe('[tc-topbar]', () => {
+  it('should render a complete topbar.', () => {
+    const { container } = render(
+      <Topbar>
+        <TopbarInner>
+          <TopbarSection>
+            <TopbarIcon />
+            <TopbarTitle>Title</TopbarTitle>
+          </TopbarSection>
+        </TopbarInner>
+      </Topbar>
+    );
 
-  it('should call the child function.', () => {
-    const { childSpy } = setUp();
-    expect(childSpy).toHaveBeenCalled();
-  });
-
-  it('should add scroll listener for "fixed" Topbar.', () => {
-    const scrollTarget = { addEventListener: jest.fn() };
-    const { wrapper } = setUp({ scrollTarget, fixed: true });
-    expect(wrapper.prop('scrollTarget').addEventListener).toHaveBeenCalled();
-  });
-
-  it('should add scroll listener on scrollTarget by default.', () => {
-    const scrollTarget = { addEventListener: jest.fn() };
-    const { wrapper } = setUp({ scrollTarget, fixedScroll: true });
-    expect(wrapper.prop('scrollTarget').addEventListener).toHaveBeenCalled();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <header
+        class="tc-Topbar"
+        style="transform: translateY(0); transition: transform 0.2s linear;"
+      >
+        <div
+          class="tc-Topbar-inner"
+        >
+          <div
+            class="tc-Topbar-section"
+          >
+            <button
+              class="tc-Topbar-icon"
+            />
+            <span
+              class="tc-Topbar-title"
+            >
+              Title
+            </span>
+          </div>
+        </div>
+      </header>
+    `);
   });
 });
-
-function setUp({ children = () => <div />,...props } = {}) {
-  let renderArg;
-  const childSpy = jest.fn(controllerArg => {
-    renderArg = controllerArg;
-    return children(controllerArg);
-  });
-  const wrapper = mount(<Topbar { ...props }>{ childSpy }</Topbar>);
-
-  return { childSpy, wrapper, ...renderArg };
-}

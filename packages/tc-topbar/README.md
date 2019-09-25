@@ -2,110 +2,108 @@
 
 Create a **TREND** topbar component.
 
-## Installation
+- [Installation](#installation)
+- [Basic Usage](#usage)
+- [Props API](#props)
+
+## <a name="installation"></a> Installation
 
 ```bash
 ## Has peer dependency with react and react-dom
-npm install react react-dom
-npm install @trend/topbar
+npm i react react-dom
+npm i @trend/topbar
 ```
-## Basic Usage
+## <a name="usage"></a> Basic Usage
 
 With a module bundler like [webpack](https://webpack.js.org/), use as you would anything else:
 
 ```javascript
 // Using ES6 modules.
-@import React from 'react';
-@import Topbar from 'trend-react-components/Topbar';
+import React from 'react';
+import ReactDom from 'react-dom';
 
-function Header({ children }) {
-  return <Topbar fixed={true}>
-    { api =>
-      <header {...api.getElementProps()}>
-        <div {...api.getInnerProps()}>
-          <div {...api.getSectionProps({ position: 'start' })}>
-            <button {...api.getIconProps({ type: 'button' })}>
-              <MenuIcon />
-            </button>
-            <h1 {...api.getTitleProps()}>TREND Components</h1>
-          </div>
-          {children}
-        </div>
-      </header>
-    }
+import Topbar, {
+  TopbarInner,
+  TopbarSection,
+  TopbarTitle,
+  TopbarIcon
+} from '@trend/topbar';
+
+function Header() {
+  return <Topbar fixed>
+    <TopbarInner>
+      <TopbarSection variant="start">
+        <TopbarIcon type="button"><MenuIcon /></TopbarIcon></TopbarIcon>
+        <TopbarTitle>TREND Components</TopbarTitle>
+      </TopbarSection>
+    </TopbarInner>
   </Topbar>;
 }
 
-// Bare minimum markup that is required.
-function AnotherTopbar() {
-  return <Topbar>
-    { api =>
-      <header {...api.getElementProps()}>
-        <div {...api.getInnerProps()}>...</div>
-      </header>
-    }
-  </Topbar>;
-}
+ReactDom.render(<Header />, docment.getElementById('root'));
 ```
 
-Implementing the markup is up to the developer.  The api exposes prop getters
-for all the pieces that make up a **TREND Topbar** component.  This is
-intentional to allow the developer to choose the markup that fits best for
-use case.
+## <a name="props"></a> Props API
 
-## Props:
+### Topbar
 
-### children
+**as**
 
-> `function` | required
+> `string || Component` | Optional. Defaults to `div`.
 
-Will expose the prop getter api.
+Change the underlying element.
 
-### className
+**classnameOptions**
 
-> `string` | options, no default
+> `object` | See below for default.
 
-Will merge any class names passed into component directly to the
-`getElementProps` getter.  Alternatively, you can just pass any class names directly to the `getElementsProps({ className: '' })` getter.
+```javascript
+classnameOptions = {
+  ROOT: 'tc-Topbar',
+  INNER: 'tc-Topbar-inner',
+  SECTION: 'tc-Topbar-section',
+  SECTION_START: 'tc-Topbar-section--start',
+  SECTION_END: 'tc-Topbar-section--end',
+  TITLE: 'tc-Topbar-title',
+  ICON: 'tc-Topbar-icon',
+  COMPACT: 'tc-Topbar--compact',
+  FIXED: 'tc-Topbar--fixed',
+  FIXED_SCROLLING: 'tc-Topbar--fixedScrolling',
+  TALL: 'tc-Topbar--tall'
+};
+```
 
-### compact
+Adds default class name to component regardless of state and hidden (i.e. not visible) state class.
+
+**compact**
 
 > `boolean` | optional, no default
 
-Will add the `compact` modifier to the `className` for the `getElementsProps`
-getter.
+Will add the `compact` modifier.
 
-### fixed
+**fixed**
 
 > `boolean` | optional, no default
 
-Will add the `fixed` modifier to the `className` for the `getElementsProps`
-getter.
+Will add the `fixed` modifier.
 
-### fixedScroll
+**fixedScroll**
 
 > `boolean` | optional, no default
 
 For **topbars** that are hidden on downward scrolls, but visible while user
 scrolls up.
 
-### scrollTarget
-
-> `object` | optional, `window`
-
-The DOM node to detect scrolling on.
-
-### tall
+**tall**
 
 > `boolean` | optional, no default
 
-Will add the `tall` modifier to the `className` for the `getElementsProps`
-getter.
+Will add the `tall` modifier.
 
-Property | Category | Type | Description
---- | --- | --- | ---
-`getElementProps` | prop getter | `function(props: object)` | Returns object of props to add to the topbar.
-`getInnerProps` | prop getter | `function(props: object)` | Returns props object to add to the **inner** child component.
-`getSectionProps` | prop getter | `function(props: object)` | Returns props object to add to any **section** child components. Pass in a optional `position: <start\|end>` property to add section modifier.
-`getIconProps` | prop getter | `function(props: object)` | Returns props object to add to any **icon** child components.
-`getTitleProps` | prop getter | `function(props: object)` | Returns props object to add to the **title** child component.
+### TopbarSection
+
+**variant**
+
+> `string` | Optional.  Can be one of "start" or "end".
+
+Add a modifier class to the section.

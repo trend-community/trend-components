@@ -1,5 +1,5 @@
 export const classNames = {
-  BASE: 'tc-Topbar',
+  ROOT: 'tc-Topbar',
   INNER: 'tc-Topbar-inner',
   SECTION: 'tc-Topbar-section',
   SECTION_START: 'tc-Topbar-section--start',

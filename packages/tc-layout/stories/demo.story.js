@@ -1,12 +1,17 @@
 import React, { Component, Fragment } from 'react';
 
-import Topbar from 'packages/tc-topbar/src';
+import Topbar, {
+  TopbarInner,
+  TopbarTitle,
+  TopbarSection,
+  TopbarIcon
+} from 'packages/tc-topbar/src';
 import Menu from 'packages/tc-icon/src/Menu';
 import { DrawerOverlay as Drawer } from 'packages/tc-drawer/src';
 import Layout, { LayoutContext, withLayoutConsumer } from '../src';
 
 function MenuButton({ layout, ...rest }) {
-  return <button {...rest}
+  return <TopbarIcon {...rest}
     aria-expanded={layout.hasActiveDrawer}
     aria-haspopup
     onClick={layout.toggleDrawer}
@@ -14,7 +19,7 @@ function MenuButton({ layout, ...rest }) {
     type="button">
     <Menu aria-hidden />
     <span className="tc-display-visually-hide">Drawer button</span>
-  </button>
+  </TopbarIcon>
 }
 
 const EnhancedMenuButton = withLayoutConsumer(MenuButton);
@@ -59,16 +64,12 @@ const EnhancedDrawer = withLayoutConsumer(AppDrawer);
 function Wrapper() {
   return <Layout>
     <Topbar fixed>
-      {api =>(
-        <header {...api.getElementProps()}>
-          <div {...api.getInnerProps()}>
-            <div {...api.getSectionProps()}>
-              <EnhancedMenuButton {...api.getIconProps()} />
-              <h1 {...api.getTitleProps()}>TREND Components</h1>
-            </div>
-          </div>
-        </header>
-      )}
+      <TopbarInner>
+        <TopbarSection>
+          <EnhancedMenuButton />
+          <TopbarTitle as="h1">TREND Components</TopbarTitle>
+        </TopbarSection>
+      </TopbarInner>
     </Topbar>
     <EnhancedDrawer />
     <div className="tc-layout-relative tc-size-full">
