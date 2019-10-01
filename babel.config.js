@@ -10,7 +10,7 @@ module.exports = {
   presets: [
     ['@babel/preset-env', {
       loose: true,
-      modules: env.isBabelBuilding() ? false : 'cjs'
+      modules: env.isBabelBuilding() ? false : 'cjs',
     }],
     '@babel/preset-react'
   ],

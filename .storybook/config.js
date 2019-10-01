@@ -13,14 +13,11 @@ addParameters({
   }
 });
 
-function loadStories() {
-  const req = require.context(
+configure(
+  require.context(
     '../packages',
     true,
     /^((?!node_modules).)*\/stories\/index.js$/
-  );
-
-  req.keys().forEach(filename => req(filename));
-}
-
-configure(loadStories, module);
+  ),
+  module
+);

@@ -1,4 +1,3 @@
-const autoprefixer = require('autoprefixer');
 const pathResolver = require('../scripts/pathResolver')();
 const cssBundler = require('../scripts/webpack/cssBundler')();
 
