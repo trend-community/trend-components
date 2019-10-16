@@ -2,10 +2,11 @@ import React from 'react';
 
 import uId from '../internal/uId';
 
-function useId(prefix) {
-  const [id, setId] = React.useState(null);
+const Ctx = React.createContext(uId);
 
-  React.useEffect(() => setId(uId(prefix)), []);
+function useId(prefix) {
+  const createId = React.useContext(Ctx);
+  const [id] = React.useState(() => createId(prefix));
 
   return id;
 }
