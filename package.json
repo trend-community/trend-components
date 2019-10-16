@@ -84,7 +84,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:deploy": "storybook-to-ghpages",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "license": "MIT",
   "husky": {

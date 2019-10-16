@@ -6,9 +6,42 @@ import Question from '../../tc-icon/src/QuestionMark';
 import Message from '../../tc-icon/src/Message';
 import Profile from '../../tc-icon/src/Profile';
 import '../styles.scss';
+import List, {
+  useListState,
+  ListItem,
+  ListItemChild,
+  ListDivider
+} from '../src';
 
-// Remove once package is completed.
-import '../../tc-divider/styles.scss';
+export const Standard = ({ rtl }) => {
+  const list = useListState();
+
+  return (
+    <List
+      {...list}
+      className="tc-border tc-border-concrete-100"
+      dir={rtl}>
+      <ListItem {...list}>Single line item</ListItem>
+      <ListItem {...list}>Single line item</ListItem>
+      <ListItem {...list}>Single line item</ListItem>
+    </List>
+  );
+};
+
+export const StandardWithDisabled = ({ rtl = undefined }) => {
+  const list = useListState();
+
+  return (
+    <List
+      {...list}
+      className="tc-border tc-border-concrete-100"
+      dir={rtl}>
+      <ListItem {...list}>Single line item</ListItem>
+      <ListItem {...list} disabled>Disabled line item</ListItem>
+      <ListItem {...list}>Single line item</ListItem>
+    </List>
+  );
+}
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -18,111 +51,160 @@ function generate(element) {
   );
 }
 
+export const ExtendListItem = ({ rtl }) => {
+  const list = useListState();
 
-class ComponentStory extends React.Component {
-  render() {
-    const { rtl } = this.props;
+  return (
+    <List
+      {...list}
+      extend
+      className="tc-border tc-border-concrete-100"
+      dir={rtl}>
+      <ListItem {...list}>
+        <ListItemChild>
+          <ListItemChild variant="primary">Primary Item</ListItemChild>
+          <ListItemChild variant="ancillary">Ancillary Item</ListItemChild>
+        </ListItemChild>
+      </ListItem>
+      <ListItem {...list}>
+        <ListItemChild>
+          <ListItemChild variant="primary">Primary Item</ListItemChild>
+          <ListItemChild variant="ancillary">Ancillary Item</ListItemChild>
+        </ListItemChild>
+      </ListItem>
+      <ListItem {...list}>
+        <ListItemChild>
+          <ListItemChild variant="primary">Primary Item</ListItemChild>
+          <ListItemChild variant="ancillary">Ancillary Item</ListItemChild>
+        </ListItemChild>
+      </ListItem>
+    </List>
+  );
+};
 
-    return <div className="tc-mhl" dir={rtl ? 'rtl' : undefined}>
-      <div>
-        <h3 className="tc-type-subtitle1">Single line</h3>
-        <ul className="tc-List tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          {generate(<li className="tc-List-item">Single line item</li>)}
-        </ul>
-      </div>
+export const LeadingIcon = () => {
+  const list = useListState();
 
-       <div>
-        <h3 className="tc-type-subtitle1">Extend list item</h3>
-        <ul
-          className="tc-List tc-List--extend tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          {generate(
-            <li className="tc-List-item">
-              <span className="tc-List-item-text">
-                <span className="tc-List-item-text-primary">Primary Item</span>
-                <span className="tc-List-item-text-ancillary">
-                  Ancillary Item
-                </span>
-               </span>
-            </li>
-          )}
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="tc-type-subtitle1">Leading media</h3>
-        <ul className="tc-List tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          <li className="tc-List-item tc-Divider">
-            <Location className="tc-List-item-media" size="1.5em" />
-            item 1
-          </li>
-          <li className="tc-List-item">
-            <Message className="tc-List-item-media" size="1.5em" />
-            item 2
-          </li>
-          <li className="tc-Divider tc-Divider--indent" role="separator" />
-          <li className="tc-List-item">
-            <Question className="tc-List-item-media" size="1.5em" />
-            item 3
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="tc-type-subtitle1">Meta Information</h3>
-        <ul className="tc-List tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          {generate(
-            <li className="tc-List-item">
-              List Item
-              <Question
-                className="tc-List-item-meta tc-theme-text-hint-over-background" />
-            </li>
-          )}
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="tc-type-subtitle1">Avatar List</h3>
-        <nav
-          className="tc-List tc-List--avatar tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          {generate(
-            <a href="#" className="tc-List-item"
-              onClick={ev => ev.preventDefault()}>
-              <span className="tc-List-item-media">
-                <Profile />
-              </span>
-              item 1
-            </a>
-          )}
-        </nav>
-      </div>
-
-      <div>
-        <h3 className="tc-type-subtitle1">Leading and meta icons</h3>
-        <nav
-          className="tc-List tc-List--avatar tc-border tc-border-concrete-100"
-          style={{ maxWidth: '600px' }}>
-          {generate(
-            <a href="#" className="tc-List-item"
-              onClick={ev => ev.preventDefault()}>
-              <span className="tc-List-item-media">
-                <Profile />
-              </span>
-              <span className="tc-List-item-text">item 1</span>
-              <Question
-                className="tc-List-item-meta tc-theme-text-hint-over-background" />
-            </a>
-          )}
-        </nav>
-      </div>
-    </div>;
-  }
+  return (
+    <List
+      {...list}
+      className="tc-border tc-border-concrete-100"
+      style={{ maxWidth: '600px' }}>
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Location size="1.5em" />
+        </ListItemChild>
+        item 1
+      </ListItem>
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Message size="1.5em" />
+        </ListItemChild>
+        item 2
+      </ListItem>
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Question size="1.5em" />
+        </ListItemChild>
+        item 3
+      </ListItem>
+    </List>
+  );
 }
 
-ComponentStory.displayName = 'Component';
+export const Meta = () => {
+  const list = useListState();
 
-export default ComponentStory;
+  return (
+    <List
+      {...list}
+      className="tc-border tc-border-concrete-100"
+      style={{ maxWidth: '600px' }}>
+      {generate(
+        <ListItem {...list}>
+          List Item
+          <ListItemChild variant="meta">
+            <Question className="tc-theme-text-hint-over-background" />
+          </ListItemChild>
+        </ListItem>
+      )}
+    </List>
+  );
+}
+
+export const Avatar = () => {
+  const list = useListState();
+
+  return (
+    <List
+      {...list}
+      avatar
+      className="tc-border tc-border-concrete-100"
+      style={{ maxWidth: '600px' }}>
+      {generate(
+        <ListItem {...list}>
+          <ListItemChild variant="media">
+            <Profile />
+          </ListItemChild>
+          <ListItemChild>Profile</ListItemChild>
+        </ListItem>
+      )}
+    </List>
+  );
+}
+
+export const MediaAndMeta = () => {
+  const list = useListState();
+
+  return (
+    <List
+      {...list}
+      avatar
+      className="tc-border tc-border-concrete-100"
+      style={{ maxWidth: '600px' }}>
+      {generate(
+        <ListItem {...list}>
+          <ListItemChild variant="media">
+            <Profile />
+           </ListItemChild>
+           <ListItemChild>Media and Meta icons</ListItemChild>
+          <ListItemChild variant="meta">
+            <Question />
+          </ListItemChild>
+        </ListItem>
+      )}
+    </List>
+  );
+}
+
+export const ListDividers = ({ indent }) => {
+  const list = useListState();
+
+  return (
+    <List
+      {...list}
+      className="tc-border tc-border-concrete-100"
+      style={{ maxWidth: '600px' }}>
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Location size="1.5em" />
+        </ListItemChild>
+        item 1
+      </ListItem>
+      <ListDivider variant={indent ? 'indent' : undefined} />
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Message size="1.5em" />
+        </ListItemChild>
+        item 2
+      </ListItem>
+      <ListDivider variant={indent ? 'indent' : undefined} />
+      <ListItem {...list}>
+        <ListItemChild variant="media">
+          <Question size="1.5em" />
+        </ListItemChild>
+        item 3
+      </ListItem>
+    </List>
+  );
+}

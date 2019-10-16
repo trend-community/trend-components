@@ -5,11 +5,51 @@
 /// @require @trend/theme/scss/mixins
 ////
 
+@import "~@trend/helpers/scss/variables";
 @import "~@trend/helpers/scss/mixins/rtl";
 @import "~@trend/theme/scss/variables";
 @import "~@trend/theme/scss/mixins";
+@import "~@trend/type/scss/variables";
 @import "variables";
 @import "functions";
+
+/// Add the base rules for the top level list component.
+
+@mixin tc-list-base {
+  margin: 0;
+  padding: map-get($tc-spacings, m) 0;
+
+  line-height: map-get(map-get($tc-type-styles, body1), line-height);
+  list-style-type: none;
+}
+
+/// Add base rules to an item in a list.
+
+@mixin tc-list-item-base {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+
+  align-items: center;
+
+  height: 48px;
+  padding: 0 $tc-list-horizontal-padding;
+
+  // State
+  &:focus {
+    outline: none;
+  }
+}
+
+/// Add the base rules for a media child element.
+
+@mixin tc-list-media-base {
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  fill: currentColor;
+}
 
 @mixin tc-list-color($color) {
   @include tc-theme-prop(color, $color);

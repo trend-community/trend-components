@@ -14,11 +14,9 @@ $tc-list-classnames: (
   child-item-ancillary: ".tc-List-item-text-ancillary",
   state-disabled: ".is-disabled",
   state-selected: ".is-selected",
+  state-updating: ".is-updating",
   state-active: ".is-active"
 ) !default;
-
-// $tc-list-divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;
-// $tc-list-divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
 
 $tc-list-horizontal-padding: map-get($tc-spacings, b) !default;
 $tc-list-text-offset: map-get($tc-spacings, l) * 3 !default;

@@ -14,12 +14,7 @@
 #{tc-list-clsx(root)} {
   @include tc-type(subtitle1);
   @include tc-list-color(text-primary-over-background);
-
-  margin: 0;
-  padding: map-get($tc-spacings, m) 0;
-
-  line-height: map-get(map-get($tc-type-styles, body1), line-height);
-  list-style-type: none;
+  @include tc-list-base;
 
   // State: selected and active
 
@@ -39,24 +34,26 @@
 // Child: a list item
 
 #{tc-list-clsx(child-item)} {
-  display: flex;
-  overflow: hidden;
-  position: relative;
-
-  align-items: center;
-
-  height: 48px;
-  padding: 0 $tc-list-horizontal-padding;
-
-  // State
-  &:focus {
-    outline: none;
-  }
+  @include tc-list-item-base
 }
 
 #{tc-list-clsx(root)}:not(#{tc-list-clsx(modifier-static)}) > {
   #{tc-list-clsx(child-item)}:not(#{tc-list-clsx(state-disabled)}) {
     @include tc-state(primary);
+
+    &#{tc-list-clsx(state-active)} {
+      @include tc-state-base-color(accent);
+      @include tc-state-hover-opacity(tc-state-opacity(accent, hover));
+      @include tc-state-focus-opacity(tc-state-opacity(accent, focus));
+      @include tc-state-press-opacity(tc-state-opacity(accent, press));
+      @include tc-state-opacity(tc-state-opacity(accent, hover));
+      @include tc-list-color(accent);
+    }
+
+    &#{tc-list-clsx(state-updating)} {
+      @include tc-state-base-color(transparent);
+      @include tc-state-opacity(0.001);
+    }
   }
 }
 
@@ -80,12 +77,7 @@ a#{tc-list-clsx(child-item)} {
   @include tc-list-color(text-icon-over-background);
   @include tc-list-background-color(transparent);
   @include _tc-list-media-size(map-get($tc-spacings, l));
-
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-
-  fill: currentColor;
+  @include tc-list-media-base
 }
 
 #{tc-list-clsx(child-item)} #{tc-list-clsx(child-item-media)} {
