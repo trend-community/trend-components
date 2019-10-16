@@ -99,9 +99,9 @@
 /// @requires {Variable} $tc-easeInOutSine
 
 @mixin tc-state($color) {
+  @include tc-state-ruleset;
   @include tc-state-base-color($color);
   @include tc-state-hover-opacity(tc-state-opacity($color, hover));
   @include tc-state-focus-opacity(tc-state-opacity($color, focus));
   @include tc-state-press-opacity(tc-state-opacity($color, press));
-  @include tc-state-ruleset;
 }
