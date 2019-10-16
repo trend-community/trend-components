@@ -9,17 +9,24 @@
   "main": "index.js",
   "dependencies": {
     "@trend/button": "^0.6.0",
+    "@trend/disclosure": "^0.1.0",
+    "@trend/divider": "^0.1.0",
     "@trend/drawer": "^0.5.0",
     "@trend/focustrap": "^0.4.0",
     "@trend/helpers": "^0.3.0",
     "@trend/icon": "^0.6.0",
+    "@trend/interactive": "^0.1.0",
     "@trend/layout": "^0.5.0",
+    "@trend/list": "^0.1.0",
     "@trend/normalize": "^0.3.0",
+    "@trend/rover": "^0.1.0",
     "@trend/state": "^0.5.0",
     "@trend/textfield": "^0.4.0",
     "@trend/theme": "^0.5.0",
     "@trend/topbar": "^0.6.0",
-    "@trend/type": "^0.4.0"
+    "@trend/type": "^0.4.0",
+    "@trend/utils": "^0.1.0",
+    "@trend/visually-hidden": "^0.1.0"
   },
   "publishConfig": {
     "access": "public"
