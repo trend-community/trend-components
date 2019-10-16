@@ -26,7 +26,7 @@ $tc-theme-over-primary: if(
   $_tc-color-contrast-light
 ) !default;
 
-$tc-theme-accent: map-get($tc-color-purple, a400) !default;
+$tc-theme-accent: map-get($tc-color-purple, a700) !default;
 $tc-theme-over-accent: if(
   tc-theme-contrast-tone($tc-theme-accent) == "dark",
   $_tc-color-contrast-dark,
