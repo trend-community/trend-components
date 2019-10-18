@@ -43,4 +43,5 @@ const Disclosure = createComponent({
   useHook: useDisclosure
 });
 
+export { useDisclosure};
 export default Disclosure;
