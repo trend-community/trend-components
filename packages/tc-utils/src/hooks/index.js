@@ -7,6 +7,7 @@ export { default as useCreateElement } from './useCreateElement';
 export { default as useId } from './useId';
 export { default as useToken } from './useToken';
 export { default as useOptions } from './useOptions';
+export { default as usePipe } from './usePipe';
 export { default as useProps } from './useProps';
 export { default as useRefEffect } from './useRefEffect';
 export { default as useScrolling } from './useScrolling';
