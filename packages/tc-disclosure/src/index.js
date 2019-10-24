@@ -4,3 +4,4 @@ export {
   default as DisclosureButton,
   useDisclosureButton
 } from './DisclosureButton';
+export { default as useDisclosureRef } from './useDisclosureRef';
