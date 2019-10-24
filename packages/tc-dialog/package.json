@@ -1,0 +1,27 @@
+{
+  "name": "@trend/dialog",
+  "version": "0.1.0",
+  "description": "TREND Components accessible dialog component.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trend-community/trend-components.git"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build-js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@trend/disclosure": "^0.1.0",
+    "@trend/portal": "^0.1.0",
+    "@trend/utils": "^0.1.0",
+    "body-scroll-lock": "^2.6.4",
+    "classnames": "^2.2.6"
+  }
+}

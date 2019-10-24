@@ -23,7 +23,7 @@ With a module bundler like [webpack](https://webpack.js.org/), use as you would 
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import Button from '@trend/portal';
+import Portal from '@trend/portal';
 
 function SinglePortal() {
   return <Portal className="tc-phl tc-mal tc-border">
