@@ -12,13 +12,17 @@ import useProps from './hooks/useProps';
 function createUseHook(config) {
   const composedHooks = toArray(config.compose);
   const useHook = (options = {}, elementProps = {}) => {
-    options = config.useOptions
-      ? config.useOptions(options, elementProps)
-      : useOptions(config.name, options, elementProps);
+    options = useOptions(
+      config.name,
+      config.useOptions ? config.useOptions(options, elementProps) : options,
+      elementProps
+    );
 
-    elementProps = config.useProps
-      ? config.useProps(options, elementProps)
-      : useProps(config.name, options, elementProps);
+    elementProps = useProps(
+      config.name,
+      options,
+      config.useProps ? config.useProps(options, elementProps) : elementProps
+    );
 
     if (config.useCompose && isFunction(config.useCompose)) {
       elementProps = config.useCompose(options, elementProps);

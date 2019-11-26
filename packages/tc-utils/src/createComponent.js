@@ -19,7 +19,7 @@ function createComponent({
         ...attrProps
       });
 
-      const asOptionProps = as.optionProps;
+      const asOptionProps = as.render ? as.render.optionProps : as.optionProps;
       const asOptions = asOptionProps
         ? splitProps(props, asOptionProps)[0]
         : {};

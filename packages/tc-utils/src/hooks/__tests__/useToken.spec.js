@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook } from 'react-hooks-testing-library';
+import { renderHook } from '@testing-library/react-hooks';
 
 import AppProvider from '../../state/AppProvider';
 import useToken from '../useToken';
