@@ -25,6 +25,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "dependencies": {
     "@trend/button": "^0.6.0",
     "@trend/utils": "^0.1.0",
