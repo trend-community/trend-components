@@ -8,8 +8,8 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "scripts": {
     "build": "node ../../scripts/build-js"
