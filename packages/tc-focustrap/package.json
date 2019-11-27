@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@trend/utils": "^0.1.0",
     "focus-trap": "^3.0.0"
   },
   "publishConfig": {

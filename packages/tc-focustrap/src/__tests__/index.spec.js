@@ -1,11 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 
-import FocusTrap, { Trap } from '../';
+import FocusTrap from '../FocusTrap';
 
+const QUERY = 'focustrap';
 const noop = () => {};
 
-describe('tc-focustrap', () => {
+describe('[tc-focustrap]', () => {
   let mockFocusTrap;
   let mockCreateFocusTrap;
 
@@ -13,143 +14,96 @@ describe('tc-focustrap', () => {
     mockFocusTrap = {
       activate: jest.fn(),
       deactivate: jest.fn(),
-      pause: jest.fn()
+      pause: jest.fn(),
+      unpause: jest.fn()
     };
     mockCreateFocusTrap = jest.fn(() => mockFocusTrap);
   });
 
-  it('should render with only required props.', () => {
-    const wrapper = mount(
-      <Trap _createFocusTrap={mockCreateFocusTrap}>
-        <button children="set trap" />
-      </Trap>
-    );
-    const node = wrapper.getDOMNode();
-
-    expect(node.tagName).toBe('DIV');
-    ['id', 'class', 'style'].forEach(attr => {
-      expect(node.getAttribute(attr)).toBe(null);
-    });
-    expect(wrapper.children().length).toEqual(1);
-    expect(wrapper.find('button')).toHaveLength(1);
-    wrapper.unmount();
-  });
-
-  it('should pass through props.', () => {
-    const props = {
-      id: 'id',
-      className: 'focus-trap',
-      tag: 'section'
-    };
-    const wrapper = mount(
-      <Trap _createFocusTrap={mockCreateFocusTrap} {...props}>
-        <button children="set trap" />
-      </Trap>
+  it('should render a FocusTrap.', () => {
+    const { container } = render(
+      <FocusTrap>
+        <button>{QUERY}</button>
+      </FocusTrap>
     );
 
-    expect(wrapper.find(props.tag)).toHaveLength(1);
-    expect(wrapper.prop('id')).toEqual(props.id);
-    expect(wrapper.prop('className')).toEqual(props.className);
-    wrapper.unmount();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        data-focustrap="active"
+      >
+        <button>
+          focustrap
+        </button>
+      </div>
+    `);
   });
 
   it('should activate by default.', () => {
-    const wrapper = mount(
-      <Trap
-        _createFocusTrap={mockCreateFocusTrap}
-        focusTrapOptions={{ onDeactivate: noop }}>
-        <button>set trap</button>
-      </Trap>
+    const { container } = render(
+      <FocusTrap __createFocusTrap__={mockCreateFocusTrap}>
+        <button>{QUERY}</button>
+      </FocusTrap>
     );
 
     expect(mockCreateFocusTrap).toHaveBeenCalledTimes(1);
-    expect(mockCreateFocusTrap).toHaveBeenCalledWith(
-      wrapper.getDOMNode(),
-      { onDeactivate: noop }
-    );
-
-    wrapper.unmount();
   });
 
   it('should activate with initialFocus as selector.', () => {
-    const wrapper = mount(
-      <Trap
-        _createFocusTrap={mockCreateFocusTrap}
-        focusTrapOptions={{
-          onDeactivate: noop,
-          initialFocus: '#initial-focusee'
-        }}
-      >
-        <button children="set trap" />
-        <button id="initial-focusee">
-          another thing
-        </button>
-      </Trap>
+    const { container } = render(
+      <FocusTrap __createFocusTrap__={mockCreateFocusTrap}
+        onActivate={noop}
+        onDeactivate={noop}
+        initialFocus="#initial-focusee">
+        <button>close</button>
+        <button id="initial-focusee">open</button>
+      </FocusTrap>
     );
 
     expect(mockCreateFocusTrap).toHaveBeenCalledTimes(1);
-    expect(mockCreateFocusTrap).toHaveBeenCalledWith(
-      wrapper.getDOMNode(),
-      {
-        initialFocus: '#initial-focusee',
-        onDeactivate: noop
-      }
-    );
-
-    wrapper.unmount();
+    expect(mockCreateFocusTrap).toHaveBeenCalledWith(container.firstChild, {
+      onActivate: noop,
+      onDeactivate: noop,
+      clickOutsideDeactivates: false,
+      escapeDeactivates: true,
+      returnFocusOnDeactivate: true,
+      initialFocus: '#initial-focusee'
+    });
   });
 
   it('should mount without activation.', () => {
-    const wrapper = mount(
-      <Trap
-        _createFocusTrap={mockCreateFocusTrap}
-        focusTrapOptions={{ onDeactivate: noop }}
-        active={false}
-      >
-        <button children="set trap" />
-      </Trap>
+    const { container } = render(
+      <FocusTrap __createFocusTrap__={mockCreateFocusTrap}
+        onActivate={noop}
+        onDeactivate={noop}
+        active={false}>
+        <button>button</button>
+      </FocusTrap>
     );
+
     expect(mockCreateFocusTrap).toHaveBeenCalledTimes(1);
     expect(mockFocusTrap.activate).toHaveBeenCalledTimes(0);
   });
 
-  it('should mount without activation then activate.', () => {
-    class Tester extends React.Component {
-      state = {
-        trapActive: false
-      };
-
-      activateTrap = () => {
-        this.setState({ trapActive: true });
-      };
-
-      render() {
-        return (
-          <div>
-            <button id="trigger" onClick={this.activateTrap} />
-            <Trap
-              _createFocusTrap={mockCreateFocusTrap}
-              focusTrapOptions={{ onDeactivate: noop }}
-              active={this.state.trapActive}>
-              <button children="set trap" />
-            </Trap>
-          </div>
-        );
-      }
+  it('should render without activation and then activate.', () => {
+    function Comp() {
+      const [active, setActive] = React.useState(false);
+      return (<>
+        <button onClick={() => setActive(true)}>focustrap trigger</button>
+        <FocusTrap __createFocusTrap__={mockCreateFocusTrap}
+          onActivate={noop}
+          onDeactivate={noop}
+          active={active}>
+          <button>button</button>
+        </FocusTrap>
+      </>);
     }
 
-    const wrapper = mount(<Tester />);
+    const { container, getByText } = render(<Comp />);
+    const trigger = getByText('focustrap trigger');
 
     expect(mockCreateFocusTrap).toHaveBeenCalledTimes(1);
-    expect(mockCreateFocusTrap).toHaveBeenCalledWith(
-      wrapper.find('Trap').getDOMNode(),
-      {
-        onDeactivate: noop,
-      }
-    );
     expect(mockFocusTrap.activate).toHaveBeenCalledTimes(0);
-
-    wrapper.find('#trigger').simulate('click');
+    fireEvent.click(trigger);
     expect(mockFocusTrap.activate).toHaveBeenCalledTimes(1);
   });
 });
