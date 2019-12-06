@@ -1,0 +1,14 @@
+////
+/// TextField functions
+/// @group textfield functions
+////
+
+@import "variables";
+
+/// Apply a classname for the ruleset.
+/// @param {prop} $name - $tc-dialog-classnames[$name]
+/// @require {Variable} $tc-dialog-classnames
+
+@function tc-dialog-classname($name) {
+  @return map-get($tc-dialog-classnames, $name);
+}

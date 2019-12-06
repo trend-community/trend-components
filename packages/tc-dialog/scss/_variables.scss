@@ -1,0 +1,34 @@
+// Dialog variables
+
+
+// Classnames
+$tc-dialog-classnames: (
+  root: ".tc-Dialog",
+  modifier-stacked: ".tc-Dialog--stacked",
+  modifier-scroll: ".tc-Dialog--scroll",
+  mask: ".tc-DialogMask",
+  child-box: ".tc-Dialog-box",
+  child-title: ".tc-Dialog-title",
+  child-body: ".tc-Dialog-body",
+  child-actions: ".tc-Dialog-actions",
+  child-button: ".tc-Dialog-actions-button",
+  state-open: ".is-open",
+);
+
+$tc-dialog-mask-color: over-background !default;
+$tc-dialog-title-color: over-background !default;
+$tc-dialog-content-color: over-background !default;
+$tc-dialog-scroll-divider-color: over-background !default;
+
+$tc-dialog-mask-opacity: 0.32 !default;
+$tc-dialog-title-color-opacity: 0.95 !default;
+$tc-dialog-content-color-opacity: 0.6 !default;
+$tc-dialog-scroll-divider-opacity: 0.12 !default;
+
+$tc-dialog-min-width: 280px !default;
+$tc-dialog-max-width: 560px !default;
+$tc-dialog-margin: 16px !default;
+$tc-dialog-title-padding-bottom: 9px !default;
+$tc-dialog-radius: 4px !default;
+
+$tc-dialog-z-index: 7 !default;

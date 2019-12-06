@@ -9,7 +9,7 @@ describe('[tc-dialog/DialogMask]', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="tc-Disclosure is-hidden"
+        class="tc-Disclosure tc-DialogMask is-hidden"
         hidden=""
         role="presentation"
         style="display: none;"
@@ -22,7 +22,7 @@ describe('[tc-dialog/DialogMask]', () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="tc-Disclosure"
+        class="tc-Disclosure tc-DialogMask is-open"
         role="presentation"
       />
     `);

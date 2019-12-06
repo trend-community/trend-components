@@ -3,6 +3,7 @@ export { default as createComponent } from './createComponent';
 export { default as createOnKeyDown } from './createOnKeyDown';
 export { default as createUseHook } from './createUseHook';
 export { default as createReducer } from './createReducer';
+export { default as isEscapeEvent } from './isEscapeEvent';
 export * from './tabbable';
 export { default as warning } from './warning';
 export * from './variant';

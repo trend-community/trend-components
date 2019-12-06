@@ -1,0 +1,190 @@
+@import "~@trend/theme/scss/mixins";
+@import "~@trend/helpers/scss/mixins";
+@import "~@trend/type/scss/mixins";
+@import "~@trend/type/scss/variables";
+@import "./mixins";
+@import "./variables";
+
+// Core styles.
+
+#{tc-dialog-classname(mask)} {
+  @include tc-dialog-mask-color($tc-dialog-mask-color);
+
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  height: 100%;
+  width: 100%;
+}
+
+#{tc-dialog-classname(root)} {
+  @include tc-dialog-container-bg-color(background);
+  @include tc-dialog-title-color($tc-dialog-title-color);
+  @include tc-dialog-content-color($tc-dialog-content-color);
+  @include tc-dialog-scroll-divider-color($tc-dialog-scroll-divider-color);
+  @include tc-dialog-min-width($tc-dialog-min-width);
+  @include tc-dialog-max-width($tc-dialog-max-width, $tc-dialog-margin);
+  @include tc-dialog-max-height(null, $tc-dialog-margin);
+  @include tc-dialog-shape-radius();
+
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  left: 50%;
+  margin: 0 auto;
+  z-index: $tc-dialog-z-index;
+}
+
+#{tc-dialog-classname(root)} {
+  display: flex;
+  opacity: 0;
+
+  flex-direction: row;
+  justify-content: space-around;
+
+  box-sizing: border-box;
+
+  transform: scale(0.8) translate(-50%, -50%);
+}
+
+#{tc-dialog-classname(child-box)} {
+  @include tc-shadow-level(24);
+  @include tc-rtl(#{tc-dialog-classname(root)}) {
+    text-align: right;
+  }
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#{tc-dialog-classname(child-title)} {
+  @include tc-type-leading-top(40px);
+  @include tc-type(h5);
+  @include tc-rtl(#{tc-dialog-classname(root)}) {
+    text-align: right;
+  }
+
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 24px $tc-dialog-title-padding-bottom;
+  border-bottom: 1px solid transparent;
+
+  #{tc-dialog-classname(modifier-scroll)} & {
+    padding-bottom: $tc-dialog-title-padding-bottom + 6px;
+  }
+}
+
+#{tc-dialog-classname(child-body)} {
+  @include tc-type(body1);
+
+  overflow: auto;
+
+  flex-grow: 1;
+
+  box-sizing: border-box;
+  margin: 0;
+  // Note: the top padding is only 20px for dialogs without titles;
+  // see below for override
+  padding: 20px 24px;
+
+  -webkit-overflow-scrolling: touch;
+
+  // The content element already has top/bottom padding, so we need to
+  // suppress margins on its first/last children.
+  > :first-child {
+    margin-top: 0;
+  }
+
+  // The content element already has top/bottom padding, so we need to
+  // suppress margins on its first/last children.
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  #{tc-dialog-classname(child-title)} + & {
+    padding-top: 0;
+  }
+
+  #{tc-dialog-classname(modifier-scroll)} & {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+#{tc-dialog-classname(child-actions)} {
+  display: flex;
+  position: relative;
+
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+  border-top: 1px solid transparent;
+  min-height: 52px;
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+
+  #{tc-dialog-classname(modifier-stacked)} & {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+#{tc-dialog-classname(child-button)} {
+  @include tc-rtl-flip-box(margin, left, 8px);
+
+  &:first-child {
+    @include tc-rtl-flip-box(margin, left, 0);
+  }
+
+  max-width: 100%;
+
+  text-align: right;
+
+  @include tc-rtl(#{tc-dialog-classname(root)}) {
+    text-align: left;
+  }
+
+  #{tc-dialog-classname(modifier-stacked)} &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+// State styles.
+
+#{tc-dialog-classname(state-open)} {
+  &#{tc-dialog-classname(root)} {
+    display: flex;
+  }
+
+  &#{tc-dialog-classname(mask)} {
+    opacity: 1;
+  }
+
+  &#{tc-dialog-classname(root)} {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}

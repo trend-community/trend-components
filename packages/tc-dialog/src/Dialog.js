@@ -1,96 +1,142 @@
 import React from 'react';
+import cn from 'classnames';
 
 import createComponent from '@trend/utils/createComponent'
 import createUseHook from '@trend/utils/createUseHook';
-import useAllRefs from '@trend/utils/useAllRefs';
+import useAllRefs from '@trend/utils/hooks/useAllRefs';
 import useAllCallbacks from '@trend/utils/hooks/useAllCallbacks';
+import useCreateElement from '@trend/utils/hooks/useCreateElement';
 import usePipe from '@trend/utils/hooks/usePipe';
+import warning from '@trend/utils/warning';
 
 import { useDisclosure, useDisclosureRef } from '@trend/disclosure';
+import { useFocusTrap } from '@trend/focustrap/FocusTrap';
 import Portal from '@trend/portal';
+import useDisableHoverOutside from './internal/useDisableHoverOutside';
+import useFocusOnShow from './internal/useFocusOnShow';
+import useFocusOnHide from './internal/useFocusOnHide';
+import useHideOnClickOutside from './internal/useHideOnClickOutside';
 import useLockBodyScroll from './internal/useLockBodyScroll';
-import useNestedDialogs from './internal/useNestedDialogs';
+import useDialogProvider from './internal/useDialogProvider';
+import useHideRootElement from './internal/useHideRootElement';
 import useDialogState from './useDialogState';
+import DialogMask from './DialogMask';
+import { cssClasses } from './constants';
 
-const optionProps: [
+const optionProps = [
+  'rootElement',
   'modal',
-  'hideOnEsc',
-  'hideOnClickOutside',
   'preventBodyScroll',
-  'initialFocusRef',
-  'finalFocusRef',
-  'autoFocusOnShow',
-  'autoFocusOnHide',
   'portal',
-  'orphan'
+  'variants',
+  'hasMask'
 ];
 
 const useDialog = createUseHook({
   name: 'Dialog',
-  compose: useDisclosure,
+  compose: [useDisclosure, useFocusTrap],
   useState: useDialogState,
   optionProps,
   useOptions: ({
+    classnameOptions = {
+      dialog: cssClasses.dialog,
+      dialogStacked: cssClasses.dialogStacked,
+      dialogScroll: cssClasses.dialogScroll,
+      dialogOpen: cssClasses.dialogOpen
+    },
     modal = true,
-    hideOnEsc = true,
-    hideOnClickOutside = true,
     preventBodyScroll = true,
-    autoFocusOnShow = true,
-    autoFocusOnHide = true,
+    escapeDeactivates = true,
+    clickOutsideDeactivates = true,
     portal = modal,
-    orphan,
+    rootElement = undefined,
+    visible = false,
+    shouldTrap = modal,
+    variants = '',
+    hasMask = false,
     ...options
   }) => ({
-    modal,
-    hideOnEsc,
-    hideOnClickOutside,
+    active: visible,
+    classnameOptions,
+    clickOutsideDeactivates,
+    escapeDeactivates,
     preventBodyScroll,
-    autoFocusOnShow,
-    autoFocusOnHide,
+    modal,
     portal,
-    orphan: modal && orphan,
+    rootElement,
+    shouldTrap,
+    visible,
+    variants,
+    hasMask,
     ...options
   }),
-  useProps: (options, props) => {
+  useProps: ({ classnameOptions, ...options }, {
+    'aria-describedby': propsAriaDescribedby = undefined,
+    'aria-labelledby': propsAriaLabelledby = undefined,
+    className,
+    ref: propsRef,
+    wrap: propsWrap,
+    ...props
+   }) => {
     const dialogRef = React.useRef(null);
-    const disclosure = useDisclosureRef(options);
-    const { dialogs, wrap } = useNestedDialogs(dialogRef, options);
+    const disclosureRef = useDisclosureRef(options);
+    const { dialogs, wrap } = useDialogProvider(dialogRef, options);
 
     useLockBodyScroll(dialogRef, options);
+    useHideOnClickOutside(dialogRef, disclosureRef, dialogs, options);
+    useDisableHoverOutside(dialogRef, dialogs, options);
+    useHideRootElement(options);
 
-    const onKeyDown = React.useCallback((event) => {
-      if (event.key === 'Escape' && options.hideOnEsc) {
-        // if (!options.hide) {
-        //   warning(true, "Dialog", "`hideOnEsc` prop is truthy, but `hide` prop wasn't provided.", "See https://reakit.io/docs/dialog");
-        //   return;
-        // }
+    if (!options.shouldTrap) {
+      useFocusOnShow(dialogRef, dialogs, options);
+      useFocusOnHide(dialogRef, disclosureRef, options);
+    }
 
-        event.stopPropagation();
-        options.hide();
-      }
-    }, [options.hideOnEsc, options.hide]);
-    const wrapChildren = React.useCallback(children => (
-      options.portal
-        ? <Portal>{wrap(children)}</Portal>
-        : wrap(children);
-    ), [options.portal, wrap]);
+    const wrapChildren = React.useCallback(children => {
+      const Mask = () => options.hasMask
+        ? <DialogMask visible={options.visible} />
+        : false;
+
+      return options.portal
+        ? <Portal>
+            {wrap(children)}
+            <Mask />
+          </Portal>
+        : wrap(children)
+    }, [options.portal, options.visible, wrap]);
 
     return {
-      ref: useAllRefs(dialogRef, props.Ref),
+      'aria-labelledby': options.titleId || propsAriaLabelledby,
+      'aria-describedby': options.bodyId || propsAriaDescribedby,
+      'aria-modal': options.modal,
+      className: cn(className, {
+        [classnameOptions.dialogScroll]: options.variants.includes('scroll'),
+        [classnameOptions.dialogStacked]: options.variants.includes('stacked'),
+        [classnameOptions.dialog]: options.modal,
+        [classnameOptions.dialogOpen]: options.modal && options.visible
+      }),
+      'data-dialog': true,
+      ref: useAllRefs(dialogRef, propsRef),
       role: 'dialog',
       tabIndex: -1,
-      'aria-modal': options.modal,
-      'data-dialog': true,
-      onKeyDown: useAllCallbacks(onKeyDown, props.OnKeyDown),
-      wrap: usePipe(wrapChildren, props.Wrap)
-      ...props
+      wrap: usePipe(wrapChildren, propsWrap),
+      ...props,
     }
   }
 });
 
 const Dialog = createComponent({
   as: 'div',
-  useHook: useDialog
+  useHook: useDialog,
+  useCreateElement: (type, props, children) => {
+    warning(
+      !props['aria-label'] && !props['aria-labelledby'],
+      'Dialog: Expect an `aria-label` or `aria-labelledby`, but detected none.'
+    );
+
+    return useCreateElement(type, props, children);
+  }
 });
 
+export { useDialog };
 export default Dialog;

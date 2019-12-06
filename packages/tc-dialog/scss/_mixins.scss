@@ -1,0 +1,95 @@
+@import "@trend/theme/scss/functions";
+@import "@trend/theme/scss/mixins";
+@import "@trend/theme/scss/variables";
+@import "./functions";
+
+@mixin tc-dialog-container-bg-color($color) {
+  #{tc-dialog-classname(child-box)} {
+    @include tc-theme-prop(background-color, $color);
+  }
+}
+
+@mixin tc-dialog-mask-color($color, $alpha: $tc-dialog-mask-opacity) {
+  background-color: rgba(tc-theme-fetch-option($color), $alpha);
+}
+
+@mixin tc-dialog-title-color(
+  $color,
+  $alpha: $tc-dialog-title-color-opacity) {
+  #{tc-dialog-classname(child-title)} {
+    color: rgba(tc-theme-fetch-option($color), $alpha);
+  }
+}
+
+@mixin tc-dialog-content-color(
+  $color,
+  $alpha: $tc-dialog-content-color-opacity) {
+  #{tc-dialog-classname(child-body)} {
+    color: rgba(tc-theme-fetch-option($color), $alpha);
+  }
+}
+
+@mixin tc-dialog-scroll-divider-color(
+  $color,
+  $alpha: $tc-dialog-scroll-divider-opacity) {
+  &#{tc-dialog-classname(modifier-scroll)} #{tc-dialog-classname(child-title)},
+  &#{tc-dialog-classname(modifier-scroll)} #{tc-dialog-classname(child-actions)} {
+    border-color: rgba(tc-theme-fetch-option($color), $alpha);
+  }
+}
+
+@mixin tc-dialog-shape-radius() {
+  #{tc-dialog-classname(child-box)} {
+    border-radius: $tc-dialog-radius;
+  }
+}
+
+@mixin tc-dialog-min-width($min-width) {
+  #{tc-dialog-classname(child-box)} {
+    min-width: $min-width;
+  }
+}
+
+@mixin tc-dialog-max-width($max-width, $margin) {
+  $max-size-calc-expr: calc(100vw - #{$margin * 2});
+
+  #{tc-dialog-classname(child-box)} {
+    @if $max-width {
+      $max-width-breakpoint: $max-width + ($margin * 2);
+
+      // Fit snugly within the viewport at smaller screen sizes.
+      @media (max-width: $max-width-breakpoint) {
+        max-width: $max-size-calc-expr;
+      }
+
+      // Once the screen gets big enough, apply a fixed maximum width.
+      @media (min-width: $max-width-breakpoint) {
+        max-width: $max-width;
+      }
+    } @else {
+      max-width: $max-size-calc-expr;
+    }
+  }
+}
+
+@mixin tc-dialog-max-height($max-height, $margin) {
+  $max-size-calc-expr: calc(100vh - #{$margin * 2});
+
+  #{tc-dialog-classname(child-box)} {
+    @if $max-height {
+      $max-height-breakpoint: $max-height + ($margin * 2);
+
+      // Fit snugly within the viewport at smaller screen sizes.
+      @media (max-height: $max-height-breakpoint) {
+        max-height: $max-size-calc-expr;
+      }
+
+      // Once the screen gets big enough, apply a fixed maximum height.
+      @media (min-height: $max-height-breakpoint) {
+        max-height: $max-height;
+      }
+    } @else {
+      max-height: $max-size-calc-expr;
+    }
+  }
+}
