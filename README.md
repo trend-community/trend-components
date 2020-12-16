@@ -1,5 +1,7 @@
 # Trend components
 
+**NOTE** No longer actively developed.
+
 This is a mono-repo that houses TREND Community UI component library for building [accessible](https://www.w3.org/TR/wai-aria-practices/) web apps with [React](https://reactjs.org/) and [SASS](https://sass-lang.com/).
 
 ## Installation
@@ -48,8 +50,3 @@ ReactDom.render(<App />, document.getElementById('root'));
 - [React](https://reactjs.org/) is the JavaScript library used for building out the individual components to be used in a user interface.
 -[SASS](https://sass-lang.com/) is the CSS extension utilized for styling all components.  Packages that expose a CSS interface will have an accompanying `scss` directory and a `styles.scss` at the root of that packages directory.
 - [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/) is the main resource utilized for understanding and creating accessible rich internet applications.
-
-## Credit and Attributions
-
-- [Reakit](https://github.com/reakit/reakit) toolkit.  Would advise using Reakit over this project.
-- [Material components for the Web](https://github.com/material-components/material-components-web).  Many of the trend-components are inspried by this project.
